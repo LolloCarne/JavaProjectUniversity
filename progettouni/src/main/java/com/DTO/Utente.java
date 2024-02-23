@@ -1,13 +1,15 @@
 package com.DTO;
 
+import java.util.UUID;
+
 public class Utente {
     
     private String Nickname;
-    private String id;
+    private UUID id;
 
-    public Utente(String n, String i){
+    public Utente(String n){
         this.Nickname = n;
-        this.id = i;
+        this.id = UUID.randomUUID();
     }
 
     public String getNick(){

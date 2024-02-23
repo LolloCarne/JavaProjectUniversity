@@ -16,7 +16,8 @@ public class UniscitiAPartitaScene {
         Button backButton = new Button("Indietro");
         backButton.setOnAction(e -> {
             // Torna alla schermata principale
-            primaryStage.setScene(new MainScreen().getScene());
+            MainScreen mainScreen = new MainScreen();
+            mainScreen.start(primaryStage);
         });
 
         VBox root = new VBox(20);
