@@ -41,17 +41,17 @@ public class Controller {
     
 
        
-        @FXML
-        void goToGiocaBot(ActionEvent event) throws IOException{
-            Parent root = FXMLLoader.load(getClass().getResource("schermataUtente.fxml")); //nome scena successiva
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
+     @FXML
+    void goToGiocaBot(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("schermataUtente.fxml")); //nome scena successiva
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     
-        @FXML
-        void goToUnisciti(ActionEvent event) {
+     @FXML
+    void goToUnisciti(ActionEvent event) {
     
         
     
