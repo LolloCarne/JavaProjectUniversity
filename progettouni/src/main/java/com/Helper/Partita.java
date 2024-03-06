@@ -6,9 +6,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.DTO.Utente;
 
 import javafx.application.Preloader.ErrorNotification;
@@ -19,18 +21,18 @@ public class Partita {
     public Partita(){
         this.codice= generateRandomString(6);
         Partecipanti = new ArrayList<>();
-        //creo json
+        salvaPartita();
 
     }
 
     public Partita(String codice){
 
-        //carico json
+        
     }
 
         private void salvaPartita() {
         try {
-            String fileName = "tuo_file.json";
+            String fileName = "Partite.json";
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             List<Partita> partite;
@@ -57,7 +59,34 @@ public class Partita {
         }
     }
 
+    private void caricaPartita(String codice){
 
+         try {
+            String fileName = "Partite.json";
+            Gson gson = new Gson();
+
+            // Leggi il contenuto del file JSON esistente
+            if (Files.exists(Paths.get(fileName))) {
+                try (FileReader reader = new FileReader(fileName)) {
+                    
+                    List<Partita> partite = gson.fromJson(reader,List.class);
+
+                    // Cerca la partita con il codice specificato
+                    Optional<Partita> partitaOptional = partite.stream()
+                            .filter(partita -> partita.getCode().equals(codice))
+                            .findFirst();
+
+                    // Se la partita è presente, carica i partecipanti
+                    partitaOptional.ifPresent(partita -> {
+                        this.Partecipanti = new ArrayList<>(partita.getPlayers());
+                    });
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     
     public void addPartecipante(Utente u) throws Error{
         if (this.Partecipanti.size()>=4){
