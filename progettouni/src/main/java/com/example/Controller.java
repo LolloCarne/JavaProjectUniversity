@@ -101,11 +101,8 @@ public class Controller {
 
     @FXML
     void onBtnLogin(ActionEvent event) {
-        try {
-            //p.addPartecipante();
-        } catch (Exception e) {
-            // System.out.print("NUmero giocatori massimo superato!");
-        }
+       String codice = tfCodice.getText();
+       String nickname = tfNickname.getText();
     }
 
     @FXML
