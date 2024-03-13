@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller">
+   <children>
+      <Button layoutX="186.0" layoutY="64.0" mnemonicParsing="false" onAction="#creaPartitaAction" prefHeight="39.0" prefWidth="228.0" text="Crea Partita" />
+      <Button layoutX="186.0" layoutY="129.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="228.0" text="Button" />
+      <Button layoutX="186.0" layoutY="193.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="228.0" text="Button" />
+      <Button layoutX="186.0" layoutY="253.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="228.0" text="Button" />
+      <Button layoutX="186.0" layoutY="313.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="228.0" text="Button" />
+   </children>
+</AnchorPane>
