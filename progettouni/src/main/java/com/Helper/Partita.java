@@ -26,13 +26,14 @@ public class Partita {
     }
 
     public Partita(String codice){
-
+        this.codice=codice;
+        caricaPartita(codice);
         
     }
 
         private void salvaPartita() {
         try {
-            String fileName = "Partite.json";
+            String fileName = "progettouni/json/Partite.json";
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             List<Partita> partite;
@@ -62,7 +63,7 @@ public class Partita {
     private void caricaPartita(String codice){
 
          try {
-            String fileName = "Partite.json";
+            String fileName = "progettouni/json/Partite.json";
             Gson gson = new Gson();
 
             // Leggi il contenuto del file JSON esistente
