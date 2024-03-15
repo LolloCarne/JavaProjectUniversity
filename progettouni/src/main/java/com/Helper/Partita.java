@@ -49,6 +49,7 @@ public class Partita {
 
             // Aggiungi la nuova Partita alla lista
             partite.add(this);
+            partite.get(0).Partecipanti.get(0);
 
             // Scrivi la lista aggiornata nel file JSON
             try (FileWriter writer = new FileWriter(fileName)) {

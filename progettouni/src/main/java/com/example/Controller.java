@@ -44,23 +44,8 @@ public class Controller {
     private TextField campoCodice;
 
     @FXML
-<<<<<<< HEAD
     private TextField nickNameField;
 
-=======
-    private Button IndietroBtn;
-
-    @FXML
-    void goBack(ActionEvent event) throws IOException {
-       
-        Parent root = FXMLLoader.load(getClass().getResource("homeScene.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        
-    }
->>>>>>> 9b395749bd2c40aa5797db92445bc8b22d3158f0
 
     @FXML
     void onBtnClick1(ActionEvent event) throws IOException{
@@ -119,46 +104,22 @@ public class Controller {
         stage.setScene(scene);
         stage.show();
 
-      
-
         campoCodice.setText(p.getCode());
 
     }
 
     @FXML
-<<<<<<< HEAD
     void addUtenteAction(ActionEvent event) throws IOException{
-
         String codice= campoCodice.getText();
         Partita p = new Partita(codice);
 
-
         p.addPartecipante(new Utente(nickNameField.getText()));
 
-        
-
-
     }
-=======
-    void addUtenteAction(ActionEvent event) throws IOException{}
 
 
-    @FXML
-    private TextField codiceRegole;
 
-    @FXML
-    private TextField lista1;
 
-    @FXML
-    private TextField lista2;
-
-    @FXML
-    private TextField lista3;
-
-    @FXML
-    private TextField lista4;
-
->>>>>>> 9b395749bd2c40aa5797db92445bc8b22d3158f0
 }
 
 
