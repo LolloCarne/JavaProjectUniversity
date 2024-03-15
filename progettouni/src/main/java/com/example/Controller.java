@@ -122,6 +122,23 @@ public class Controller {
 
     @FXML
     void addUtenteAction(ActionEvent event) throws IOException{}
+
+
+    @FXML
+    private TextField codiceRegole;
+
+    @FXML
+    private TextField lista1;
+
+    @FXML
+    private TextField lista2;
+
+    @FXML
+    private TextField lista3;
+
+    @FXML
+    private TextField lista4;
+
 }
 
 

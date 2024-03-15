@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextArea layoutY="2.0" prefHeight="410.0" prefWidth="403.0" text="Le REGOLE di SPACCA prevedono che possano giocare un minimo di 2 &#10;e un max di 4 giocatori. Lo scopo è quello di avere in mano 3 carte&#10;dello stesso seme oppure in scala e raccogliere così tutte le 6 carte che&#10;servono per comporre  la parola SPACCA.&#10;Vengono distribuite 3 carte per giocatore,  all’inizio del proprio turno &#10;dovrà scartare una carta e pescarne una nuova dal mazzo.&#10;All’interno del mazzo, però,  non si troveranno solo le carte da gioco ma&#10;anche delle carte speciali “Imprevisti”. Queste carte potranno sia aiutare&#10;il giocatore sia metterlo in difficoltà.&#10;Potranno essere:&#10;-Pesca 2 carte: ti permetterà di pescare&#10; e scartare 2 carte&#10;Jolly Seme: ti permetterà di attribuire il seme che più desideri alla carta&#10;pescata&#10;Jolly Numero: ti permetterà di attribuire il numero che più desideri&#10;alla carta pescata&#10;Ruba Una Carta SPACCA: ti permetterà di rubare una carta SPACCA che&#10;ti manca da un tuo avversario&#10;Carta Blocco Turno: ti bloccherà il turno &#10;Carta Scarta SPACCA: se peschi questa carta alla prox vittoria non&#10;pescherai la carta SPACCA&#10;Il gioco finirà una volta che un giocatore avrà completato la parola &#10;SPACCA.&#10;" />
+      <TextField layoutX="393.0" layoutY="-121.0" />
+      <TextField fx:id="codiceRegole" layoutX="426.0" layoutY="73.0" prefHeight="26.0" prefWidth="150.0" />
+      <TextField fx:id="lista1" layoutX="427.0" layoutY="215.0" />
+      <TextField fx:id="lista2" layoutX="428.0" layoutY="241.0" />
+      <TextField fx:id="lista3" layoutX="428.0" layoutY="267.0" />
+      <TextField fx:id="lista4" layoutX="428.0" layoutY="293.0" />
+      <TextField layoutX="403.0" layoutY="-59.0" />
+      <Text layoutX="426.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CODICE:" />
+      <Text layoutX="428.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LISTA PARTCIPANTI:" />
+   </children>
+</AnchorPane>
