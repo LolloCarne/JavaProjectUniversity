@@ -43,6 +43,9 @@ public class Controller {
     @FXML
     private TextField campoCodice;
 
+    @FXML
+    private TextField nickNameField;
+
 
     @FXML
     void onBtnClick1(ActionEvent event) throws IOException{
@@ -104,14 +107,25 @@ public class Controller {
         stage.setScene(scene);
         stage.show();
 
-        String temp= campoCodice.getText();
+      
 
-        campoCodice.setText(temp+p.getCode());
+        campoCodice.setText(p.getCode());
 
     }
 
     @FXML
-    void addUtenteAction(ActionEvent event) throws IOException{}
+    void addUtenteAction(ActionEvent event) throws IOException{
+
+        String codice= campoCodice.getText();
+        Partita p = new Partita(codice);
+
+
+        p.addPartecipante(new Utente(nickNameField.getText()));
+
+        
+
+
+    }
 }
 
 
