@@ -46,6 +46,33 @@ public class Controller {
     @FXML
     private TextField nickNameField;
 
+    private Button IndietroBtn;
+
+    @FXML
+    private TextField codiceRegole;
+
+    @FXML
+    private TextField lista1;
+
+    @FXML
+    private TextField lista2;
+
+    @FXML
+    private TextField lista3;
+
+    @FXML
+    private TextField lista4;
+
+    @FXML
+    void goBack(ActionEvent event) throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("homeScene.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 
     @FXML
     void onBtnClick1(ActionEvent event) throws IOException{
