@@ -46,7 +46,11 @@ public class Controller {
     @FXML
     private TextField nickNameField;
 
+    @FXML
     private Button IndietroBtn;
+
+    @FXML
+    private Button IndietroBtn2;
 
     @FXML
     private TextField codiceRegole;
