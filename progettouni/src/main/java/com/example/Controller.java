@@ -48,8 +48,12 @@ public class Controller {
 
     private Button IndietroBtn;
 
+
     @FXML
     private TextField codiceRegole;
+
+    @FXML
+    private Button giocaPartita;
 
     @FXML
     private TextField lista1;
@@ -62,6 +66,8 @@ public class Controller {
 
     @FXML
     private TextField lista4;
+
+   
 
     @FXML
     void goBack(ActionEvent event) throws IOException {
@@ -113,13 +119,17 @@ public class Controller {
     
     }
 
-
-
-
     @FXML
-    void onBtnLogin(ActionEvent event) {
-       String codice = tfCodice.getText();
-       String nickname = tfNickname.getText();
+    void onBtnLogin(ActionEvent event) throws IOException {
+        String codice = tfCodice.getText();
+        String nickname = tfNickname.getText();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("regoleScene.fxml")); //nome scena successiva
+       
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -144,7 +154,11 @@ public class Controller {
 
     }
 
-
+    @FXML
+    void iniziaPartita(ActionEvent event) throws IOException {
+        
+    
+    }
 
 
 }
