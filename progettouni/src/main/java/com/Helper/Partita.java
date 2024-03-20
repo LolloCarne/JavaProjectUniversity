@@ -1,4 +1,5 @@
 package com.Helper;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,10 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-import com.google.gson.Gson;
+/*import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
+import com.google.gson.reflect.TypeToken;*/
 import com.DTO.Utente;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 
 import javafx.application.Preloader.ErrorNotification;
 
@@ -33,27 +37,29 @@ public class Partita {
 
         private void salvaPartita() {
         try {
+            ObjectMapper objectMapper = new ObjectMapper();
             String fileName = "progettouni/json/Partite.json";
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-            List<Partita> partite;
-
+            File filePartiteJSON = new File(fileName);
+            
             // Leggi il contenuto del file JSON esistente
             if (Files.exists(Paths.get(fileName))) {
-                try (FileReader reader = new FileReader(fileName)) {
-                    partite = gson.fromJson(reader, List.class);
-                }
+               
+                ArrayNode partiteArray = objectMapper.readValue(filePartiteJSON, ArrayNode.class);
+                
             } else {
-                partite = new ArrayList<>();
+//se non esiste ne creo e inserisco uno nuovo
+             
+            ArrayNode partiteArray=new ArrayNode(null);
             }
 
+            
             // Aggiungi la nuova Partita alla lista
-            partite.add(this);
-            partite.get(0).Partecipanti.get(0);
+            //partiteWrapper.getPartite().add(this);
+            partiteArray.
 
             // Scrivi la lista aggiornata nel file JSON
             try (FileWriter writer = new FileWriter(fileName)) {
-                gson.toJson(partite, writer);
+                //gson.toJson(partiteWrapper, writer);
             }
 
         } catch (IOException e) {
@@ -63,7 +69,7 @@ public class Partita {
 
     private void caricaPartita(String codice){
 
-         try {
+         /*try {
             String fileName = "progettouni/json/Partite.json";
             Gson gson = new Gson();
 
@@ -88,6 +94,7 @@ public class Partita {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
     }
     
     public void addPartecipante(Utente u) throws Error{
