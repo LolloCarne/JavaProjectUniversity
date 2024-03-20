@@ -1,6 +1,8 @@
 package com.example;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import com.DTO.Utente;
 import com.Helper.Partita;
@@ -8,6 +10,7 @@ import com.Helper.Partita;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -170,14 +173,14 @@ public class Controller {
 
     @FXML
     void creaPartitaAction(ActionEvent event) throws IOException{
-        Partita p = new Partita(); 
+        //Partita p = new Partita(); 
         Parent root = FXMLLoader.load(getClass().getResource("creazionePartitaScene.fxml")); //nome scena successiva
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
 
-        campoCodice.setText(p.getCode());
+       // campoCodice.setText(p.getCode());
 
     }
 
@@ -221,6 +224,9 @@ public class Controller {
         
     
     }
+
+
+
 
 
 
