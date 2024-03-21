@@ -34,7 +34,7 @@ public class ControllerCreaPartita implements Initializable{
     public void initialize(URL arg0, ResourceBundle arg1) {
         //roba su scena creazionePartita
         Partita p = new Partita(); 
-        campoCodice.setText(p.getCode());
+        campoCodice.setText(p.getCodice());
     }
 
         @FXML

@@ -13,14 +13,24 @@ import java.util.Random;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;*/
 import com.DTO.Utente;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.type.CollectionType;
 
 import javafx.application.Preloader.ErrorNotification;
+import javafx.scene.shape.Path;
 
 public class Partita {
+    @JsonProperty("codice")
     private String codice;
+
+    @JsonProperty("Partecipanti")
     ArrayList <Utente> Partecipanti;
     public Partita(){
         this.codice= generateRandomString(6);
@@ -35,33 +45,48 @@ public class Partita {
         
     }
 
-        private void salvaPartita() {
+    public Partita(String codice, ArrayList <Utente> partecipanti){
+        this.codice=codice;
+        this.Partecipanti=partecipanti;
+    }
+
+    private void salvaPartita() {
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
             String fileName = "progettouni/json/Partite.json";
-            File filePartiteJSON = new File(fileName);
-            
+            ObjectMapper objectMapper = new ObjectMapper()
+            .enable(SerializationFeature.INDENT_OUTPUT);
+            List<Partita> partiteEsistenti;
+
             // Leggi il contenuto del file JSON esistente
             if (Files.exists(Paths.get(fileName))) {
-               
-                ArrayNode partiteArray = objectMapper.readValue(filePartiteJSON, ArrayNode.class);
-                
+                //partiteEsistenti =  objectMapper.readValue(Paths.get(fileName).toFile(), new TypeReference<List<Partita>>() {});
+                JsonNode listaParite= objectMapper.readTree(Paths.get(fileName).toFile());
+                ArrayList <Partita> nuovaLista = new ArrayList<>();
+                for(JsonNode x : listaParite){
+                ArrayList <Utente> tmpUtenti = new ArrayList<>();
+                for(JsonNode utente : x.get("Partecipanti")){
+                    tmpUtenti.add(new Utente(utente.toString()));
+                }
+                nuovaLista.add(new Partita(x.get("codice").toString(),tmpUtenti));
+                }
+                /*ArrayNode array = objectMapper.valueToTree(nuovaLista);
+                ObjectNode companyNode = mapper.valueToTree(company);
+                companyNode.putArray("Employee").addAll(array);
+                JsonNode result = mapper.createObjectNode().set("company", companyNode);*/
+                objectMapper.writeValue(Paths.get(fileName).toFile(),nuovaLista);
+            }
+               /*  System.out.println(partiteEsistenti.get(0).codice);
             } else {
-//se non esiste ne creo e inserisco uno nuovo
-             
-            ArrayNode partiteArray=new ArrayNode(null);
+                partiteEsistenti = new ArrayList<>();
             }
 
-            
             // Aggiungi la nuova Partita alla lista
-            //partiteWrapper.getPartite().add(this); 
+            partiteEsistenti.add(this);
 
             // Scrivi la lista aggiornata nel file JSON
-            try (FileWriter writer = new FileWriter(fileName)) {
-                //gson.toJson(partiteWrapper, writer);
-            }
-
-        } catch (IOException e) {
+            objectMapper.writeValue(Paths.get(fileName).toFile(), partiteEsistenti);
+*/
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -104,12 +129,12 @@ public class Partita {
         Partecipanti.add(u);
     }
     
-    public ArrayList<Utente> getPlayers(){
+    public ArrayList<Utente> getPartecipanti(){
         return this.Partecipanti;
     }
 
     
-    public String getCode(){
+    public String getCodice(){
         return this.codice;
     }
 

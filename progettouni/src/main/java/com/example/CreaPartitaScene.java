@@ -31,7 +31,7 @@ private Stage primaryStage;
             mainScreen.start(primaryStage);
         });
         Partita p = new Partita();
-        Text t = new Text(p.getCode());
+        Text t = new Text(p.getCodice());
         
 
         TextField inputTextField = new TextField();
