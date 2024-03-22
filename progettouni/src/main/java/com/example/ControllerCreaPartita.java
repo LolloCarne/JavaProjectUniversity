@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.DTO.Partita;
 import com.DTO.Utente;
-import com.Helper.Partita;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

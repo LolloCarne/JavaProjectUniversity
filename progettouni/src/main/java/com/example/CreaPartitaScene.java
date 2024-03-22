@@ -2,8 +2,8 @@ package com.example;
 
 import java.io.IOException;
 
+import com.DTO.Partita;
 import com.DTO.Utente;
-import com.Helper.Partita;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
