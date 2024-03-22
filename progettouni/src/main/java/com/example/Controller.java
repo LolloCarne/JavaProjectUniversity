@@ -23,6 +23,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
+import com.Manager.PartitaManager;
+
 public class Controller {
 
     private Stage stage;
@@ -106,6 +108,9 @@ public class Controller {
     @FXML
     private Label messagioEliminazione;
 
+    
+
+    PartitaManager manager = new PartitaManager();
    
 
     @FXML
@@ -253,6 +258,9 @@ public class Controller {
 
         private void eliminaPartita() {
             // Aggiungi qui il codice per eliminare la partita
+            String codice = codiceElimina.getText();
+            System.out.println(codice);
+            manager.deletePartitaByCode(codice);
             messagioEliminazione.setText("Partita eliminata con successo!");
         }
         
