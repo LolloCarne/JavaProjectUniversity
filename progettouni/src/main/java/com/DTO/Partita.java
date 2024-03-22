@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Partita {
     @JsonProperty("codice")
-    private String codice;
+    public String codice;
 
     @JsonProperty("Partecipanti")
     ArrayList <Utente> Partecipanti;
@@ -48,13 +48,20 @@ public class Partita {
     
     
     public void addPartecipante(Utente u) throws Error{
+        PartitaManager manager = new PartitaManager();
         if (this.Partecipanti.size()>=4){
             throw new Error();
         }
-
         Partecipanti.add(u);
 
+        ArrayList<Partita> partite= manager.leggiJson();
         
+        Optional<Partita> partitaOptional= partite.stream().filter(partita -> partita.getCodice().equals(this.codice))
+        .findFirst();
+
+        partitaOptional.ifPresent(partita -> {
+           //
+        });
     }
     
     public ArrayList<Utente> getPartecipanti(){

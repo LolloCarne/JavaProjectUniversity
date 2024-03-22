@@ -8,6 +8,8 @@ import java.util.Optional;
 
 import com.DTO.Partita;
 import com.DTO.Utente;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -55,7 +57,6 @@ public class PartitaManager {
     
 
     public ArrayList<Partita> leggiJson(){
-
         ArrayList <Partita> nuovaLista = new ArrayList<>();
         try {
 
@@ -63,30 +64,33 @@ public class PartitaManager {
             if (Files.exists(Paths.get(filename))) {
                 JsonNode listaParite= objectMapper.readTree(Paths.get(filename).toFile());
                 for(JsonNode x : listaParite){
+                
                 ArrayList <Utente> tmpUtenti = new ArrayList<>();
                 for(JsonNode utente : x.get("Partecipanti")){
                     tmpUtenti.add(new Utente(utente.toString()));
                 }
-                nuovaLista.add(new Partita(x.get("codice").toString(),tmpUtenti));
+                //pulisco i campi codice da tutti i caratteri di escape che si possono creare nel mapping
+                String nuovoCodice= x.get("codice").toString().replace("\"", "").replace("\\", ""); 
+                nuovaLista.add(new Partita(nuovoCodice,tmpUtenti));
                 }
 
             }
         }catch (IOException e) {
             e.printStackTrace();
         }
+        
         return nuovaLista;
     }
 
-    public void scriviJson(ArrayList <Partita> partite){
-
-        try{
-            objectMapper.writeValue(Paths.get(filename).toFile(),partite);
-        }catch(IOException e){
+    public void scriviJson(ArrayList<Partita> partite) {
+        try {
+            String jsonString = objectMapper.writeValueAsString(partite);
+            Files.write(Paths.get(filename), jsonString.getBytes());
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        
-
     }
+    
 
     
 }
