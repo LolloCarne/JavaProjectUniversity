@@ -2,6 +2,7 @@ package com.example;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.DTO.Partita;
@@ -15,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -27,8 +29,13 @@ public class ControllerCreaPartita implements Initializable{
 
     @FXML
     private TextField nickNameField;
-      @FXML
+    
+    @FXML
     private Button IndietroBtn;
+
+    @FXML
+    private ListView<String> nickNameList;
+
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -41,9 +48,21 @@ public class ControllerCreaPartita implements Initializable{
     void addUtenteAction(ActionEvent event) throws IOException{
         String codice= campoCodice.getText();
         Partita p = new Partita(codice);
+        String nickname=nickNameField.getText();
 
-        p.addPartecipante(new Utente(nickNameField.getText()));
+        if (!nickname.isEmpty()) {
+            p.addPartecipante(new Utente(nickname));
+            updateNickNameList(p.getNickNamesList());
+            nickNameField.clear(); // Cancella il campo di testo dopo l'aggiunta
+        }
+        
 
+
+    }
+
+    public void updateNickNameList(ArrayList<String> nicks){
+        nickNameList.getItems().clear();
+        nickNameList.getItems().addAll(nicks);
     }
 
         @FXML

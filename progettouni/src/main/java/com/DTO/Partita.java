@@ -56,16 +56,24 @@ public class Partita {
 
         ArrayList<Partita> partite= manager.leggiJson();
         
-        Optional<Partita> partitaOptional= partite.stream().filter(partita -> partita.getCodice().equals(this.codice))
-        .findFirst();
-
-        partitaOptional.ifPresent(partita -> {
-           //
-        });
+       for(Partita p : partite){
+        if(p.codice.equals(this.codice)){
+            p.Partecipanti=this.Partecipanti;
+        }
+       }
     }
     
     public ArrayList<Utente> getPartecipanti(){
         return this.Partecipanti;
+    }
+
+    public ArrayList<String> getNickNamesList(){
+        ArrayList<String> nicks= new ArrayList<>();
+        for (Utente u : this.Partecipanti){
+            nicks.add(u.getNick());
+        }
+
+        return nicks;
     }
 
     
