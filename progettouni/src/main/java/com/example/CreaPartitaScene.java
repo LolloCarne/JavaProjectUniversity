@@ -2,8 +2,8 @@ package com.example;
 
 import java.io.IOException;
 
+import com.DTO.Partita;
 import com.DTO.Utente;
-import com.Helper.Partita;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -31,7 +31,7 @@ private Stage primaryStage;
             mainScreen.start(primaryStage);
         });
         Partita p = new Partita();
-        Text t = new Text(p.getCode());
+        Text t = new Text(p.getCodice());
         
 
         TextField inputTextField = new TextField();
