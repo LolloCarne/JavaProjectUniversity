@@ -55,7 +55,7 @@ public class Partita {
             
             // Aggiungi la nuova Partita alla lista
             //partiteWrapper.getPartite().add(this);
-            partiteArray.
+            //partiteArray.
 
             // Scrivi la lista aggiornata nel file JSON
             try (FileWriter writer = new FileWriter(fileName)) {
