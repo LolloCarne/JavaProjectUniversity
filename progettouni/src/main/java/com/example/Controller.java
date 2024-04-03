@@ -18,6 +18,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import javafx.stage.Stage;
@@ -82,16 +83,10 @@ public class Controller {
     private Button giocaPartita;
 
     @FXML
-    private TextField lista1;
+    private ListView<String> listPartecipanti;
 
     @FXML
-    private TextField lista2;
-
-    @FXML
-    private TextField lista3;
-
-    @FXML
-    private TextField lista4;
+    private Button ottieniPartcipanti;
 
     @FXML
     private Button AggiungiUtente;
@@ -228,6 +223,13 @@ public class Controller {
     void iniziaPartita(ActionEvent event) throws IOException {
         
     
+    }
+
+    /*metodo per far si che possa stampare i partecipanti */
+    @FXML
+    void stampaPartecipanti(ActionEvent event) throws IOException {
+        String codice = codiceRegole.getText();
+        manager.stampaJson( codice , listPartecipanti);
     }
 
 

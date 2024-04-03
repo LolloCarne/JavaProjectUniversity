@@ -24,7 +24,8 @@ public class ControllerCreaPartita implements Initializable{
 
     private Stage stage;
     private Scene scene;
-        @FXML
+    
+    @FXML
     private TextField campoCodice;
 
     @FXML

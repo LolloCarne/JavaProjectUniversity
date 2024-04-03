@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller">
    <children>
       <Label layoutX="80.0" layoutY="90.0" prefHeight="59.0" prefWidth="440.0" text="Inserisci il codice della partita che vuoi eliminare...">
@@ -26,5 +25,6 @@
             <Font size="19.0" />
          </font>
       </Label>
+      <Button fx:id="IndietroBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="Home" />
    </children>
 </AnchorPane>

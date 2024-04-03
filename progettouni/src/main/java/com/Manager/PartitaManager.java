@@ -14,6 +14,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import javafx.scene.control.ListView;
+
 public class PartitaManager {
 
     private static final String filename="progettouni/json/Partite.json";
@@ -90,7 +92,20 @@ public class PartitaManager {
             e.printStackTrace();
         }
     }
-    
+
+    /*serve per scrivere i partegipanti in regoleScene*/ 
+    public void stampaJson(String codice,  ListView<String> lista/*, ArrayList <String> lista*/) {
+
+        ArrayList<Utente> partecipanti = getPartecipantiByCode(codice);
+        for(int i=0; i <partecipanti.size(); i++){
+            for(Utente x : partecipanti){
+                lista.getItems().addAll(x.toString());
+            }
+        }
+
+
+
+    }
     public void deletePartitaByCode(String codice){
         ArrayList<Partita> partite = leggiJson();
         for(int i = 0; i<partite.size(); i++){
