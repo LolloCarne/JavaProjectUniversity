@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import javafx.stage.Stage;
@@ -104,6 +105,26 @@ public class Controller {
     @FXML
     private Label messagioEliminazione;
 
+     @FXML
+    private Button logAdmin;
+
+    @FXML
+    private PasswordField pwdAdmin;
+
+    @FXML
+    private Button registroAdmin;
+
+    @FXML
+    private TextField usernameAdmin;
+
+    @FXML
+    private PasswordField pwdAdminReg;
+
+    @FXML
+    private Button registrazioneAdmin;
+
+    @FXML
+    private TextField usernameAdminReg;
     
 
     PartitaManager manager = new PartitaManager();
@@ -132,7 +153,7 @@ public class Controller {
 
     @FXML
     void onBtnClick2(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("menuAdminScene.fxml")); //nome scena successiva
+        Parent root = FXMLLoader.load(getClass().getResource("loginAdminScene.fxml")); //nome scena successiva
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -273,6 +294,41 @@ public class Controller {
             manager.deletePartitaByCode(codice);
             messagioEliminazione.setText("Partita eliminata con successo!");
         }
+
+        @FXML
+        void logAdminAction(ActionEvent event) throws IOException{
+            String username = usernameAdmin.getText();
+            String password = pwdAdmin.getText();
+            
+            Parent root = FXMLLoader.load(getClass().getResource("menuAdminScene.fxml")); //nome scena successiva
+           
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    
+        @FXML
+        void goToRegistrati(ActionEvent event) throws IOException {
+            Parent root = FXMLLoader.load(getClass().getResource("registrazioneAdmin.fxml")); //nome scena successiva
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    
+        @FXML
+        void registraAdmin(ActionEvent event) throws IOException{
+            String username = usernameAdminReg.getText();
+            String pwd = pwdAdminReg.getText();
+
+            Parent root = FXMLLoader.load(getClass().getResource("menuAdminScene.fxml")); //nome scena successiva
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    
         
     }
 
