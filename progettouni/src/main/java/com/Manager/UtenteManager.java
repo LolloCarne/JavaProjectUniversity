@@ -28,40 +28,14 @@ public class UtenteManager {
     private static final ObjectMapper objectMapper = new ObjectMapper()
     .enable(SerializationFeature.INDENT_OUTPUT);
 
-    public void creaUtente(Utente u){
 
-        ArrayList <Utente> jsonList = leggiJson();
-        jsonList.add(u);
-       // scriviJson(jsonList);
+    public void deleteUtenteByCode(String code){
+        //bianca fai cose qui dentro
     }
-        public ArrayList<Utente> leggiJson(){
-            ArrayList <Utente> nuovaLista = new ArrayList<>();
-            try {
 
-                // Leggi il contenuto del file JSON esistente
-                if (Files.exists(Paths.get(filename))) {
-                    JsonNode listaUtenti= objectMapper.readTree(Paths.get(filename).toFile());
-                    for(JsonNode x : listaUtenti){
-                    
-                    ArrayList <Utente> Nickname = new ArrayList<>();
-                    for(JsonNode nick : x.get("Nickname")){
-                        Nickname.add(new Utente(nick.toString()));
-                    }
-
-                    ArrayList <Utente> Id = new ArrayList<>();
-                    for(JsonNode id : x.get("id")){
-                        Id.add(new Utente(id.toString()));
-                    }
-                }
-
-                //pulisco i campi codice da tutti i caratteri di escape che si possono creare nel mapping
-                /*String nuovoCodice= x.get("codice").toString().replace("\"", "").replace("\\", ""); 
-                nuovaLista.add(new Partita(nuovoCodice,tmpUtenti));
-                }*/
-            }
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-        return nuovaLista;
+    public ArrayList<Utente> leggiJson(){
+        
+        return new ArrayList<>();
     }
+    
 }
