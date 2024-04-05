@@ -16,8 +16,8 @@ public class GiocaConBotScene {
         Button backButton = new Button("Indietro");
         backButton.setOnAction(e -> {
             // Torna alla schermata principale
-            MainScreen mainScreen = new MainScreen();
-            mainScreen.start(primaryStage);
+           // MainScreen mainScreen = new MainScreen();
+           // mainScreen.start(primaryStage);
         });
 
         VBox root = new VBox(20);

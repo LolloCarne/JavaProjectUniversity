@@ -21,6 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+//CONTROLLER SOLO PER CREA PARTITA SCENE
 public class ControllerCreaPartita implements Initializable{
 
     private Stage stage;
