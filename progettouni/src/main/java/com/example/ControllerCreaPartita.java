@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import com.DTO.Partita;
 import com.DTO.Utente;
+import com.Manager.PartitaManager;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,12 +49,13 @@ public class ControllerCreaPartita implements Initializable{
         @FXML
     void addUtenteAction(ActionEvent event) throws IOException{
         String codice= campoCodice.getText();
+        PartitaManager manager = new PartitaManager();
         Partita p = new Partita(codice);
         String nickname=nickNameField.getText();
 
         if (!nickname.isEmpty()) {
             p.addPartecipante(new Utente(nickname));
-            updateNickNameList(p.getNickNamesList());
+            updateNickNameList(manager.getNickNamesList(p));
             nickNameField.clear(); // Cancella il campo di testo dopo l'aggiunta
         }
         

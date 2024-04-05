@@ -2,6 +2,7 @@ package com.example;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.DTO.Partita;
@@ -228,8 +229,15 @@ public class Controller {
     /*metodo per far si che possa stampare i partecipanti */
     @FXML
     void stampaPartecipanti(ActionEvent event) throws IOException {
+        
         String codice = codiceRegole.getText();
-        manager.stampaJson( codice , listPartecipanti);
+        Partita p = new Partita(codice);
+        PartitaManager manager = new PartitaManager();
+        ArrayList <Utente> partecipanti = manager.getPartecipantiByCode(codice);
+        for (Utente u : partecipanti){
+            listPartecipanti.getItems().addAll(u.getNick());
+        }
+        
     }
 
 

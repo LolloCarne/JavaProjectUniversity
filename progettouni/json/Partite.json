@@ -38,4 +38,34 @@
   "partecipanti" : [ ],
   "codice" : "V4WPVU",
   "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "60TP29",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "FYIPD3",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ {
+    "id" : "9b645819-e90a-4e97-90e2-8e367657be21",
+    "nick" : "lollo"
+  }, {
+    "id" : "8b932312-9e48-4851-977e-3256484b1875",
+    "nick" : "paolo"
+  }, {
+    "id" : "26123107-0077-4e4b-8890-e9a5dfb71aec",
+    "nick" : "gianni"
+  } ],
+  "codice" : "3CG3HH",
+  "Partecipanti" : [ {
+    "id" : "9b645819-e90a-4e97-90e2-8e367657be21",
+    "nick" : "lollo"
+  }, {
+    "id" : "8b932312-9e48-4851-977e-3256484b1875",
+    "nick" : "paolo"
+  }, {
+    "id" : "26123107-0077-4e4b-8890-e9a5dfb71aec",
+    "nick" : "gianni"
+  } ]
 } ]

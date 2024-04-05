@@ -61,20 +61,14 @@ public class Partita {
             p.Partecipanti=this.Partecipanti;
         }
        }
+
+       manager.scriviJson(partite);
     }
     
     public ArrayList<Utente> getPartecipanti(){
         return this.Partecipanti;
     }
 
-    public ArrayList<String> getNickNamesList(){
-        ArrayList<String> nicks= new ArrayList<>();
-        for (Utente u : this.Partecipanti){
-            nicks.add(u.getNick());
-        }
-
-        return nicks;
-    }
 
     
     public String getCodice(){

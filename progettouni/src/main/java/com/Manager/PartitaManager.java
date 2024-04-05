@@ -69,7 +69,7 @@ public class PartitaManager {
                 
                 ArrayList <Utente> tmpUtenti = new ArrayList<>();
                 for(JsonNode utente : x.get("Partecipanti")){
-                    tmpUtenti.add(new Utente(utente.toString()));
+                    tmpUtenti.add(new Utente(utente));
                 }
                 //pulisco i campi codice da tutti i caratteri di escape che si possono creare nel mapping
                 String nuovoCodice= x.get("codice").toString().replace("\"", "").replace("\\", ""); 
@@ -93,19 +93,8 @@ public class PartitaManager {
         }
     }
 
-    /*serve per scrivere i partegipanti in regoleScene*/ 
-    public void stampaJson(String codice,  ListView<String> lista/*, ArrayList <String> lista*/) {
 
-        ArrayList<Utente> partecipanti = getPartecipantiByCode(codice);
-        for(int i=0; i <partecipanti.size(); i++){
-            for(Utente x : partecipanti){
-                lista.getItems().addAll(x.toString());
-            }
-        }
-
-
-
-    }
+    
     public void deletePartitaByCode(String codice){
         ArrayList<Partita> partite = leggiJson();
         for(int i = 0; i<partite.size(); i++){
@@ -117,6 +106,15 @@ public class PartitaManager {
         }
         scriviJson(partite);
     } 
+
+    public ArrayList<String> getNickNamesList(Partita p){
+        ArrayList<String> nicks= new ArrayList<>();
+        for (Utente u : p.getPartecipanti()){
+            nicks.add(u.getNick());
+        }
+
+        return nicks;
+    }
 
     
 }
