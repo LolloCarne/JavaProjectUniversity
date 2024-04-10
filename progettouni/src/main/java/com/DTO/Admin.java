@@ -2,10 +2,10 @@ package com.DTO;
 
 public class Admin extends Utente{
     
-    String p;
+    String password;
     public Admin(String n, String p){
         super(n);
-        this.p=p;
+        this.password=p;
     }
 
     public boolean Login(String n, String passwd){

@@ -174,4 +174,14 @@
     "id" : "9a7f573d-a6d7-4d19-bbd9-efd13cab4cab",
     "nick" : "franco"
   } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "0321b1dd-e85e-4133-bc79-becb8ebece8f",
+    "nick" : "paolo"
+  } ],
+  "codice" : "JICKFQ",
+  "Partecipanti" : [ {
+    "id" : "0321b1dd-e85e-4133-bc79-becb8ebece8f",
+    "nick" : "paolo"
+  } ]
 } ]
