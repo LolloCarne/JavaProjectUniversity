@@ -125,7 +125,13 @@ public class Controller {
 
     @FXML
     private TextField usernameAdminReg;
-    
+
+    @FXML
+    private TextField codiceEliminato;
+
+    @FXML
+    private TextField utenteEliminato;
+
 
     PartitaManager manager = new PartitaManager();
    
@@ -329,6 +335,16 @@ public class Controller {
             stage.show();
         }
     
+        @FXML
+        void eliminaUtenteAction(ActionEvent event) {
+            String codice= codiceEliminato.getText();
+            String nick = utenteEliminato.getText();
+
+            Partita p = new Partita(codice);
+            PartitaManager manager = new PartitaManager();
+
+            manager.removeUtenteByNick(p, nick);
+        }
         
     }
 
