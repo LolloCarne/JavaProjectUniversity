@@ -54,6 +54,9 @@ public class Controller {
 
 
     @FXML
+    private Button eliminaUtenteAdmin;
+    
+    @FXML
     private Button aggUtenteAdmin;
 
     @FXML
