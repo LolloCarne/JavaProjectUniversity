@@ -68,4 +68,110 @@
     "id" : "26123107-0077-4e4b-8890-e9a5dfb71aec",
     "nick" : "gianni"
   } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "8ec399c7-c78e-422f-9c6b-fcc047560721",
+    "nick" : "lollo"
+  } ],
+  "codice" : "M2N7B5",
+  "Partecipanti" : [ {
+    "id" : "8ec399c7-c78e-422f-9c6b-fcc047560721",
+    "nick" : "lollo"
+  } ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "ITUN8E",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ {
+    "id" : "70a04186-dbf3-4612-964e-3d9a7577870c",
+    "nick" : "lollo"
+  } ],
+  "codice" : "F63SH8",
+  "Partecipanti" : [ {
+    "id" : "70a04186-dbf3-4612-964e-3d9a7577870c",
+    "nick" : "lollo"
+  } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "2f868afa-87f7-4e30-b66b-ec79f94ceee5",
+    "nick" : "gino"
+  } ],
+  "codice" : "ECB7MW",
+  "Partecipanti" : [ {
+    "id" : "2f868afa-87f7-4e30-b66b-ec79f94ceee5",
+    "nick" : "gino"
+  } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "09baeec9-568f-469c-a9ff-d2ccdcd05ac6",
+    "nick" : "prova"
+  }, {
+    "id" : "4e9f1ed5-f5ba-4864-a499-8bbeda9b33d1",
+    "nick" : "ciccio"
+  } ],
+  "codice" : "OIAQIV",
+  "Partecipanti" : [ {
+    "id" : "09baeec9-568f-469c-a9ff-d2ccdcd05ac6",
+    "nick" : "prova"
+  }, {
+    "id" : "4e9f1ed5-f5ba-4864-a499-8bbeda9b33d1",
+    "nick" : "ciccio"
+  } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "de444343-44f3-44cc-8add-0e77f339d738",
+    "nick" : "cane"
+  }, {
+    "id" : "819be4f1-0d4a-491f-a4a9-159a75b2ec07",
+    "nick" : "pollo"
+  } ],
+  "codice" : "IU64A9",
+  "Partecipanti" : [ {
+    "id" : "de444343-44f3-44cc-8add-0e77f339d738",
+    "nick" : "cane"
+  }, {
+    "id" : "819be4f1-0d4a-491f-a4a9-159a75b2ec07",
+    "nick" : "pollo"
+  } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "a0f8b2a9-c156-4ec8-90dc-c4166407478b",
+    "nick" : "pino"
+  } ],
+  "codice" : "84PMTM",
+  "Partecipanti" : [ {
+    "id" : "a0f8b2a9-c156-4ec8-90dc-c4166407478b",
+    "nick" : "pino"
+  } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "4bdbc47e-6534-42c5-92bb-ed4bde29de81",
+    "nick" : "pollo"
+  }, {
+    "id" : "6412a853-1ec3-4a1d-b194-46dab175454c",
+    "nick" : "cane"
+  } ],
+  "codice" : "56D8GL",
+  "Partecipanti" : [ {
+    "id" : "4bdbc47e-6534-42c5-92bb-ed4bde29de81",
+    "nick" : "pollo"
+  }, {
+    "id" : "6412a853-1ec3-4a1d-b194-46dab175454c",
+    "nick" : "cane"
+  } ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "LLORYV",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ {
+    "id" : "9a7f573d-a6d7-4d19-bbd9-efd13cab4cab",
+    "nick" : "franco"
+  } ],
+  "codice" : "XVNJYE",
+  "Partecipanti" : [ {
+    "id" : "9a7f573d-a6d7-4d19-bbd9-efd13cab4cab",
+    "nick" : "franco"
+  } ]
 } ]

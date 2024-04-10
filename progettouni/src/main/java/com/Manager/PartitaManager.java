@@ -35,6 +35,27 @@ public class PartitaManager {
     
     }
 
+    public void removeUtenteByNick(Partita p, String nick){
+        ArrayList<Partita> partiteList = leggiJson();
+
+        for(Partita partita : partiteList){
+            System.out.println("code1: "+partita.getCodice()+" code2: "+p.codice);
+            if(partita.getCodice().equals(p.codice)){
+                for(int i=0; i<partita.getPartecipanti().size(); i++){
+                    System.out.println("Nick1: "+nick+" Nick2: "+partita.getPartecipanti().get(i).getNick());
+                    if(partita.getPartecipanti().get(i).getNick().equals(nick)){
+                        System.out.println("entrato");
+                        partita.getPartecipanti().remove(i);
+                        p.getPartecipanti().remove(i);
+                        break;
+                    }
+                }
+        }
+    }
+        getNickNamesList(p);
+        scriviJson(partiteList);
+
+    }
 
     /*Recupera una partita partendo da un codice, viene chiamata dal costruttore della 
      * classe partita quando si vuole recuperare una partita partendo dal codice

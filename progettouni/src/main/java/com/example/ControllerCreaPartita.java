@@ -69,6 +69,30 @@ public class ControllerCreaPartita implements Initializable{
         nickNameList.getItems().addAll(nicks);
     }
 
+    @FXML
+void rimuoviPartecipanteAction(ActionEvent event) throws IOException {
+    // Apri la finestra di pop-up
+    
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("rimuoviPartecipantePopup.fxml"));
+    Parent root = loader.load();
+    Stage stage = new Stage();
+    stage.setScene(new Scene(root));
+    stage.showAndWait();
+
+    String codice= campoCodice.getText();
+    Partita p = new Partita(codice);
+    // Una volta chiusa la finestra di pop-up, gestisci la rimozione del partecipante
+    RimuoviPartecipantePopupController popupController = loader.getController();
+    String nicknameToRemove = popupController.getNickname();
+    System.out.println(nicknameToRemove);
+    if (nicknameToRemove != null) {
+        PartitaManager manager = new PartitaManager();
+        manager.removeUtenteByNick(p, nicknameToRemove);
+        updateNickNameList(manager.getNickNamesList(p));
+    }
+}
+
+
         @FXML
     void goBack(ActionEvent event) throws IOException {
 

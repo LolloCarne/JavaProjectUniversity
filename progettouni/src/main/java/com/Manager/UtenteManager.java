@@ -29,10 +29,6 @@ public class UtenteManager {
     .enable(SerializationFeature.INDENT_OUTPUT);
 
 
-    public void deleteUtenteByCode(String code){
-        //bianca fai cose qui dentro
-    }
-
     public ArrayList<Utente> leggiJson(){
         
         return new ArrayList<>();

@@ -70,6 +70,9 @@ public class Partita {
     }
 
 
+    public void setPartecipanti(ArrayList <Utente> u){
+        this.Partecipanti=u;
+    }
     
     public String getCodice(){
         return this.codice;
