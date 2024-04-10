@@ -5,10 +5,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller">
    <children>
-      <Button fx:id="creaPartitaBtn" layoutX="186.0" layoutY="64.0" mnemonicParsing="false" onAction="#creaPartitaAction" prefHeight="39.0" prefWidth="228.0" text="Crea Partita" />
-      <Button fx:id="creaTorneoAdmin" layoutX="186.0" layoutY="137.0" mnemonicParsing="false" onAction="#creaTorneoAction" prefHeight="39.0" prefWidth="228.0" text="Crea Torneo" />
-      <Button fx:id="eliminaPartitaAdmin" layoutX="186.0" layoutY="212.0" mnemonicParsing="false" onAction="#eliminaPartitaAction" prefHeight="39.0" prefWidth="228.0" text="Elimina Partita" />
-      <Button fx:id="eliminaTorneoAdmin" layoutX="186.0" layoutY="284.0" mnemonicParsing="false" onAction="#eliminaTorneoAction" prefHeight="39.0" prefWidth="228.0" text="Elimina Torneo" />
+      <Button fx:id="creaPartitaBtn" layoutX="186.0" layoutY="40.0" mnemonicParsing="false" onAction="#creaPartitaAction" prefHeight="39.0" prefWidth="228.0" text="Crea Partita" />
+      <Button fx:id="creaTorneoAdmin" layoutX="186.0" layoutY="110.0" mnemonicParsing="false" onAction="#creaTorneoAction" prefHeight="39.0" prefWidth="228.0" text="Crea Torneo" />
+      <Button fx:id="eliminaPartitaAdmin" layoutX="186.0" layoutY="253.0" mnemonicParsing="false" onAction="#eliminaPartitaAction" prefHeight="39.0" prefWidth="228.0" text="Elimina Partita" />
+      <Button fx:id="eliminaTorneoAdmin" layoutX="186.0" layoutY="324.0" mnemonicParsing="false" onAction="#eliminaTorneoAction" prefHeight="39.0" prefWidth="228.0" text="Elimina Torneo" />
       <Button fx:id="IndietroBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="Home" />
+      <Button fx:id="eliminaUtenteAdmin" layoutX="186.0" layoutY="180.0" mnemonicParsing="false" onAction="#eliminaUtenteAction" prefHeight="39.0" prefWidth="228.0" text="Elimina Utente" />
    </children>
 </AnchorPane>

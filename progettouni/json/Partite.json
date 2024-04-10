@@ -68,6 +68,7 @@
     "id" : "26123107-0077-4e4b-8890-e9a5dfb71aec",
     "nick" : "gianni"
   } ]
+<<<<<<< HEAD
 }, {
   "partecipanti" : [ {
     "id" : "8ec399c7-c78e-422f-9c6b-fcc047560721",
@@ -184,4 +185,6 @@
     "id" : "0321b1dd-e85e-4133-bc79-becb8ebece8f",
     "nick" : "paolo"
   } ]
+=======
+>>>>>>> 17b44a89ee7c1f4d5d22c0d66cdfd2c856d765da
 } ]

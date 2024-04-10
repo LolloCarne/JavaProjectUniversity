@@ -54,6 +54,9 @@ public class Controller {
 
 
     @FXML
+    private Button eliminaUtenteAdmin;
+
+    @FXML
     private Button aggUtenteAdmin;
 
     @FXML
@@ -296,6 +299,16 @@ public class Controller {
         }
 
         @FXML
+        void eliminaUtenteAction(ActionEvent event) throws IOException {
+            Parent root = FXMLLoader.load(getClass().getResource("eliminaUtenteScene.fxml")); //nome scena successiva
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        
+
+        @FXML
         void logAdminAction(ActionEvent event) throws IOException{
             String username = usernameAdmin.getText();
             String password = pwdAdmin.getText();
@@ -327,9 +340,7 @@ public class Controller {
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        }
-    
-        
+        } 
     }
 
 
