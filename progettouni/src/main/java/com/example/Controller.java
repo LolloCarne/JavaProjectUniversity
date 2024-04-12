@@ -272,7 +272,7 @@ public class Controller {
 
     @FXML
     void eliminaPartitaDefi(ActionEvent event) throws IOException {
-// Crea una finestra di dialogo di conferma
+    // Crea una finestra di dialogo di conferma
         Alert confermaEliminazione = new Alert(AlertType.CONFIRMATION);
         confermaEliminazione.setTitle("Conferma Eliminazione");
         confermaEliminazione.setHeaderText(null);
