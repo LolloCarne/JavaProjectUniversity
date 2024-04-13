@@ -7,7 +7,7 @@ public class CartaSpacca {
     
     public Random r = new Random();
 
-    public CartaSpacca(){
+    public CartaSpacca(String lettera){
         this.lettera = lettera;
     }
 
