@@ -3,9 +3,12 @@ import com.Enum.Seme;
 
 
 public class CartaJollySeme extends Carta{
-    Carta c = new Carta();
+
+    public CartaJollySeme(){
+        super();
+    }
 
     public Seme getSeme(){
-        return c.getSeme();
+        return super.getSeme();
     }
 }

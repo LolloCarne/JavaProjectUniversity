@@ -10,9 +10,10 @@ public class Carta {
     public int valore;
     public Random r = new Random();
 
-    public Carta(Seme s){
+    public Carta(){}
+    public Carta(Seme s, int v){
         this.s=sceltaSeme(s);
-        this.valore=r.nextInt(7)+1;
+        this.valore= v;
     }
 
     public int getValore(){

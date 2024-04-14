@@ -2,13 +2,16 @@ package com.DTO;
 import com.Enum.Seme;
 
 public class CartaJollyNumero extends Carta {
-    Carta c = new Carta();
+    
+    public CartaJollyNumero(){
+        super();
+    }
 
     public Seme getSeme(){
-        return c.getSeme();
+        return super.getSeme();
     }
     public void setValore(int valore){
-        c.setValore(valore);
+        super.setValore(valore);
     }
 }
 
