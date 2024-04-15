@@ -1,5 +1,9 @@
-[{
-    "nick":"",
-    "id":"",
-    "password":""
-}]
+[ {
+  "id" : "e8449445-65b0-4cb6-b2b4-d638ba01c68a",
+  "password" : "1234",
+  "nick" : "ciccio98"
+}, {
+  "id" : "8728873e-2fb8-4ddd-8ca7-e1453a542ac0",
+  "password" : "5678",
+  "nick" : "bianca"
+} ]
