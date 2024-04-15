@@ -5,7 +5,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller">
    <children>
@@ -14,5 +14,11 @@
       <Button fx:id="logAdmin" layoutX="274.0" layoutY="200.0" mnemonicParsing="false" onAction="#logAdminAction" text="Log in" />
       <Label layoutX="245.0" layoutY="270.0" text="Non hai un account?" />
       <Button fx:id="registroAdmin" layoutX="220.0" layoutY="307.0" mnemonicParsing="false" onAction="#goToRegistrati" prefHeight="26.0" prefWidth="160.0" text="Registrati" />
+      <Label fx:id="messaggioLoginErrato" layoutX="171.0" layoutY="240.0" prefHeight="22.0" prefWidth="254.0" textFill="RED">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="IndietroBtn" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Home" />
    </children>
 </AnchorPane>

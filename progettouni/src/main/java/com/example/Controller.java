@@ -26,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
+import com.Manager.AdminManager;
 import com.Manager.PartitaManager;
 
 public class Controller {
@@ -128,6 +129,9 @@ public class Controller {
 
     @FXML
     private TextField usernameAdminReg;
+
+    @FXML
+    private Label messaggioLoginErrato;
     
 
     PartitaManager manager = new PartitaManager();
@@ -312,14 +316,26 @@ public class Controller {
         void logAdminAction(ActionEvent event) throws IOException{
             String username = usernameAdmin.getText();
             String password = pwdAdmin.getText();
-            
-            Parent root = FXMLLoader.load(getClass().getResource("menuAdminScene.fxml")); //nome scena successiva
-           
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            AdminManager manager = new AdminManager();
+
+            int i = 0;
+            boolean b = manager.login(username, password);
+            if (b==true){
+                Parent root = FXMLLoader.load(getClass().getResource("menuAdminScene.fxml")); //nome scena successiva
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+            else{
+                messaggioLoginErrato.setText("Username o password errati. Riprova.");
+
+                usernameAdmin.clear();
+                pwdAdmin.clear();
+                
+            }
         }
+        
     
         @FXML
         void goToRegistrati(ActionEvent event) throws IOException {
@@ -335,6 +351,9 @@ public class Controller {
             String username = usernameAdminReg.getText();
             String pwd = pwdAdminReg.getText();
 
+            AdminManager manager = new AdminManager();
+            manager.registraAdmin(username, pwd);
+            
             Parent root = FXMLLoader.load(getClass().getResource("menuAdminScene.fxml")); //nome scena successiva
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
