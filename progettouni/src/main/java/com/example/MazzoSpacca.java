@@ -1,5 +1,6 @@
 package com.example;
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.DTO.Carta;
 import com.DTO.CartaSpacca;
@@ -18,6 +19,19 @@ public class MazzoSpacca{
                 }
                 
         }
+    }
+
+    public CartaSpacca getRandomCard(){
+
+        Random r = new Random();
+        //return mazzo.remove(r.nextInt(this.mazzo.size()));
+        return mazzo.get(r.nextInt(this.mazzo.size()));
+        
+    }
+
+    public void removeCartaPescata(CartaSpacca c){
+        //da chiamare dopo il metodo getRandomCart se la carta che il giocatore ha pescato non la ha gia
+        mazzo.remove(c);
     }
 
 }

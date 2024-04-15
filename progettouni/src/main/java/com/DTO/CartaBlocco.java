@@ -15,6 +15,12 @@ public class CartaBlocco extends Carta {
         alert.getDialogPane().setPrefSize(200, 100); //sets size of alert box 
     }
      
+   
+    public CartaBlocco(){
+        super();
+    }
+
+    //SETTARE UN ALERT PER IL MESSAGGIO DI SALTO TURNO 
     //+ INVOCARE UN METODO PER PASSARE AL PROX GIOCATORE 
 }
 

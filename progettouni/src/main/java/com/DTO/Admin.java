@@ -8,15 +8,10 @@ public class Admin extends Utente{
         this.password=p;
     }
 
-    public boolean Login(String n, String passwd){
-
-        //logica di login
-        return true;
+    public String getPassword(){
+        return this.password;
     }
 
-    public boolean Register(String n, String passwd){
-
-        //logica di registrazione
-        return true;
-    }
+   
+    
 }
