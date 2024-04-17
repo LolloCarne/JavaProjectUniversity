@@ -34,12 +34,12 @@ public class Mazzo {
     }
     private void makeMazzo(){
 
-        for(Seme s : Seme.values()){
+       /*  for(Seme s : Seme.values()){
             for(int i =0; i<7;i++){
                 this.mazzo.add(new Carta(s,i));
             }
         }
-
+        */
         this.mazzo.add(new CartaBlocco());
         this.mazzo.add(new CartaBlocco());
         this.mazzo.add(new CartaBlocco());

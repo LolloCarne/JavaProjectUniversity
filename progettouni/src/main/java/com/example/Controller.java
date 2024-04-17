@@ -189,15 +189,26 @@ public class Controller {
 
     @FXML
     void onBtnLogin(ActionEvent event) throws IOException {
+        
         String codice = tfCodice.getText();
         String nickname = tfNickname.getText();
+        Partita p = new Partita();
+        boolean b = manager.checkLogin(nickname, p, codice );
+        System.out.println(b);
+        if (b==true){
+            Parent root = FXMLLoader.load(getClass().getResource("regoleScene.fxml")); //nome scena successiva
         
-        Parent root = FXMLLoader.load(getClass().getResource("regoleScene.fxml")); //nome scena successiva
-       
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else{
+            messaggioLoginErrato.setText("Username o password errati. Riprova.");
+
+            usernameAdmin.clear();
+            pwdAdmin.clear();
+        }
     }
 
     @FXML
@@ -250,7 +261,11 @@ public class Controller {
 
     @FXML
     void iniziaPartita(ActionEvent event) throws IOException {
-        
+        Parent root = FXMLLoader.load(getClass().getResource("partitaScene.fxml")); //nome scena successiva
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     
     }
 
@@ -261,9 +276,11 @@ public class Controller {
         String codice = codiceRegole.getText();
         Partita p = new Partita(codice);
         PartitaManager manager = new PartitaManager();
-        ArrayList <Utente> partecipanti = manager.getPartecipantiByCode(codice);
-        for (Utente u : partecipanti){
-            listPartecipanti.getItems().addAll(u.getNick());
+        
+        ArrayList <String> partecipanti = manager.getNickNamesList(p);
+        for (String u : partecipanti){
+            System.out.println(u);
+            //listPartecipanti.getItems().addAll(u);
         }
         
     }

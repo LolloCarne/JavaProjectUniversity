@@ -1,9 +1,17 @@
 [ {
-  "id" : "e8449445-65b0-4cb6-b2b4-d638ba01c68a",
+  "id" : "6e0c9637-0ee9-4c80-8575-50648fb5a739",
   "password" : "1234",
   "nick" : "ciccio98"
 }, {
-  "id" : "8728873e-2fb8-4ddd-8ca7-e1453a542ac0",
+  "id" : "9caa1863-2ad0-4fdb-a5d2-9592e53a7118",
   "password" : "5678",
   "nick" : "bianca"
+}, {
+  "id" : "70f44993-65c4-4029-8f46-52233668b73b",
+  "password" : "1234",
+  "nick" : "bi"
+}, {
+  "id" : "486a2fde-7528-4625-99e9-820684f5b7c0",
+  "password" : "1234",
+  "nick" : "marta"
 } ]
