@@ -8,6 +8,8 @@ import com.DTO.Carta;
 import com.DTO.CartaBlocco;
 import com.DTO.CartaJollyNumero;
 import com.DTO.CartaJollySeme;
+import com.DTO.CartaPerdiSpacca;
+import com.DTO.CartaPescaDueCarte;
 import com.Enum.Seme;
 
 public class Mazzo {
@@ -34,21 +36,30 @@ public class Mazzo {
     }
     private void makeMazzo(){
 
-       /*  for(Seme s : Seme.values()){
+         for(Seme s : Seme.values()){
             for(int i =0; i<7;i++){
                 this.mazzo.add(new Carta(s,i));
             }
         }
-        */
+        
         this.mazzo.add(new CartaBlocco());
         this.mazzo.add(new CartaBlocco());
         this.mazzo.add(new CartaBlocco());
+
+        this.mazzo.add(new CartaPescaDueCarte());
+        this.mazzo.add(new CartaPescaDueCarte());
+        this.mazzo.add(new CartaPescaDueCarte());
 
         this.mazzo.add(new CartaJollyNumero());
         this.mazzo.add(new CartaJollyNumero());
 
         this.mazzo.add(new CartaJollySeme());
         this.mazzo.add(new CartaJollySeme());
+
+        this.mazzo.add(new CartaPerdiSpacca());
+        this.mazzo.add(new CartaPerdiSpacca());
+        this.mazzo.add(new CartaPerdiSpacca());
+        this.mazzo.add(new CartaPerdiSpacca());
     }
 
 

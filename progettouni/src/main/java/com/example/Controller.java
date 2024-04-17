@@ -192,23 +192,30 @@ public class Controller {
         
         String codice = tfCodice.getText();
         String nickname = tfNickname.getText();
-        Partita p = new Partita();
-        boolean b = manager.checkLogin(nickname, p, codice );
-        System.out.println(b);
-        if (b==true){
-            Parent root = FXMLLoader.load(getClass().getResource("regoleScene.fxml")); //nome scena successiva
-        
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+        if(!codice.isBlank() || !nickname.isBlank()){
+            //creando la partita con costruttore vuoto mi scrive sempre una partita nuova nel json
+            Partita p = new Partita();
+            boolean b = manager.checkLogin(nickname, p, codice );
+            System.out.println(b);
+            if (b==true){
+                Parent root = FXMLLoader.load(getClass().getResource("regoleScene.fxml")); //nome scena successiva
+            
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+            else{
+                messaggioLoginErrato.setText("Username o password errati. Riprova.");
+    
+                usernameAdmin.clear();
+                pwdAdmin.clear();
+            }
         }
         else{
-            messaggioLoginErrato.setText("Username o password errati. Riprova.");
-
-            usernameAdmin.clear();
-            pwdAdmin.clear();
+            System.out.println("Non lasciare i campi vuoti");
         }
+
     }
 
     @FXML

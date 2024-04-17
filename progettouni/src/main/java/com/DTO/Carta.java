@@ -6,13 +6,15 @@ import java.util.Random;
 
 public class Carta {
 
-    public Seme s=sceltaSeme();
-    public int valore;
-    public Random r = new Random();
+    private Seme s;
+    private int valore;
 
-    public Carta(){
+
+    public Carta(){}
+    
+    public Carta(Seme s, int v){
         this.s=s;
-        this.valore=r.nextInt(7)+1;
+        this.valore=v;
     }
 
     public int getValore(){
@@ -25,15 +27,6 @@ public class Carta {
 
     public void setValore(int v){
         valore = v;
-    }
-    public Seme sceltaSeme(){
-        int i = r.nextInt(3)+1;
-        switch (i){
-            case 1: s=Seme.CUORI; break;
-            case 2: s=Seme.FIORI; break;
-            case 3: s=Seme.PICCHE; break;
-        }
-        return s;
     }
 
 }

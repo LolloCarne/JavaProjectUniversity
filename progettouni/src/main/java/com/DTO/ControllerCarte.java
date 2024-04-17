@@ -23,23 +23,23 @@ public class ControllerCarte {
     @FXML
     void chooseCuoriAction(ActionEvent event) {
         CartaJollySeme c = new CartaJollySeme();
-        Seme s = c.getSeme();
-        s= s.CUORI;
+        Seme s = c.getSeme().CUORI;
+      
     }
 
     @FXML
     void chooseFioriAction(ActionEvent event) {
         CartaJollySeme c = new CartaJollySeme();
-        Seme s = c.getSeme();
-        s= s.FIORI;
+        Seme s = c.getSeme().FIORI;
+        
        
     }
 
     @FXML
     void choosePiccheAction(ActionEvent event) {
         CartaJollySeme c = new CartaJollySeme();
-        Seme s = c.getSeme();
-        s= s.PICCHE;
+        Seme s = c.getSeme().PICCHE;
+       
     }
 
     @FXML

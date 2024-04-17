@@ -3,7 +3,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 
-public class CartaPescaDueCarte {
+public class CartaPescaDueCarte extends Carta{
+
+    public CartaPescaDueCarte(){
+        super();
+    }
+
     public void messaggio(){
         Alert alert = new Alert(AlertType.WARNING,"", ButtonType.OK);  //new alert object
         alert.setTitle("Hai pescato una carta PESCA 2 CARTE!");  //warning box title

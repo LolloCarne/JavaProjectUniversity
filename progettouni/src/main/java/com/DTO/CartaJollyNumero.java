@@ -12,7 +12,6 @@ public class CartaJollyNumero extends Carta {
     }
     public void setValore(int valore){
         super.setValore(valore);
-        super.setValore(valore);
     }
 }
 

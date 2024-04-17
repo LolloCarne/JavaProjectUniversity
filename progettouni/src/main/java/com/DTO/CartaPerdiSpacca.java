@@ -3,11 +3,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 
-public class CartaPerdiSpacca {
-    public boolean b=false; 
+public class CartaPerdiSpacca extends Carta{
+    public boolean b;
 
     public CartaPerdiSpacca(){
-        this.b=b;
+
+        super();
+        this.b= false;
     }
     
     public void messaggio(){
