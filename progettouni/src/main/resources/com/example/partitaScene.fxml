@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ControllerPartita>
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="206.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <ListView fx:id="mazzoCarte" layoutX="230.0" layoutY="14.0" prefHeight="168.0" prefWidth="288.0" />
