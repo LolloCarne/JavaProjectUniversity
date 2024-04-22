@@ -196,7 +196,6 @@ public class Controller {
             //creando la partita con costruttore vuoto mi scrive sempre una partita nuova nel json
             Partita p = new Partita();
             boolean b = manager.checkLogin(nickname, p, codice );
-            System.out.println(b);
             if (b==true){
                 Parent root = FXMLLoader.load(getClass().getResource("regoleScene.fxml")); //nome scena successiva
             
@@ -206,10 +205,11 @@ public class Controller {
                 stage.show();
             }
             else{
-                messaggioLoginErrato.setText("Username o password errati. Riprova.");
-    
-                usernameAdmin.clear();
-                pwdAdmin.clear();
+                System.out.println("no login");
+                /*messaggioLoginErrato.setText("Username o password errati. Riprova.");
+                tfCodice.clear();
+                tfNickname.clear();*/
+                
             }
         }
         else{
@@ -287,7 +287,9 @@ public class Controller {
         ArrayList <String> partecipanti = manager.getNickNamesList(p);
         for (String u : partecipanti){
             System.out.println(u);
-            //listPartecipanti.getItems().addAll(u);
+            listPartecipanti.getItems().clear();
+            listPartecipanti.getItems().addAll(u);
+        
         }
         
     }
