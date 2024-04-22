@@ -138,7 +138,6 @@ public class PartitaManager {
     }
 
     public boolean checkLogin(String username, Partita p, String codice){
-        System.out.println("si");
         PartitaManager manager = new PartitaManager();
         for (Utente u : manager.getPartecipantiByCode(codice)){
            

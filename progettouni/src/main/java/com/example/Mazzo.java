@@ -8,7 +8,6 @@ import com.DTO.Carta;
 import com.DTO.CartaBlocco;
 import com.DTO.CartaJollyNumero;
 import com.DTO.CartaJollySeme;
-import com.DTO.CartaPerdiSpacca;
 import com.DTO.CartaPescaDueCarte;
 import com.Enum.Seme;
 
@@ -56,10 +55,6 @@ public class Mazzo {
         this.mazzo.add(new CartaJollySeme());
         this.mazzo.add(new CartaJollySeme());
 
-        this.mazzo.add(new CartaPerdiSpacca());
-        this.mazzo.add(new CartaPerdiSpacca());
-        this.mazzo.add(new CartaPerdiSpacca());
-        this.mazzo.add(new CartaPerdiSpacca());
     }
 
 
