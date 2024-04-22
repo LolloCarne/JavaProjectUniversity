@@ -91,4 +91,9 @@ public class Partita {
 
         return randomString.toString();
     }
+
+    @Override
+    public String toString(){
+        return "Partecipanti:"+this.getPartecipanti().toString() + "\nCodice:  "+this.codice;
+    }
 }

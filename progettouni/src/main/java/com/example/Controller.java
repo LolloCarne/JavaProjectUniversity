@@ -194,7 +194,7 @@ public class Controller {
         String nickname = tfNickname.getText();
         if(!codice.isBlank() || !nickname.isBlank()){
             //creando la partita con costruttore vuoto mi scrive sempre una partita nuova nel json
-            Partita p = new Partita();
+            Partita p = new Partita(codice);
             boolean b = manager.checkLogin(nickname, p, codice );
             System.out.println(b);
             if (b==true){
@@ -206,7 +206,7 @@ public class Controller {
                 stage.show();
             }
             else{
-                messaggioLoginErrato.setText("Username o password errati. Riprova.");
+                //messaggioLoginErrato.setText("Username o password errati. Riprova.");
     
                 usernameAdmin.clear();
                 pwdAdmin.clear();
@@ -268,7 +268,13 @@ public class Controller {
 
     @FXML
     void iniziaPartita(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("partitaScene.fxml")); //nome scena successiva
+
+        String codice = codiceRegole.getText();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("partitaScene.fxml"));
+        Parent root = loader.load();
+        ControllerPartita controller = loader.getController();
+        controller.start(codice);
+    
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

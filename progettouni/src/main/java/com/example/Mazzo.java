@@ -63,6 +63,16 @@ public class Mazzo {
     }
 
 
+    public Carta getCartaDiGioco(){
+
+        for(int i=0; i<this.mazzo.size();i++){
+            if(this.mazzo.get(i).getClass()==Carta.class){
+                this.pescate.add(this.mazzo.remove(i));
+                return this.pescate.get(this.pescate.size()-1);
+            }
+        }
+        return null;
+    }
 
 
 
