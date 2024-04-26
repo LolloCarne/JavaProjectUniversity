@@ -16,7 +16,7 @@ public class CartaPescaDueCarte extends Carta{
         alert.getDialogPane().setPrefSize(200, 100); //sets size of alert box 
     }
 
-    public void pescaDueCarte(){
+    /*public void pescaDueCarte(){
         //ho fatto un for perchè è più figo ma si possono direttamente chiamare i 2 metod
         for(int i=0; i<2; i++){
             //richiamo del metodo pesca
@@ -24,5 +24,6 @@ public class CartaPescaDueCarte extends Carta{
         for(int i=0; i<2; i++){
             //richiamo del metodo scarta 
         }
-    }
+    }*/
+    
 }
