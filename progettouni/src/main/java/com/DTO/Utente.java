@@ -37,4 +37,11 @@ public class Utente {
     public String toString() {
         return this.Nickname;
     }
+
+    public ArrayList<CartaSpacca> getCarteSpacca(){
+        CartaSpacca s = new CartaSpacca("P");
+        carteSpacca.add(s);
+        System.out.println("si");
+        return this.carteSpacca;
+    }
 }
