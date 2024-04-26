@@ -9,16 +9,15 @@ public class CartaRubaSpacca extends Carta {
         this.nick = nick;
     }
 
+    public CartaRubaSpacca(){}
+
     public void rubaSpacca(){
         Utente u = new Utente(nick);
-        ArrayList <CartaSpacca> carte = new ArrayList();
-        carte= u.getCarteSpacca();
+        ArrayList <CartaSpacca> carte= u.getCarteSpacca();
 
         for(CartaSpacca s: carte){
             System.out.println(s);
         }
-
-
     }
 
 }
