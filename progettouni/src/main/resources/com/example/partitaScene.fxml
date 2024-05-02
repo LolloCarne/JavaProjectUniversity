@@ -1,58 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ControllerPartita">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="206.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-      <ListView fx:id="mazzoCarte" layoutX="230.0" layoutY="14.0" prefHeight="168.0" prefWidth="288.0" />
-      <Text layoutX="353.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MAZZO" />
-      <ListView fx:id="cartaGioco3" layoutX="469.0" layoutY="372.0" prefHeight="138.0" prefWidth="116.0" />
-      <ListView fx:id="cartaGioco2" layoutX="336.0" layoutY="372.0" prefHeight="138.0" prefWidth="116.0" />
-      <ListView fx:id="cartaGioco1" layoutX="206.0" layoutY="372.0" prefHeight="138.0" prefWidth="116.0" />
-      <ListView fx:id="cartaComparsa" layoutX="14.0" layoutY="372.0" prefHeight="138.0" prefWidth="116.0" />
-      <Text layoutX="337.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LE TUE CARTE" />
-      <ImageView fitHeight="84.0" fitWidth="74.0" layoutX="93.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="84.0" fitWidth="74.0" layoutX="56.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="84.0" fitWidth="74.0" layoutX="66.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cartaSpacca1" fitHeight="84.0" fitWidth="74.0" layoutX="147.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="234.0" fitWidth="223.0" layoutX="373.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../CACAO.jpg" />
+            <Image url="@../../../../../../../../../Downloads/jollySeme.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="cartaSpacca2" fitHeight="84.0" fitWidth="74.0" layoutX="232.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="193.0" fitWidth="200.0" layoutX="582.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="150.0" fitWidth="132.0" layoutX="234.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../CACAO.jpg" />
+            <Image url="@../../../../../../../../../Downloads/S_preview_rev_1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="cartaSpacca3" fitHeight="84.0" fitWidth="74.0" layoutX="322.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="132.0" layoutX="373.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../CACAO.jpg" />
+            <Image url="@../../../../../../../../../Downloads/P_preview_rev_1.png" />
          </image>
       </ImageView>
-      <Line endX="522.0" endY="-1.52587890625E-5" layoutX="166.0" layoutY="236.0" startX="-100.0" />
-      <ImageView fx:id="cartaSpacca4" fitHeight="84.0" fitWidth="74.0" layoutX="406.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="132.0" layoutX="516.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../CACAO.jpg" />
+            <Image url="@../../../../../../../../../Downloads/A_preview_rev_1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="cartaSpacca6" fitHeight="72.0" fitWidth="74.0" layoutX="572.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="132.0" layoutX="655.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../CACAO.jpg" />
+            <Image url="@../../../../../../../../../Downloads/C_preview_rev_1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="cartaSpacca5" fitHeight="84.0" fitWidth="74.0" layoutX="490.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="132.0" layoutX="797.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../CACAO.jpg" />
+            <Image url="@../../../../../../../../../Downloads/C_preview_rev_1.png" />
          </image>
       </ImageView>
-      <Text layoutX="62.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CARTE" wrappingWidth="81.427734375" />
-      <Text layoutX="62.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SPACCA!" />
+      <ImageView fitHeight="150.0" fitWidth="132.0" layoutX="940.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../Downloads/A_preview_rev_1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="193.0" fitWidth="200.0" layoutX="797.0" layoutY="424.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="288.0" fitWidth="193.0" layoutX="544.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../../../../../../../../../Downloads/Dorso%20carte.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
