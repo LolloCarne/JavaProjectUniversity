@@ -16,6 +16,7 @@ public class Utente {
         this.Nickname = n;
         this.id = UUID.randomUUID().toString();
         this.mano=new ArrayList<>();
+        this.carteSpacca = new ArrayList<>();
     }
 
     public Utente (JsonNode utenteJson){
