@@ -65,7 +65,7 @@ public class ControllerPartita implements Initializable{
         //qui dentro settiamo la scena dell'utente successivo
         System.out.println(u.mano.toString());
         System.out.println(mSpacca.mazzo.size());
-
+        //pesca();
     }
 
     public void pesca(){
@@ -73,34 +73,41 @@ public class ControllerPartita implements Initializable{
         //metto la carta nel box
         //delay
         //se carta numero ti chiedo quale carta vuoi scartare se carta effetto esce pop-up  che ti chiede se vuoi usare effetto scartare la carta
+        if(pescata.getClass().getName().equals("com.DTO.Carta")){
+            System.out.println("Selaziona una carta da scartare");
+        }
         //nel caso di carta malus spiego direttamente il malus e puoi schiacciare solo ok per prendere malus e andare avanti
-        
+
         actionCarta(pescata);
     }
 
     public void actionCarta(Carta c){
 
         switch (c.getClass().getName()) {
-            case "CartaBlocco":
+            case "com.DTO.CartaBlocco":
                 
                 break;
 
-            case "CartaJollyNumero":
-                
-                break;
-            
-            case "CartaJollySeme":
+            case "com.DTO.CartaJollyNumero":
                 
                 break;
             
-            case "CartaPerdiSpacca":
-                 
+            case "com.DTO.CartaJollySeme":
+                
+                break;
+            
+            case "com.DTO.CartaPerdiSpacca":
+                 System.out.println("Hai perso la carta Spacca: " + utenteCorrente.getCarteSpacca().remove(utenteCorrente.getCarteSpacca().size()-1).lettera);
                 break;
 
-            case "CartaPescaDueCarte":
+            case "com.DTO.CartaPescaDueCarte":
+                pesca();
+                scarta();
+                pesca();
+                scarta();
                 break;
 
-            case "CartaRubaSpacca":
+            case "com.DTO.CartaRubaSpacca":
                 
                 //pup-up che chiede a quale utente vuoi rubare la carta
                 String utenteScelto="ciccio";
@@ -131,6 +138,19 @@ public class ControllerPartita implements Initializable{
         return true;
     }
 
+    public void passa(){
+        int currentIndex = partecipanti.indexOf(utenteCorrente);
+        if(currentIndex == partecipanti.size()-1){
+            utenteCorrente = partecipanti.get(0);
+        }else{
+            utenteCorrente = partecipanti.get(currentIndex+1);
+        }
 
+        setScene(utenteCorrente);
+    }
+
+    public void scarta(){
+
+    }
 
 }
