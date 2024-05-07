@@ -1,0 +1,116 @@
+/* Schermata homeScene */
+/* Stile per il button Utente */
+#utenteBtn {
+    -fx-background-color: #5ec946; /* Verde */
+}
+#utenteBtn:hover {
+    -fx-background-color: #1c8e02; /* Verde più scuro al passaggio del mouse */
+}
+/* Stile per il button Amministratore */
+#amministratorBtn {
+    -fx-background-color: #ef9000; /* Arancione */
+}
+#amministratorBtn:hover {
+    -fx-background-color: #cf7d02; /* Arancione più scuro al passaggio del mouse */
+}
+/* Applica uno sfondo che ricorda il colore del cachi */
+.root {
+    -fx-background-color: #cf7d02;
+}
+
+/* Stile dei bottoni */
+.button {
+    -fx-background-color: #8BC34A; /* Verde */
+    -fx-background-radius: 30px; /* Bordo arrotondato */
+    -fx-border-radius: 30px; /* Bordo arrotondato */
+    /*-fx-border-color: #6D4C41; /* Marrone */
+    /*-fx-border-width: 5px; /* Spessore del bordo */
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 24px;
+    -fx-padding: 10px 20px; /* Spazio interno al pulsante */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 0); /* Aggiunta di ombra */
+}
+.button:hover {
+    -fx-background-color: #9CCC65; /* Verde più chiaro */
+}
+
+/* Stile del pulsante indietro */
+#IndietroBtn {
+    -fx-background-color: #FFA000; /* Arancione più scuro */
+    /*-fx-border-color: #6D4C41; /* Marrone */
+}
+
+/* Stile dei TextField */
+.text-field {
+    -fx-background-color: #FFF59D; /* Giallo chiaro */
+    -fx-background-radius: 30px; /* Bordo arrotondato */
+    -fx-border-color: #6D4C41; /* Marrone */
+    -fx-border-width: 2px; /* Spessore del bordo */
+    -fx-border-radius: 30px;
+    -fx-font-family: "Arial";
+    -fx-font-size: 15px;
+    -fx-prompt-text-fill: #6D4C41; /* Colore del testo del prompt */
+    -fx-padding: 5px 10px; /* Spazio interno al TextField */
+}
+
+/* Stile dei Label */
+.label {
+    -fx-text-fill: #6D4C41; /* Testo marrone */
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+/* Stile del pulsante Login */
+#loginBtn {
+    -fx-background-color: #FF8A65; /* Arancione più scuro */
+}
+/* Effetto hover sul pulsante Login */
+#loginBtn:hover {
+    -fx-background-color: #FFAB91; /* Arancione più chiaro */
+}
+
+/* Stile del pulsante Indietro */
+#IndietroBtn2 {
+    -fx-background-color: #FFA000; /* Arancione più scuro */
+    -fx-border-color: #6D4C41; /* Marrone */
+}
+
+/* Stile del pulsante "Ottieni Partecipanti!" */
+#ottieniPartcipanti {
+    -fx-background-color: #FFA000; /* Arancione più scuro */
+    -fx-border-color: #6D4C41; /* Marrone */
+    -fx-font-size: 15px; /* Rimpicciolito il testo */
+    -fx-padding: 5px 10px;
+}
+.text-area {
+    -fx-font-size: 18px; /* Renderlo più grande */
+    -fx-font-family: "Lobster"; /* Font elegante */
+}
+.list-view .list-cell {
+    -fx-font-size: 18px; /* Renderlo più grande */
+}
+
+/* Stile della AnchorPane */
+.anchor-pane {
+    -fx-background-color: #F9A825; /* Arancione */
+}
+
+/* Stile della PasswordField */
+.password-field {
+    -fx-background-radius: 30px; /* Bordo arrotondato */
+    -fx-border-width: 2px; /* Spessore del bordo */
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #6D4C41; /* Colore del testo del prompt */
+    -fx-padding: 5px 10px; /* Spazio interno alla PasswordField */
+}
+
+.list-view {
+    -fx-background-color: #FFF59D; /* Giallo chiaro */
+    /*-fx-background-radius: 30px; /* Bordo arrotondato */
+    -fx-border-color: #6D4C41; /* Marrone */
+    -fx-border-width: 2px; /* Spessore del bordo */
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-padding: 10px; /* Spazio interno alla ListView */
+}
+
