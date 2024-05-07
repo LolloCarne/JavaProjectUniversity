@@ -34,6 +34,10 @@ public class ControllerPartita implements Initializable{
     private MazzoSpacca mSpacca;
     private Utente utenteCorrente;
     private int statoTurno;
+    @FXML
+    private Button pescaBtn;
+    @FXML
+    private Button scartaBtn;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -150,6 +154,15 @@ public class ControllerPartita implements Initializable{
     }
 
     public void scarta(){
+
+    }
+    @FXML
+    void pescaBtnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void scartaBtnAction(ActionEvent event) {
 
     }
 
