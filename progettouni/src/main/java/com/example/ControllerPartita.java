@@ -157,12 +157,12 @@ public class ControllerPartita implements Initializable{
 
     }
     @FXML
-    void pescaBtnAction(ActionEvent event) {
+    public void pescaBtnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void scartaBtnAction(ActionEvent event) {
+    public void scartaBtnAction(ActionEvent event) {
 
     }
 
