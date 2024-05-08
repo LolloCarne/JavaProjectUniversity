@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+
 import com.DTO.Carta;
 import com.DTO.CartaRubaSpacca;
 import com.DTO.CartaSpacca;
@@ -40,6 +41,10 @@ public class ControllerPartita implements Initializable{
     private MazzoSpacca mSpacca;
     private Utente utenteCorrente;
     private int statoTurno;
+    @FXML
+    private Button pescaBtn;
+    @FXML
+    private Button scartaBtn;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -243,6 +248,15 @@ public boolean canGrab(CartaSpacca c) {
             alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
         }
         
+    }
+    @FXML
+    public void pescaBtnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void scartaBtnAction(ActionEvent event) {
+
     }
 
 }
