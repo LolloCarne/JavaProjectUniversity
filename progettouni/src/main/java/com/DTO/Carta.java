@@ -11,9 +11,32 @@ public class Carta {
 
 
     public Carta(){}
+
     
     public Carta(Seme s, int v){
         this.s=s;
+        this.valore=v;
+    }
+
+    public Carta(String s){
+        switch(s){
+            case "CUORI":
+            this.s=Seme.CUORI;
+            break;
+
+            case "FIORI":
+            this.s=Seme.FIORI;
+            break;
+            case "PICCHE":
+            this.s=Seme.PICCHE;
+            break;
+        }
+    }
+
+    public Carta(Seme s){
+        this.s=s;
+    }
+    public Carta(int v){
         this.valore=v;
     }
 
@@ -27,6 +50,13 @@ public class Carta {
 
     public void setValore(int v){
         valore = v;
+    }
+    public void setSeme(Seme s){
+        this.s = s;
+    }
+
+    public String toString(){
+        return s.toString() + " " + valore;
     }
 
 }
