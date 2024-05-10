@@ -8,7 +8,8 @@ public class Carta {
 
     private Seme s;
     private int valore;
-
+    private String path;
+    String str="";
 
     public Carta(){}
 
@@ -16,19 +17,23 @@ public class Carta {
     public Carta(Seme s, int v){
         this.s=s;
         this.valore=v;
+        this.path = path;
     }
 
     public Carta(String s){
-        switch(s){
-            case "CUORI":
-            this.s=Seme.CUORI;
-            break;
 
-            case "FIORI":
-            this.s=Seme.FIORI;
+        switch(s){
+            case "CUCCHIAI":
+            this.s=Seme.CUCCHIAI;
+            str="cucchiai";
             break;
-            case "PICCHE":
-            this.s=Seme.PICCHE;
+            case "FORCHETTE":
+            this.s=Seme.FORCHETTE;
+            str="forchette";
+            break;
+            case "COLTELLI":
+            this.s=Seme.COLTELLI;
+            str="coltelli";
             break;
         }
     }
@@ -58,5 +63,8 @@ public class Carta {
     public String toString(){
         return s.toString() + " " + valore;
     }
-
+    public String getPath(){
+        path =String.valueOf(valore) + str + ".png";
+        return path;
+    }
 }

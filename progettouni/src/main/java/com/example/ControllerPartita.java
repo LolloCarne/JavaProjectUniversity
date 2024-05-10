@@ -26,8 +26,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import java.util.HashMap;
+import java.util.Map;
+import javafx.scene.image.Image;
 
-import com.DTO.BotSmart;
+//import com.DTO.BotSmart;
 import com.DTO.Carta;
 import com.DTO.CartaRubaSpacca;
 import com.DTO.CartaSpacca;
@@ -46,17 +51,41 @@ public class ControllerPartita implements Initializable {
     private Utente utenteCorrente;
     private int statoTurno;
 
+    private ImageView selectedImage;
+    private ImageView showSelectedCard;
     @FXML
     private Button pescaBtn;
     @FXML
     private Button scartaBtn;
-
+    
     @FXML
     private ImageView cartaDaGioco1;
 
+    @FXML
+    private ImageView cartaDaGioco2;
+
+    @FXML
+    private ImageView cartaDaGioco4;
+
+    @FXML
+    private ImageView cartaDaGioco3;
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-
+        /*// Ottieni l'URL dell'immagine
+        URL imageUrl = getClass().getResource("file:///C:/Users/bibic/ONeDrive/Desktop/JavaProjectUniverity/JavaProjectUniversity/progettouni/src/main/resources/com/example/img/coltello1.png");
+        
+    
+        if (imageUrl != null) {
+            // Crea un'istanza dell'immagine
+            System.out.println("URL dell'immagine: " + imageUrl);
+            Image image = new Image(imageUrl.toString());
+    
+            // Imposta l'immagine nella ImageView
+            cartaDaGioco1.setImage(image);
+        } else {
+            System.out.println("Impossibile trovare l'immagine");
+        } */ 
     }
 
     public void start(String codice) {
@@ -81,7 +110,7 @@ public class ControllerPartita implements Initializable {
 
 
     public void setScene(Utente u) {
-    if(u instanceof BotSmart) {
+    /*if(u instanceof BotSmart) {
         // Impostazione della scena per il bot
         System.out.println(u.mano.toString());
         System.out.println(mSpacca.mazzo.size());  
@@ -107,14 +136,14 @@ public class ControllerPartita implements Initializable {
         // Impostazione della scena per l'utente umano
         System.out.println(u.mano.toString());
         System.out.println(mSpacca.mazzo.size());
-        
+      */  
         
         for (int i = 0; i < u.mano.size(); i++) {
             Carta carta = u.mano.get(i);
             String imagePath = carta.getPath(); 
             String imageUrl = "@img/" + imagePath; 
             Image image = new Image(imageUrl);
-          /*  switch (i) {
+            switch (i) {
                 case 0:
                     cartaDaGioco1.setImage(image);
                     break;
@@ -127,10 +156,10 @@ public class ControllerPartita implements Initializable {
                 // Continua con le altre ImageView
                 default:
                     break;
-            }*/
+            }
         }
     }
-}
+
 
     public void pesca() {
         if (utenteCorrente.mano.size() == 3) {
@@ -176,7 +205,7 @@ public class ControllerPartita implements Initializable {
                 semeStage.setTitle("Scegli il seme");
 
                 ComboBox<String> semeComboBox = new ComboBox<>();
-                semeComboBox.getItems().addAll("FIORI", "CUORI", "PICCHE");
+                semeComboBox.getItems().addAll("FORCHETTE", "COLTELLI", "CUCCHIAI");
 
                 Button inviaButton = new Button("Invia");
                 inviaButton.setOnAction(e -> {
@@ -291,6 +320,7 @@ public class ControllerPartita implements Initializable {
             // prendi la carta che viene selezionata e rimuovila
 
             //aggiungi la carta pescata nella mano dell'utente in scena
+            /* 
             if(utenteCorrente.controllaScala()){
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Hai fatto scala");
@@ -311,7 +341,7 @@ public class ControllerPartita implements Initializable {
 
                 utenteCorrente.carteSpacca.add(mSpacca.getRandomCard());
                 //aggiorna carte spacca utente in scena
-            }
+            }*/
         } else {
             System.out.println("non puoi scartare ");
 
