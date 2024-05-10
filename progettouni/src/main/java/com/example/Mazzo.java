@@ -15,6 +15,8 @@ public class Mazzo {
     
     Stack<Carta> mazzo;
     ArrayList<Carta> pescate;
+    String path="";
+    
 
     public Mazzo(){
         mazzo= new Stack<>();
@@ -35,9 +37,17 @@ public class Mazzo {
     }
     private void makeMazzo(){
 
-         for(Seme s : Seme.values()){
+        for(Seme s : Seme.values()){
             for(int i =0; i<7;i++){
                 this.mazzo.add(new Carta(s,i));
+                String str ="";
+                switch(s){
+                    case CUCCHIAI : str= "cucchiai";
+                    case FORCHETTE : str= "forchette";
+                    case COLTELLI : str= "coltelli";
+                }
+                
+                
             }
         }
         
@@ -68,7 +78,7 @@ public class Mazzo {
         }
         return null;
     }
-
+    
 
 
 }
