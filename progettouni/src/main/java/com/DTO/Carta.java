@@ -4,11 +4,10 @@ import com.Enum.Seme;
 import java.util.Random;
 
 
-public class Carta {
+public class Carta implements Comparable<Carta>{
 
     private Seme s;
     private int valore;
-
 
     public Carta(){}
 
@@ -16,6 +15,7 @@ public class Carta {
     public Carta(Seme s, int v){
         this.s=s;
         this.valore=v;
+    
     }
 
     public Carta(String s){
@@ -59,4 +59,14 @@ public class Carta {
         return s.toString() + " " + valore;
     }
 
+
+    @Override
+    public int compareTo(Carta altraCarta) {
+    return Integer.compare(this.valore, altraCarta.valore);
+    }
+
+    public boolean valoreSuccessivo(Carta altraCarta) {
+        // Se il valore della carta corrente è uno in meno rispetto al valore dell'altra carta, allora il valore è successivo
+        return this.valore == altraCarta.valore - 1;
+    }
 }
