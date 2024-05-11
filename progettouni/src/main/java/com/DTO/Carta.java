@@ -17,7 +17,7 @@ public class Carta implements Comparable<Carta>{
     public Carta(Seme s, int v){
         this.s=s;
         this.valore=v;
-        this.path = path;
+        this.path = str + String.valueOf(valore) + ".png";
     }
 
     public Carta(String s){
@@ -25,21 +25,22 @@ public class Carta implements Comparable<Carta>{
         switch(s){
             case "CUCCHIAI":
             this.s=Seme.CUCCHIAI;
-            str="cucchiai";
+            this.str="cucchiaio";
             break;
             case "FORCHETTE":
             this.s=Seme.FORCHETTE;
-            str="forchette";
+            this.str="forchetta";
             break;
             case "COLTELLI":
             this.s=Seme.COLTELLI;
-            str="coltelli";
+            this.str="coltello";
             break;
         }
     }
 
     public Carta(Seme s){
         this.s=s;
+
     }
     public Carta(int v){
         this.valore=v;
@@ -64,8 +65,8 @@ public class Carta implements Comparable<Carta>{
         return s.toString() + " " + valore;
     }
     public String getPath(){
-        path =String.valueOf(valore) + str + ".png";
-        return path;
+       
+        return this.path;
     }
 
     @Override
