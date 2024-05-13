@@ -13,7 +13,7 @@ public class CartaRubaSpacca extends Carta {
 
     public void rubaSpacca(){
         Utente u = new Utente(nick);
-        ArrayList <CartaSpacca> carte= u.getCarteSpacca();
+        ArrayList <CartaSpacca> carte= u.carteSpacca;
 
         for(CartaSpacca s: carte){
             System.out.println(s);

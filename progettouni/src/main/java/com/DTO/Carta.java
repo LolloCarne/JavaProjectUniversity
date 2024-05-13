@@ -16,8 +16,9 @@ public class Carta implements Comparable<Carta>{
     
     public Carta(Seme s, int v){
         this.s=s;
-        this.valore=v;
-        this.path = str + String.valueOf(valore) + ".png";
+        this.valore=v+1;
+        this.str=s.getValore();
+        this.path = "/com/example/img/" +str + String.valueOf(valore) + ".png";
     }
 
     public Carta(String s){

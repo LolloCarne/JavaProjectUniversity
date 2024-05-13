@@ -1,5 +1,6 @@
 package com.example;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -32,6 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.image.Image;
 
+import com.DTO.BotSmart;
 //import com.DTO.BotSmart;
 import com.DTO.Carta;
 import com.DTO.CartaRubaSpacca;
@@ -69,6 +72,10 @@ public class ControllerPartita implements Initializable {
 
     @FXML
     private ImageView cartaDaGioco3;
+
+    @FXML
+    private AnchorPane pane;
+
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -108,32 +115,9 @@ public class ControllerPartita implements Initializable {
 
     }
 
-    public void setScene(Utente u) {
-        for (int i = 0; i < u.mano.size(); i++) {
-            Carta carta = u.mano.get(i);
-            String imagePath = carta.getPath(); 
-            String imageUrl = "file:"+"/com/example/img/" + imagePath; 
-            Image image = new Image(imageUrl);
-            switch (i) {
-                case 0:
-                    cartaDaGioco1.setImage(image);
-                    break;
-                case 1:
-                    cartaDaGioco2.setImage(image);
-                    break;
-                case 2:
-                    cartaDaGioco3.setImage(image);
-                    break;
-                case 3:
-                    cartaDaGioco4.setImage(image);
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
+ 
 
-/*     public void setScene(Utente u) {
+  public void setScene(Utente u) {
     if(u instanceof BotSmart) {
         // Impostazione della scena per il bot
         System.out.println(u.mano.toString());
@@ -165,17 +149,19 @@ public class ControllerPartita implements Initializable {
         for (int i = 0; i < u.mano.size(); i++) {
             Carta carta = u.mano.get(i);
             String imagePath = carta.getPath(); 
-            String imageUrl = "file:"+"/com/example/img/" + imagePath; 
-            Image image = new Image(imageUrl);
+            Image image = new Image(getClass().getResourceAsStream(imagePath));
             switch (i) {
                 case 0:
                     cartaDaGioco1.setImage(image);
+                    u.mapImageView.put(cartaDaGioco1, imagePath);
                     break;
                 case 1:
                     cartaDaGioco2.setImage(image);
+                    u.mapImageView.put(cartaDaGioco2, imagePath);
                     break;
                 case 2:
                     cartaDaGioco3.setImage(image);
+                    u.mapImageView.put(cartaDaGioco3, imagePath);
                     break;
                 // Continua con le altre ImageView
                 default:
@@ -183,23 +169,29 @@ public class ControllerPartita implements Initializable {
             }
         }
     }
-}*/
+}
 
 
     public void pesca() {
         if (utenteCorrente.mano.size() == 3) {
             Carta pescata = this.m.mazzo.pop();
-            // metto la carta nel box
-            // delay
+            String imagePath = pescata.getPath(); 
+            Image image = new Image(getClass().getResourceAsStream(imagePath));
+            cartaDaGioco4.setImage(image);
+            utenteCorrente.mano.add(pescata);
+            utenteCorrente.mapImageView.put( cartaDaGioco4, imagePath);
             // se carta numero ti chiedo quale carta vuoi scartare se carta effetto esce
-            // pop-up che ti chiede se vuoi usare effetto scartare la carta
+            
             if (pescata.getClass().getName().equals("com.DTO.Carta")) {
                 System.out.println("Selaziona una carta da scartare");
-            }
+            }else{
             // nel caso di carta malus spiego direttamente il malus e puoi schiacciare solo
             // ok per prendere malus e andare avanti
+                actionCarta(pescata);
+            }
 
-            actionCarta(pescata);
+
+            
         } else {
             System.out.println("Hai già pescato");
             Alert alert = new Alert(AlertType.ERROR);
@@ -265,12 +257,12 @@ public class ControllerPartita implements Initializable {
                         "Hai perso la carta Spacca: " + utenteCorrente.carteSpacca.remove(utenteCorrente.carteSpacca.size() - 1).lettera);
                 break;
 
-            case "com.DTO.CartaPescaDueCarte":
+            /*case "com.DTO.CartaPescaDueCarte":
                 pesca();
                 scarta();
                 pesca();
                 scarta();
-                break;
+                break;*/
 
             case "com.DTO.CartaRubaSpacca":
 
@@ -339,13 +331,16 @@ public class ControllerPartita implements Initializable {
 
     }
 
-    public void scarta() {
+    public void scarta(ImageView daScartare) {
 
-        if (utenteCorrente.mano.size() >= 3) {
-            // prendi la carta che viene selezionata e rimuovila
+        if (utenteCorrente.mano.size() > 3) {
+            removeCardByImageView(daScartare);
+            Image image = new Image(getClass().getResourceAsStream(utenteCorrente.mapImageView.get(cartaDaGioco4)));
+            cartaDaGioco4.setImage(null);
+            daScartare.setImage(image);
 
-            //aggiungi la carta pescata nella mano dell'utente in scena
-            /* 
+            System.out.println(daScartare.getImage().toString());
+            
             if(utenteCorrente.controllaScala()){
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Hai fatto scala");
@@ -366,7 +361,7 @@ public class ControllerPartita implements Initializable {
 
                 utenteCorrente.carteSpacca.add(mSpacca.getRandomCard());
                 //aggiorna carte spacca utente in scena
-            }*/
+            }
         } else {
             System.out.println("non puoi scartare ");
 
@@ -386,8 +381,23 @@ public class ControllerPartita implements Initializable {
     }
 
     @FXML
-    public void scartaBtnAction(ActionEvent event) {
-
+    public void passaBtnAction(ActionEvent event) {
+        passa();
+    }
+    @FXML
+    public void scartaEvent(MouseEvent event) {
+        ImageView cartaToccata = (ImageView) event.getSource();
+        scarta(cartaToccata);
     }
 
+    public void removeCardByImageView(ImageView iv){
+        String url = utenteCorrente.mapImageView.get(iv);
+        for(Carta c : utenteCorrente.mano){
+            if(c.getPath().equals(url)){
+                utenteCorrente.mano.remove(c);
+                break;
+            }
+        }
+        utenteCorrente.mapImageView.remove(iv);
+    }
 }
