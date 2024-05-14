@@ -39,6 +39,12 @@ public class ControllerCreaPartita implements Initializable{
     @FXML
     private ListView<String> nickNameList;
 
+    @FXML
+    private Button aggiungiPartecipanteBtn;
+
+    @FXML
+    private Button rimuoviPartecipanteBtn;
+
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {

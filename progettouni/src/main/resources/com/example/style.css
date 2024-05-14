@@ -39,7 +39,12 @@
     -fx-background-color: #FFA000; /* Arancione più scuro */
     /*-fx-border-color: #6D4C41; /* Marrone */
 }
-
+#rimuoviPartecipanteBtn {
+    -fx-background-color: #FFA000;
+}
+#aggiungiPartecipanteBtn{
+    -fx-background-color: #FFA000;
+}
 /* Stile dei TextField */
 .text-field {
     -fx-background-color: #FFF59D; /* Giallo chiaro */
@@ -71,13 +76,12 @@
 /* Stile del pulsante Indietro */
 #IndietroBtn2 {
     -fx-background-color: #FFA000; /* Arancione più scuro */
-    -fx-border-color: #6D4C41; /* Marrone */
+   /* -fx-border-color: #6D4C41; /* Marrone */
 }
 
 /* Stile del pulsante "Ottieni Partecipanti!" */
 #ottieniPartcipanti {
     -fx-background-color: #FFA000; /* Arancione più scuro */
-    -fx-border-color: #6D4C41; /* Marrone */
     -fx-font-size: 15px; /* Rimpicciolito il testo */
     -fx-padding: 5px 10px;
 }
@@ -105,12 +109,26 @@
 }
 
 .list-view {
-    -fx-background-color: #FFF59D; /* Giallo chiaro */
-    /*-fx-background-radius: 30px; /* Bordo arrotondato */
+    -fx-background-color: lightblue; /* Giallo chiaro */
+    -fx-background-radius: 30px; /* Bordo arrotondato */
     -fx-border-color: #6D4C41; /* Marrone */
+    -fx-border-radius:30px;
     -fx-border-width: 2px; /* Spessore del bordo */
     -fx-font-family: "Arial";
     -fx-font-size: 14px;
     -fx-padding: 10px; /* Spazio interno alla ListView */
+    
+}
+
+.text-area {
+    -fx-background-color: #FFF59D; /* Giallo chiaro */
+    -fx-background-radius: 10px; /* Bordo arrotondato */
+    -fx-border-color: #6D4C41; /* Marrone */
+    -fx-border-width: 2px; /* Spessore del bordo */
+    -fx-font-family: "Arial";
+    -fx-font-style: italic;
+    -fx-font-size: 20px;
+    -fx-text-fill: #6D4C41; /* Colore del testo */
+    -fx-padding: 10px; /* Spazio interno alla TextArea */
 }
 
