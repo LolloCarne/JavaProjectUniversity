@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.DTO.Carta;
 import com.DTO.CartaSpacca;
+import com.DTO.Utente;
 import com.Enum.Spacca;
 
 public class MazzoSpacca{
@@ -13,11 +14,9 @@ public class MazzoSpacca{
 
     public MazzoSpacca(int numeroGiocatori){
         this.mazzo= new ArrayList<>();
-        for(int i=0; i<numeroGiocatori; i++){
-                for(String x : lettere){
-                    this.mazzo.add(new CartaSpacca(x));
-                }
-                
+
+        for(String i : lettere){
+            mazzo.add(new CartaSpacca(i));
         }
     }
 
@@ -27,6 +26,10 @@ public class MazzoSpacca{
         //return mazzo.remove(r.nextInt(this.mazzo.size()));
         return mazzo.get(r.nextInt(this.mazzo.size()));
         
+    }
+
+    public CartaSpacca getRightCard(Utente u){
+        return mazzo.get(u.carteSpacca.size());
     }
 
     public void removeCartaPescata(CartaSpacca c){

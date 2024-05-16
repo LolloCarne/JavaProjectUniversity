@@ -9,6 +9,7 @@ import com.DTO.CartaBlocco;
 import com.DTO.CartaJollyNumero;
 import com.DTO.CartaJollySeme;
 import com.DTO.CartaPescaDueCarte;
+import com.DTO.CartaRubaSpacca;
 import com.Enum.Seme;
 
 public class Mazzo {
@@ -51,13 +52,9 @@ public class Mazzo {
             }
         }
         
-        this.mazzo.add(new CartaBlocco( "/com/example/img/bloccoTurno.png"));
-        this.mazzo.add(new CartaBlocco("/com/example/img/bloccoTurno.png"));
-        this.mazzo.add(new CartaBlocco("/com/example/img/bloccoTurno.png"));
-
-        this.mazzo.add(new CartaPescaDueCarte("/com/example/img/pescaDue.png"));
-        this.mazzo.add(new CartaPescaDueCarte("/com/example/img/pescaDue.png"));
-        this.mazzo.add(new CartaPescaDueCarte("/com/example/img/pescaDue.png"));
+        this.mazzo.add(new CartaRubaSpacca( "/com/example/img/rubaSpacca.png"));
+        this.mazzo.add(new CartaRubaSpacca( "/com/example/img/rubaSpacca.png"));
+        this.mazzo.add(new CartaRubaSpacca( "/com/example/img/rubaSpacca.png"));
 
         this.mazzo.add(new CartaJollyNumero("/com/example/img/jollySeme.png"));
         this.mazzo.add(new CartaJollyNumero("/com/example/img/jollySeme.png"));

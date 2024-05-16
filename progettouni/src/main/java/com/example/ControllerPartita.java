@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -83,13 +84,29 @@ public class ControllerPartita implements Initializable {
     @FXML
     private TextField nomeUtente;
 
-    
     @FXML
-    private ListView carteListView;
+    private ImageView imgVs;
+
+    @FXML
+    private ImageView imgVp;
+
+    @FXML
+    private ImageView imgVa1;
+
+    @FXML
+    private ImageView imgVa2;
+
+    @FXML
+    private ImageView imgVc1;
+
+    @FXML
+    private ImageView imgVc2;
 
     private boolean canPick;
 
     private Map<ImageView, String> mapImageView;
+
+    ArrayList <ImageView> imgViewList;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -112,8 +129,19 @@ public class ControllerPartita implements Initializable {
             }
         }
         utenteCorrente = partecipanti.get(0);
+        imgViewList = new ArrayList<>();
+
+        imgViewList.add(imgVs);
+        imgViewList.add(imgVp);
+        imgViewList.add(imgVa1);
+        imgViewList.add(imgVc1);
+        imgViewList.add(imgVc2);
+        imgViewList.add(imgVa2);
 
         setScene(utenteCorrente);
+
+
+        
 
     }
 
@@ -146,7 +174,9 @@ public class ControllerPartita implements Initializable {
 
     } else {
         // Impostazione della scena per l'utente umano
-
+        pulisciSpacca();
+        aggiornaSpacca();
+        
         System.out.println(u.getNick());
         if (nomeUtente != null) {
             nomeUtente.setText(u.getNick());
@@ -213,9 +243,6 @@ public class ControllerPartita implements Initializable {
     public void actionCarta(Carta c) {
 
         switch (c.getClass().getName()) {
-            case "com.DTO.CartaBlocco":
-
-                break;
 
             case "com.DTO.CartaJollyNumero":
 
@@ -308,34 +335,36 @@ public class ControllerPartita implements Initializable {
                 semeStage.showAndWait();
                 break;
 
-            case "com.DTO.CartaPerdiSpacca":
-                System.out.println(
-                        "Hai perso la carta Spacca: " + utenteCorrente.carteSpacca.remove(utenteCorrente.carteSpacca.size() - 1).lettera);
-                break;
-
-            /*case "com.DTO.CartaPescaDueCarte":
-                pesca();
-                scarta();
-                pesca();
-                scarta();
-                break;*/
 
             case "com.DTO.CartaRubaSpacca":
-
-                // pup-up che chiede a quale utente vuoi rubare la carta
-                String utenteScelto = "ciccio";
-                CartaRubaSpacca ruba = new CartaRubaSpacca();
-                Optional<Utente> utenteOptional = partecipanti.stream().filter(p -> p.getNick().equals(utenteScelto)).findFirst();
-
-                utenteOptional.ifPresent(utente -> {
-                    for (CartaSpacca cartaSpacca : utente.carteSpacca) {
-                        if (canGrab(cartaSpacca)) {
-                            utenteCorrente.carteSpacca.add(cartaSpacca);
-                            utente.carteSpacca.remove(cartaSpacca);
-                        }
+                Button inviaRub = new Button("Invia");
+                ChoiceBox<String> choiceBox = new ChoiceBox<>(FXCollections.observableArrayList());
+                for (Utente utente : partecipanti) {
+                    if (!utente.getNick().equals(utenteCorrente.getNick())) {
+                        choiceBox.getItems().add(utente.getNick());
                     }
+                }
+                VBox root = new VBox(10, choiceBox,inviaRub);
+                root.setAlignment(Pos.CENTER);
 
+                // Creiamo una scena e mostriamo il popup
+                Stage rubStage = new Stage();
+                Scene scene = new Scene(root, 300, 200);
+                rubStage.setScene(scene);
+                rubStage.setTitle("Seleziona utente da rubare");
+                rubStage.show();
+
+                
+                inviaRub.setOnAction(event -> {
+                String  u = choiceBox.getValue(); // Salviamo il nickname selezionato nella variabile utenteScelto
+                    if (u != null) {
+                        // Qui puoi eseguire altre azioni in base al nickname selezionato, se necessario
+                        System.out.println("Utente selezionato: " + u);
+                        rubSpacca(u);
+                        rubStage.close();
+                    }
                 });
+
                 break;
 
             default:
@@ -406,7 +435,8 @@ public class ControllerPartita implements Initializable {
                 alert.setContentText("Hai vinto una carta spacca, al prossimo turno dovrai scartare una delle carte in mano");
                 alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
                 
-                utenteCorrente.carteSpacca.add(mSpacca.getRandomCard());
+                CartaSpacca cs = mSpacca.getRightCard(utenteCorrente);
+                utenteCorrente.carteSpacca.add(cs);
                 aggiornaSpacca();
 
                 //aggiorna carte spacca utente in scena
@@ -419,9 +449,9 @@ public class ControllerPartita implements Initializable {
                 alert.setContentText("Hai vinto una carta spacca, al prossimo turno dovrai scartare una delle carte in mano");
                 alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
 
-                utenteCorrente.carteSpacca.add(mSpacca.getRandomCard());
+                CartaSpacca cs = mSpacca.getRightCard(utenteCorrente);
+                utenteCorrente.carteSpacca.add(cs);
                 aggiornaSpacca();
-                //aggiorna carte spacca utente in scena
             }
         } else {
             System.out.println("non puoi scartare ");
@@ -462,32 +492,48 @@ public class ControllerPartita implements Initializable {
         mapImageView.remove(iv);
     }
 
+    public void rubSpacca(String utenteScelto){
+        Optional<Utente> utenteOptional = partecipanti.stream().filter(p -> p.getNick().equals(utenteScelto)).findFirst();
+
+        utenteOptional.ifPresent(utente -> {
+            for (CartaSpacca cartaSpacca : utente.carteSpacca) {
+                if (canGrab(cartaSpacca)) {
+                    utenteCorrente.carteSpacca.add(cartaSpacca);
+                    utente.carteSpacca.remove(cartaSpacca);
+                }
+            }
+
+        });
+    }
+
     public void aggiornaSpacca(){
 
-            ObservableList<CartaSpacca> carteSpacca = FXCollections.observableArrayList(utenteCorrente.carteSpacca);
+        String imgPath;
+        Image image;
+        for(CartaSpacca c : utenteCorrente.carteSpacca){
 
-    // Crea una cella personalizzata per visualizzare le immagini delle carte
-    carteListView.setCellFactory(listView -> new ListCell<CartaSpacca>() {
-        private final ImageView imageView = new ImageView();
-        @Override
-        protected void updateItem(CartaSpacca carta, boolean empty) {
-            super.updateItem(carta, empty);
-            if (empty || carta == null) {
-                // Se la cella è vuota o la carta è nulla, imposto la grafica della cella a null
-                setGraphic(null);
-            } else {
-                // Altrimenti, imposto l'immagine della carta nella ImageView
-                String imagePath = carta.getPath();
-                System.out.println(imagePath);
-                Image image = new Image(getClass().getResourceAsStream(imagePath));
-                imageView.setImage(image);
-                setGraphic(imageView);
+            imgPath = c.getPath();
+            image = new Image(getClass().getResourceAsStream(imgPath));
+            imgViewList.get(utenteCorrente.carteSpacca.indexOf(c)).setImage(image);
+
+            if(utenteCorrente.carteSpacca.indexOf(c)==6){
+                
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("HAI VINTO");
+                alert.setHeaderText(null);
+                alert.setContentText("COMPLIMENTI HAI SPACCATO!");
+                alert.showAndWait(); 
+
+                //settare flag vittoria
             }
         }
-    });
 
-    // Imposta la lista di carte dello spacca come elemento da visualizzare nel ListView
-    carteListView.setItems(carteSpacca);
+    }
 
+    public void pulisciSpacca(){
+        for(ImageView i : imgViewList){
+            if(i.getImage()!=null)
+                i.setImage(null);
+        }
     }
 }

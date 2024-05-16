@@ -25,36 +25,24 @@
       <Button fx:id="pescaBtn" layoutX="899.0" layoutY="104.0" mnemonicParsing="false" onAction="#pescaBtnAction" text="Pesca" />
       <Button fx:id="passaBtn" layoutX="1047.0" layoutY="104.0" mnemonicParsing="false" onAction="#passaBtnAction" text="Passa" />
 
-      <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="651.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/C_preview_rev_1.png" />
-         </image>
+      <ImageView fx:id="imgVc1" fitHeight="130.0" fitWidth="130.0" layoutX="651.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+
       </ImageView>
       <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="182.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="510.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/A_preview_rev_1.png" />
-         </image>
+      <ImageView fx:id="imgVa1" fitHeight="130.0" fitWidth="130.0" layoutX="510.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+
       </ImageView>
-      <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="934.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/A_preview_rev_1.png" />
-         </image>
+      <ImageView fx:id="imgVa2" fitHeight="130.0" fitWidth="130.0" layoutX="934.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+
       </ImageView>
-      <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="364.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/P_preview_rev_1.png" />
-         </image>
+      <ImageView fx:id="imgVp" fitHeight="130.0" fitWidth="130.0" layoutX="364.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+
       </ImageView>
-      <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="799.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/C_preview_rev_1.png" />
-         </image>
+      <ImageView fx:id="imgVc2" fitHeight="130.0" fitWidth="130.0" layoutX="799.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+
       </ImageView>
-      <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="212.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/S_preview_rev_1.png" />
-         </image>
+      <ImageView fx:id="imgVs" fitHeight="130.0" fitWidth="130.0" layoutX="212.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+
       </ImageView>
       <ImageView fx:id="cartaDaGioco4" fitHeight="230.0" fitWidth="200.0" layoutX="247.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="200.0" fitWidth="230.0" layoutX="540.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">

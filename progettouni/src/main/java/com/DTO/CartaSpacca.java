@@ -9,7 +9,7 @@ public class CartaSpacca {
 
     public CartaSpacca(String lettera){
         this.lettera = lettera;
-        this.path=lettera+".png";
+        this.path="/com/example/img/"+lettera+".png";
     }
 
     public String getPath() {
