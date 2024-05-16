@@ -11,7 +11,7 @@ import com.Enum.Seme;
 public class BotSmart extends Utente{
     private static final String [] randomName = {"Jim","Chris","Erik","Jessie","Queen","Jennifer","Joshua"};
     public BotSmart(){
-        super(randomName[new Random().nextInt(randomName.length)]);
+        super(randomName[new Random().nextInt(randomName.length)]+"@BOT");
     }
     public BotSmart (Utente u){
         super(u.getNick());

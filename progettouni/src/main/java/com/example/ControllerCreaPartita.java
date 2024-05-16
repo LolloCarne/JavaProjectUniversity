@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.DTO.BotSmart;
 import com.DTO.Partita;
 import com.DTO.Utente;
 import com.Manager.PartitaManager;
@@ -16,6 +17,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -45,6 +48,7 @@ public class ControllerCreaPartita implements Initializable{
     @FXML
     private Button rimuoviPartecipanteBtn;
 
+    Partita p;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -61,12 +65,41 @@ public class ControllerCreaPartita implements Initializable{
         String nickname=nickNameField.getText();
 
         if (!nickname.isEmpty()) {
-            p.addPartecipante(new Utente(nickname));
+            try{
+                p.addPartecipante(new Utente(nickname));
+            }catch(Error e){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Errore");
+                alert.setHeaderText(null);
+                alert.setContentText("non puoi aggiungere piu di 4 partecipanti");
+    
+                alert.showAndWait();
+            }
+
             updateNickNameList(manager.getNickNamesList(p));
             nickNameField.clear(); // Cancella il campo di testo dopo l'aggiunta
         }
         
 
+
+    }
+
+    public void addBotAction(ActionEvent event){
+        String codice= campoCodice.getText();
+        Partita p = new Partita(codice);
+        PartitaManager pManager = new PartitaManager();
+        try{
+            p.addPartecipante(new BotSmart());
+        }catch(Error e){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Errore");
+            alert.setHeaderText(null);
+            alert.setContentText("non puoi aggiungere piu di 4 partecipanti");
+
+            alert.showAndWait();
+        }
+        updateNickNameList(pManager.getNickNamesList(p));
+    
 
     }
 
