@@ -51,19 +51,19 @@ public class Mazzo {
             }
         }
         
-        this.mazzo.add(new CartaBlocco());
-        this.mazzo.add(new CartaBlocco());
-        this.mazzo.add(new CartaBlocco());
+        this.mazzo.add(new CartaBlocco( "/com/example/img/bloccoTurno.png"));
+        this.mazzo.add(new CartaBlocco("/com/example/img/bloccoTurno.png"));
+        this.mazzo.add(new CartaBlocco("/com/example/img/bloccoTurno.png"));
 
-        this.mazzo.add(new CartaPescaDueCarte());
-        this.mazzo.add(new CartaPescaDueCarte());
-        this.mazzo.add(new CartaPescaDueCarte());
+        this.mazzo.add(new CartaPescaDueCarte("/com/example/img/pescaDue.png"));
+        this.mazzo.add(new CartaPescaDueCarte("/com/example/img/pescaDue.png"));
+        this.mazzo.add(new CartaPescaDueCarte("/com/example/img/pescaDue.png"));
 
-        this.mazzo.add(new CartaJollyNumero());
-        this.mazzo.add(new CartaJollyNumero());
+        this.mazzo.add(new CartaJollyNumero("/com/example/img/jollySeme.png"));
+        this.mazzo.add(new CartaJollyNumero("/com/example/img/jollySeme.png"));
 
-        this.mazzo.add(new CartaJollySeme());
-        this.mazzo.add(new CartaJollySeme());
+        this.mazzo.add(new CartaJollySeme("/com/example/img/jollySeme.png"));
+        this.mazzo.add(new CartaJollySeme("/com/example/img/jollySeme.png"));
 
     }
 

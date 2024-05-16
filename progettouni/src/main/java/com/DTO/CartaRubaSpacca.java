@@ -4,9 +4,10 @@ import java.util.ArrayList;
 public class CartaRubaSpacca extends Carta {
     String nick;
 
-    public CartaRubaSpacca(String nick){
+    public CartaRubaSpacca(String nick, String path){
         super();
         this.nick = nick;
+        super.setPath(path);
     }
 
     public CartaRubaSpacca(){}

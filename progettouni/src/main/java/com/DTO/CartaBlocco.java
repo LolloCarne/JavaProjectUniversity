@@ -16,8 +16,9 @@ public class CartaBlocco extends Carta {
     }
      
    
-    public CartaBlocco(){
+    public CartaBlocco(String path){
         super();
+        super.setPath(path);
     }
 
     //SETTARE UN ALERT PER IL MESSAGGIO DI SALTO TURNO 

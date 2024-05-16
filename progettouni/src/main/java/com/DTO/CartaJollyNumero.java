@@ -3,8 +3,9 @@ import com.Enum.Seme;
 
 public class CartaJollyNumero extends Carta {
     
-    public CartaJollyNumero(){
+    public CartaJollyNumero(String path){
         super();
+        super.setPath(path);
     }
 
     public Seme getSeme(){

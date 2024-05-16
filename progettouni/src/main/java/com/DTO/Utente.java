@@ -1,6 +1,7 @@
 package com.DTO;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -14,7 +15,6 @@ public class Utente {
     private String Nickname;
     private String id;
     public ArrayList<Carta> mano;
-    public Map<ImageView, String> mapImageView;
     public ArrayList<CartaSpacca> carteSpacca;
 
     public Utente(String n){
@@ -22,7 +22,6 @@ public class Utente {
         this.id = UUID.randomUUID().toString();
         this.mano=new ArrayList<>();
         this.carteSpacca = new ArrayList<>();
-        this.mapImageView = new HashMap();
     }
 
     public Utente (JsonNode utenteJson){
@@ -30,7 +29,6 @@ public class Utente {
         this.id=utenteJson.get("id").asText();
         this.mano=new ArrayList<>();
         this.carteSpacca=new ArrayList<>();
-        this.mapImageView = new HashMap();
     }
 
     public String getNick(){
@@ -47,11 +45,17 @@ public class Utente {
         return this.Nickname;
     }
 
-    public boolean controllaScala(){
-        if (mano.get(2).valoreSuccessivo(mano.get(1)) && mano.get(1).valoreSuccessivo(mano.get(0))) {
-           return true;
+ public boolean controllaScala() {
+    // Ordina le carte in mano in base al valore
+    Collections.sort(mano);
+
+    // Controlla se le carte formano una scala
+    for (int i = 0; i < mano.size() - 1; i++) {
+        if (!mano.get(i).valoreSuccessivo(mano.get(i + 1))) {
+            return false; // Se troviamo una coppia di carte non consecutive, non è una scala
         }
-        return false;
+    }
+    return true; // Se tutte le carte sono consecutive, è una scala
     }
 
     public boolean controllaTreStessoSeme() {
@@ -59,8 +63,11 @@ public class Utente {
 
         // Conta quante carte ci sono per ciascun seme
         for (Carta carta : mano) {
-            String seme = carta.getSeme().toString();
-            conteggioSemi.put(seme, conteggioSemi.getOrDefault(seme, 0) + 1);
+            if(carta.getClass().getName().equals("com.DTO.Carta")){
+                String seme = carta.getSeme().getValore();
+                conteggioSemi.put(seme, conteggioSemi.getOrDefault(seme, 0) + 1);
+            }
+
         }
 
         // Controlla se c'è un seme con almeno tre carte
