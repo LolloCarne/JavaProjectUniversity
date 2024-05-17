@@ -13,7 +13,7 @@
 #amministratorBtn:hover {
     -fx-background-color: #cf7d02; /* Arancione più scuro al passaggio del mouse */
 }
-/* Applica uno sfondo che ricorda il colore del cachi */
+
 .root {
     -fx-background-color: #cf7d02;
 }
@@ -23,8 +23,6 @@
     -fx-background-color: #8BC34A; /* Verde */
     -fx-background-radius: 30px; /* Bordo arrotondato */
     -fx-border-radius: 30px; /* Bordo arrotondato */
-    /*-fx-border-color: #6D4C41; /* Marrone */
-    /*-fx-border-width: 5px; /* Spessore del bordo */
     -fx-font-family: "Arial Black";
     -fx-font-size: 24px;
     -fx-padding: 10px 20px; /* Spazio interno al pulsante */
@@ -37,7 +35,6 @@
 /* Stile del pulsante indietro */
 #IndietroBtn {
     -fx-background-color: #FFA000; /* Arancione più scuro */
-    /*-fx-border-color: #6D4C41; /* Marrone */
 }
 #rimuoviPartecipanteBtn {
     -fx-background-color: #FFA000;
@@ -75,22 +72,21 @@
 
 /* Stile del pulsante Indietro */
 #IndietroBtn2 {
-    -fx-background-color: #FFA000; /* Arancione più scuro */
-   /* -fx-border-color: #6D4C41; /* Marrone */
+    -fx-background-color: #FFA000; 
 }
 
 /* Stile del pulsante "Ottieni Partecipanti!" */
 #ottieniPartcipanti {
-    -fx-background-color: #FFA000; /* Arancione più scuro */
-    -fx-font-size: 15px; /* Rimpicciolito il testo */
+    -fx-background-color: #FFA000; 
+    -fx-font-size: 15px; 
     -fx-padding: 5px 10px;
 }
 .text-area {
-    -fx-font-size: 18px; /* Renderlo più grande */
-    -fx-font-family: "Lobster"; /* Font elegante */
+    -fx-font-size: 18px; 
+    -fx-font-family: "Lobster";
 }
 .list-view .list-cell {
-    -fx-font-size: 18px; /* Renderlo più grande */
+    -fx-font-size: 18px; 
 }
 
 /* Stile della AnchorPane */
@@ -100,35 +96,42 @@
 
 /* Stile della PasswordField */
 .password-field {
-    -fx-background-radius: 30px; /* Bordo arrotondato */
-    -fx-border-width: 2px; /* Spessore del bordo */
+    -fx-background-radius: 30px; 
+    -fx-border-width: 2px; 
     -fx-font-family: "Arial";
     -fx-font-size: 14px;
-    -fx-prompt-text-fill: #6D4C41; /* Colore del testo del prompt */
-    -fx-padding: 5px 10px; /* Spazio interno alla PasswordField */
+    -fx-prompt-text-fill: #6D4C41; 
+    -fx-padding: 5px 10px; 
 }
 
 .list-view {
-    -fx-background-color: lightblue; /* Giallo chiaro */
-    -fx-background-radius: 30px; /* Bordo arrotondato */
-    -fx-border-color: #6D4C41; /* Marrone */
+    -fx-background-color: white;
+    -fx-background-radius: 30px; 
     -fx-border-radius:30px;
-    -fx-border-width: 2px; /* Spessore del bordo */
+    -fx-border-color: #6D4C41; 
+    -fx-border-width: 2px; 
     -fx-font-family: "Arial";
     -fx-font-size: 14px;
-    -fx-padding: 10px; /* Spazio interno alla ListView */
+    -fx-padding: 10px;
     
 }
 
 .text-area {
-    -fx-background-color: #FFF59D; /* Giallo chiaro */
-    -fx-background-radius: 10px; /* Bordo arrotondato */
-    -fx-border-color: #6D4C41; /* Marrone */
-    -fx-border-width: 2px; /* Spessore del bordo */
+    -fx-background-color: #FFF59D; 
+    -fx-background-radius: 10px; 
+    -fx-border-color: #6D4C41;
+    -fx-border-width: 2px; 
     -fx-font-family: "Arial";
     -fx-font-style: italic;
     -fx-font-size: 20px;
-    -fx-text-fill: #6D4C41; /* Colore del testo */
-    -fx-padding: 10px; /* Spazio interno alla TextArea */
+    -fx-text-fill: #6D4C41; 
+    -fx-padding: 10px; 
 }
 
+#messagioEliminazione {
+    -fx-text-fill: red;
+}
+
+#messaggioEliminaUtente {
+    -fx-text-fill: red;
+}
