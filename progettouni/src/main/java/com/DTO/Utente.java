@@ -1,9 +1,14 @@
 package com.DTO;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import com.fasterxml.jackson.databind.JsonNode;
+
+import javafx.scene.image.ImageView;
 
 public class Utente {
     
@@ -23,6 +28,7 @@ public class Utente {
         this.Nickname=utenteJson.get("nick").asText();
         this.id=utenteJson.get("id").asText();
         this.mano=new ArrayList<>();
+        this.carteSpacca=new ArrayList<>();
     }
 
     public String getNick(){
@@ -39,10 +45,39 @@ public class Utente {
         return this.Nickname;
     }
 
-    public ArrayList<CartaSpacca> getCarteSpacca(){
-        CartaSpacca s = new CartaSpacca("P");
-        carteSpacca.add(s);
-        System.out.println("si");
-        return this.carteSpacca;
+ public boolean controllaScala() {
+    // Ordina le carte in mano in base al valore
+    Collections.sort(mano);
+
+    // Controlla se le carte formano una scala
+    for (int i = 0; i < mano.size() - 1; i++) {
+        if (!mano.get(i).valoreSuccessivo(mano.get(i + 1))) {
+            return false; // Se troviamo una coppia di carte non consecutive, non è una scala
+        }
     }
+    return true; // Se tutte le carte sono consecutive, è una scala
+    }
+
+    public boolean controllaTreStessoSeme() {
+        Map<String, Integer> conteggioSemi = new HashMap<>();
+
+        // Conta quante carte ci sono per ciascun seme
+        for (Carta carta : mano) {
+            if(carta.getClass().getName().equals("com.DTO.Carta")){
+                String seme = carta.getSeme().getValore();
+                conteggioSemi.put(seme, conteggioSemi.getOrDefault(seme, 0) + 1);
+            }
+
+        }
+
+        // Controlla se c'è un seme con almeno tre carte
+        for (int conteggio : conteggioSemi.values()) {
+            if (conteggio >= 3) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

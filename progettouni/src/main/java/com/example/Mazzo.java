@@ -9,6 +9,7 @@ import com.DTO.CartaBlocco;
 import com.DTO.CartaJollyNumero;
 import com.DTO.CartaJollySeme;
 import com.DTO.CartaPescaDueCarte;
+import com.DTO.CartaRubaSpacca;
 import com.Enum.Seme;
 
 public class Mazzo {
@@ -51,19 +52,15 @@ public class Mazzo {
             }
         }
         
-        this.mazzo.add(new CartaBlocco());
-        this.mazzo.add(new CartaBlocco());
-        this.mazzo.add(new CartaBlocco());
+        this.mazzo.add(new CartaRubaSpacca( "/com/example/img/rubaSpacca.png"));
+        this.mazzo.add(new CartaRubaSpacca( "/com/example/img/rubaSpacca.png"));
+        this.mazzo.add(new CartaRubaSpacca( "/com/example/img/rubaSpacca.png"));
 
-        this.mazzo.add(new CartaPescaDueCarte());
-        this.mazzo.add(new CartaPescaDueCarte());
-        this.mazzo.add(new CartaPescaDueCarte());
+        this.mazzo.add(new CartaJollyNumero("/com/example/img/jollySeme.png"));
+        this.mazzo.add(new CartaJollyNumero("/com/example/img/jollySeme.png"));
 
-        this.mazzo.add(new CartaJollyNumero());
-        this.mazzo.add(new CartaJollyNumero());
-
-        this.mazzo.add(new CartaJollySeme());
-        this.mazzo.add(new CartaJollySeme());
+        this.mazzo.add(new CartaJollySeme("/com/example/img/jollySeme.png"));
+        this.mazzo.add(new CartaJollySeme("/com/example/img/jollySeme.png"));
 
     }
 

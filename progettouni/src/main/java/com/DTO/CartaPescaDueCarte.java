@@ -5,8 +5,9 @@ import javafx.scene.control.ButtonType;
 
 public class CartaPescaDueCarte extends Carta{
 
-    public CartaPescaDueCarte(){
+    public CartaPescaDueCarte(String path){
         super();
+        super.setPath(path);
     }
 
     public void messaggio(){

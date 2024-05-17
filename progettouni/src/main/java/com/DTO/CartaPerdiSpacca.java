@@ -6,10 +6,11 @@ import javafx.scene.control.ButtonType;
 public class CartaPerdiSpacca extends Carta{
     public boolean b;
 
-    public CartaPerdiSpacca(){
+    public CartaPerdiSpacca(String path){
 
         super();
         this.b= false;
+        super.setPath(path);
     }
     
     public void messaggio(){
