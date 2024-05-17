@@ -1,5 +1,441 @@
 [ {
-  "partecipanti" : ["bi", "giuli"],
-  "codice" : "ZCS4Z5",
-  "Partecipanti" : [ "bi", "giuli"]
+  "partecipanti" : [ ],
+  "codice" : "6IPDN6",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "ZNNM38",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "H8MVHO",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "MR60OK",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "AC1163",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "0JFOVA",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "NBO2AQ",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "NXXU9G",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "MENG8H",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "V4WPVU",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "60TP29",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "FYIPD3",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ {
+    "id" : "9b645819-e90a-4e97-90e2-8e367657be21",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "lollo"
+  }, {
+    "id" : "8b932312-9e48-4851-977e-3256484b1875",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "paolo"
+  }, {
+    "id" : "26123107-0077-4e4b-8890-e9a5dfb71aec",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "gianni"
+  } ],
+  "codice" : "3CG3HH",
+  "Partecipanti" : [ {
+    "id" : "9b645819-e90a-4e97-90e2-8e367657be21",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "lollo"
+  }, {
+    "id" : "8b932312-9e48-4851-977e-3256484b1875",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "paolo"
+  }, {
+    "id" : "26123107-0077-4e4b-8890-e9a5dfb71aec",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "gianni"
+  } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "8ec399c7-c78e-422f-9c6b-fcc047560721",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "lollo"
+  } ],
+  "codice" : "M2N7B5",
+  "Partecipanti" : [ {
+    "id" : "8ec399c7-c78e-422f-9c6b-fcc047560721",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "lollo"
+  } ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "ITUN8E",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ {
+    "id" : "70a04186-dbf3-4612-964e-3d9a7577870c",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "lollo"
+  } ],
+  "codice" : "F63SH8",
+  "Partecipanti" : [ {
+    "id" : "70a04186-dbf3-4612-964e-3d9a7577870c",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "lollo"
+  } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "2f868afa-87f7-4e30-b66b-ec79f94ceee5",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "gino"
+  } ],
+  "codice" : "ECB7MW",
+  "Partecipanti" : [ {
+    "id" : "2f868afa-87f7-4e30-b66b-ec79f94ceee5",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "gino"
+  } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "09baeec9-568f-469c-a9ff-d2ccdcd05ac6",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "prova"
+  }, {
+    "id" : "4e9f1ed5-f5ba-4864-a499-8bbeda9b33d1",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "ciccio"
+  } ],
+  "codice" : "OIAQIV",
+  "Partecipanti" : [ {
+    "id" : "09baeec9-568f-469c-a9ff-d2ccdcd05ac6",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "prova"
+  }, {
+    "id" : "4e9f1ed5-f5ba-4864-a499-8bbeda9b33d1",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "ciccio"
+  } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "de444343-44f3-44cc-8add-0e77f339d738",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "cane"
+  }, {
+    "id" : "819be4f1-0d4a-491f-a4a9-159a75b2ec07",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "pollo"
+  } ],
+  "codice" : "IU64A9",
+  "Partecipanti" : [ {
+    "id" : "de444343-44f3-44cc-8add-0e77f339d738",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "cane"
+  }, {
+    "id" : "819be4f1-0d4a-491f-a4a9-159a75b2ec07",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "pollo"
+  } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "a0f8b2a9-c156-4ec8-90dc-c4166407478b",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "pino"
+  } ],
+  "codice" : "84PMTM",
+  "Partecipanti" : [ {
+    "id" : "a0f8b2a9-c156-4ec8-90dc-c4166407478b",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "pino"
+  } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "4bdbc47e-6534-42c5-92bb-ed4bde29de81",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "pollo"
+  }, {
+    "id" : "6412a853-1ec3-4a1d-b194-46dab175454c",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "cane"
+  } ],
+  "codice" : "56D8GL",
+  "Partecipanti" : [ {
+    "id" : "4bdbc47e-6534-42c5-92bb-ed4bde29de81",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "pollo"
+  }, {
+    "id" : "6412a853-1ec3-4a1d-b194-46dab175454c",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "cane"
+  } ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "LLORYV",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ {
+    "id" : "9a7f573d-a6d7-4d19-bbd9-efd13cab4cab",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "franco"
+  } ],
+  "codice" : "XVNJYE",
+  "Partecipanti" : [ {
+    "id" : "9a7f573d-a6d7-4d19-bbd9-efd13cab4cab",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "franco"
+  } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "0321b1dd-e85e-4133-bc79-becb8ebece8f",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "paolo"
+  } ],
+  "codice" : "JICKFQ",
+  "Partecipanti" : [ {
+    "id" : "0321b1dd-e85e-4133-bc79-becb8ebece8f",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "paolo"
+  } ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "KPQL44",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "AW9NVU",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "K960ND",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "S0NEP4",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "4MKLFB",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "8PLEK4",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "HFYVJX",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "D037C3",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "NZD1K7",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "ZR1Y63",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "TSNTSD",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "R2LDFS",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "0F6C66",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "C2XUYF",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ {
+    "id" : "480a4532-2f16-4eaf-af94-c06ba0640bf0",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "bbi"
+  }, {
+    "id" : "4260e107-59cb-44dc-89ad-ccd4d4df6428",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "lolli"
+  } ],
+  "codice" : "Q9EUK9",
+  "Partecipanti" : [ {
+    "id" : "480a4532-2f16-4eaf-af94-c06ba0640bf0",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "bbi"
+  }, {
+    "id" : "4260e107-59cb-44dc-89ad-ccd4d4df6428",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "lolli"
+  } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "f47bb8a5-9c1b-4909-b6b3-995e7c5708b8",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "bi"
+  } ],
+  "codice" : "I5F3J8",
+  "Partecipanti" : [ {
+    "id" : "f47bb8a5-9c1b-4909-b6b3-995e7c5708b8",
+    "mano" : [ ],
+    "carteSpacca" : null,
+    "codiceTorneo" : "no torneo",
+    "partiteVinte" : 0,
+    "nick" : "bi"
+  } ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "T1ZE6D",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "P8RKUM",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "T5ECW8",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "FPD9X8",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "RK6GDF",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "ECKQ7I",
+  "Partecipanti" : [ ]
+}, {
+  "partecipanti" : [ ],
+  "codice" : "8BO7Y0",
+  "Partecipanti" : [ ]
 } ]
