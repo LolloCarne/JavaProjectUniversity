@@ -259,8 +259,13 @@ public class Controller {
     }
 
     @FXML
-    void creaTorneoAction(ActionEvent event) {
-
+    void creaTorneoAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("torneoScene.fxml")); //nome scena successiva
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    
     }
 
     @FXML
