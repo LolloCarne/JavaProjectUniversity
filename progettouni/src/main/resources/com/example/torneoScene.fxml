@@ -12,18 +12,15 @@
    <children>
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#0000008c" height="330.0" layoutX="685.0" layoutY="218.0" stroke="TRANSPARENT" strokeType="INSIDE" width="538.0" />
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#0000008c" height="330.0" layoutX="75.0" layoutY="218.0" stroke="TRANSPARENT" strokeType="INSIDE" width="538.0" />
-      <TextField fx:id="nomiTorneo" layoutX="130.0" layoutY="386.0" prefHeight="63.0" prefWidth="365.0" promptText="nome partecipanti" />
+      <TextField fx:id="nomiTorneo" layoutX="123.0" layoutY="368.0" prefHeight="63.0" prefWidth="365.0" promptText="nome partecipanti" />
       <TextField fx:id="numeroBot" layoutX="801.0" layoutY="264.0" prefHeight="63.0" prefWidth="182.0" promptText="n° bot" />
       <Button fx:id="numBotButton" layoutX="1002.0" layoutY="266.0" mnemonicParsing="false" onAction="#okayNumBotAction" prefHeight="58.0" prefWidth="84.0" text="Ok" />
       <Button fx:id="stupidBotButton" layoutX="817.0" layoutY="417.0" mnemonicParsing="false" onAction="#stupidBotAction" text="Stupid" />
       <Button fx:id="smartBotButton" layoutX="966.0" layoutY="417.0" mnemonicParsing="false" onAction="#smartBotAction" text="Smart" />
-      <TextField fx:id="numeroPartecipanti" layoutX="131.0" layoutY="268.0" prefHeight="63.0" prefWidth="181.0" promptText="n° partecipanti" />
-      <Button fx:id="okayNomiTorneoButton" layoutX="511.0" layoutY="388.0" mnemonicParsing="false" onAction="#okayNextAction" text="Ok" />
-      <Button fx:id="okayNumButton" layoutX="328.0" layoutY="270.0" mnemonicParsing="false" onAction="#okayNumAction" prefHeight="46.0" prefWidth="84.0" text="Ok" />
-      <Button fx:id="iniziaBtn" layoutX="1044.0" layoutY="594.0" mnemonicParsing="false" onAction="#iniziaTorneoAction" text="Inizia!" />
+      <Button fx:id="okayNomiTorneoButton" layoutX="521.0" layoutY="370.0" mnemonicParsing="false" onAction="#okayNextAction" text="Ok" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="Home" />
       <Label layoutX="492.0" layoutY="72.0" text="CREAZIONE TORNEO" />
-      <Text fill="WHITE" layoutX="131.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*inserisci nomi separati da una virgola senza spazi" wrappingWidth="380.407470703125">
+      <Text fill="WHITE" layoutX="123.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*inserisci nomi separati da una virgola senza spazi" wrappingWidth="380.407470703125">
          <font>
             <Font size="17.0" />
          </font>
@@ -33,17 +30,17 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="nomiTorneo" layoutX="259.0" layoutY="137.0" prefHeight="26.0" prefWidth="277.0" promptText="inserisci nomi separati da una virgola senza spazi" />
-      <Text layoutX="175.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inserisci il numero e i nomi dei partecipanti:" wrappingWidth="235.374267578125" />
-      <Text layoutX="134.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inserisci il numero e il tipo di bot che parteciperanno al torneo:" />
-      <TextField fx:id="numeroBot" layoutX="160.0" layoutY="284.0" prefHeight="26.0" prefWidth="150.0" promptText="inserisci numero" />
-      <Button fx:id="numBotButton" layoutX="217.0" layoutY="323.0" mnemonicParsing="false" onAction="#okayNumBotAction" prefHeight="26.0" prefWidth="36.0" text="Ok!" />
-      <Button fx:id="stupidBotButton" layoutX="327.0" layoutY="284.0" mnemonicParsing="false" onAction="#stupidBotAction" text="Stupid" />
-      <Button fx:id="smartBotButton" layoutX="392.0" layoutY="284.0" mnemonicParsing="false" onAction="#smartBotAction" text="Smart" />
-      <TextField fx:id="numeroPartecipanti" layoutX="145.0" layoutY="137.0" prefHeight="26.0" prefWidth="59.0" promptText="numero" />
-      <Button fx:id="okayNomiTorneoButton" layoutX="374.0" layoutY="176.0" mnemonicParsing="false" onAction="#okayNextAction" text="Ok!" />
-      <Button fx:id="okayNumButton" layoutX="157.0" layoutY="176.0" mnemonicParsing="false" onAction="#okayNumAction" prefHeight="17.0" prefWidth="35.0" text="Ok!" />
-      <Button fx:id="iniziaBtn" layoutX="511.0" layoutY="337.0" mnemonicParsing="false" onAction="#iniziaTorneoAction" text="Inizia!" />
+      <Button fx:id="iniziaBtn" layoutX="597.0" layoutY="630.0" mnemonicParsing="false" onAction="#iniziaTorneoAction" text="Inizia!" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="Home" />
+      <Text fill="WHITE" layoutX="123.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inserisci i nomi dei partecipanti">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="267.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="del torneo:">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
