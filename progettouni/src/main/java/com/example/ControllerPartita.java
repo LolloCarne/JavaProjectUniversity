@@ -46,6 +46,8 @@ import com.DTO.CartaSpacca;
 import com.DTO.Partita;
 import com.DTO.Utente;
 import com.Enum.Seme;
+import com.Manager.TorneoManager;
+import com.DTO.Torneo;
 
 import javafx.scene.control.TextField;
 
@@ -64,7 +66,8 @@ public class ControllerPartita implements Initializable {
 
     private ImageView selectedImage;
     private ImageView showSelectedCard;
-    @FXML
+    
+    @FXML                                                       
     private Button pescaBtn;
     @FXML
     private Button scartaBtn;
@@ -108,13 +111,16 @@ public class ControllerPartita implements Initializable {
 
     ArrayList <ImageView> imgViewList;
 
+    Torneo t = new Torneo();
+    int partiteDaGiocare = t.getPartiteDaGiocare();
+    int partiteVinteGiocatore=0;
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         
     }
 
     public void start(String codice) {
-        System.out.println(codice);
         p = new Partita(codice);
         m = new Mazzo();
         mapImageView= new HashMap<>();
@@ -139,10 +145,34 @@ public class ControllerPartita implements Initializable {
         imgViewList.add(imgVa2);
 
         setScene(utenteCorrente);
+    }
 
+    public void start() {
+        TorneoManager managerT = new TorneoManager();
+        p = new Partita(managerT.getPartecipantiTorneo());
+        m = new Mazzo();
+        mapImageView= new HashMap<>();
+        partecipanti = managerT.getPartecipantiTorneo();
+        mSpacca = new MazzoSpacca(partecipanti.size());
 
-        
+        System.out.println(p.toString());
+        // diamo le carte a tutti i partecipanti
+        for (Utente u : partecipanti) {
+            for (int i = 0; i < 3; i++) {
+                u.mano.add(m.getCartaDiGioco());
+            }
+        }
+        utenteCorrente = partecipanti.get(0);
+        imgViewList = new ArrayList<>();
 
+        imgViewList.add(imgVs);
+        imgViewList.add(imgVp);
+        imgViewList.add(imgVa1);
+        imgViewList.add(imgVc1);
+        imgViewList.add(imgVc2);
+        imgViewList.add(imgVa2);
+
+        setScene(utenteCorrente);
     }
 
  
@@ -507,7 +537,7 @@ public class ControllerPartita implements Initializable {
     }
 
     public void aggiornaSpacca(){
-
+        
         String imgPath;
         Image image;
         for(CartaSpacca c : utenteCorrente.carteSpacca){
@@ -524,6 +554,9 @@ public class ControllerPartita implements Initializable {
                 alert.setContentText("COMPLIMENTI HAI SPACCATO!");
                 alert.showAndWait(); 
 
+                utenteCorrente.setPartiteVinte(partiteVinteGiocatore+1);
+                partiteDaGiocare = partiteDaGiocare-1;
+                t.setPartiteDaGiocare(partiteDaGiocare);
                 //settare flag vittoria
             }
         }

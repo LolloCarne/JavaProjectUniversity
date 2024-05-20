@@ -13,12 +13,16 @@ import java.util.Random;
 
 
 import com.DTO.Torneo;
+import com.DTO.Partita;
 import com.DTO.Utente;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,102 +36,16 @@ public class TorneoManager {
 
     HashMap<String, String[]> partecipantiTorneo = new HashMap<>();
     String codiceT;
+    ArrayList<Utente> partecipanti = new ArrayList<>();
+    Partita p;
+    int partiteDaGiocare;
 
 
     public void creaTorneo(Torneo t){
-    
+        partiteDaGiocare = t.getPartiteDaGiocare();
+        p = t.getPartitaTorneo();
     }
-
-    /*public static void scriviJson(HashMap<String, ArrayList<String>> torneo) {
-        try {
-            String jsonString = objectMapper.writeValueAsString(torneo);
-            Files.write(Paths.get(filename), jsonString.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    /*public  HashMap<String, String[]> leggiJson() {
-        String filePath = "progettouni/json/Torneo.json";
-        HashMap<String, String[]> partiteMap = new HashMap<>();
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            // Legge l'intero file JSON come un albero di nodi
-            JsonNode rootNode = objectMapper.readTree(new File(filePath));
-            JsonNode partiteNode = rootNode.path("partite");
-
-            // Debug: stampa il nodo "partite"
-            System.out.println("partiteNode: " + partiteNode.toString());
-
-            // Itera su ogni elemento dell'array "partite"
-            for (JsonNode partitaNode : partiteNode) {
-                String codice = partitaNode.path("Codice").asText(null);
-
-                // Debug: stampa il nodo "Codice"
-                System.out.println("Codice: " + codice);
-
-                List<String> partecipantiList = new ArrayList<>();
-
-                // Ottiene l'array "Partecipanti" e lo converte in una lista di stringhe
-                JsonNode partecipantiNode = partitaNode.path("Partecipanti");
-
-                // Debug: stampa il nodo "Partecipanti"
-                System.out.println("Partecipanti Node: " + partecipantiNode.toString());
-
-                Iterator<JsonNode> partecipantiIterator = partecipantiNode.elements();
-                while (partecipantiIterator.hasNext()) {
-                    String partecipante = partecipantiIterator.next().asText();
-                    partecipantiList.add(partecipante);
-
-                    // Debug: stampa ogni partecipante letto
-                    System.out.println("Partecipante: " + partecipante);
-                }
-
-                String[] partecipanti = partecipantiList.toArray(new String[0]);
-
-                if (codice != null) {
-                    partiteMap.put(codice, partecipanti);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return partiteMap;
-    }
-    
-    public static void scriviJson(HashMap<String, String[]> partecipantiTorneo) {
-        String filePath = "progettouni/json/Torneo.json";
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        ObjectNode rootNode = objectMapper.createObjectNode();
-        ArrayNode partiteArray = objectMapper.createArrayNode();
-
-        // Popola il nodo "partite" con i dati dalla HashMap
-        for (HashMap.Entry<String, String[]> entry : partecipantiTorneo.entrySet()) {
-            ObjectNode partitaNode = objectMapper.createObjectNode();
-            partitaNode.put("Codice", entry.getKey());
-
-            ArrayNode partecipantiArray = objectMapper.createArrayNode();
-            for (String partecipante : entry.getValue()) {
-                partecipantiArray.add(partecipante);
-            }
-
-            partitaNode.set("Partecipanti", partecipantiArray);
-            partiteArray.add(partitaNode);
-        }
-
-        rootNode.set("partite", partiteArray);
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            // Scrive l'oggetto JSON sul file
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, rootNode);
-            System.out.println("File JSON scritto correttamente: " + filePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
+        
     public HashMap<String, String[]> leggiJson() {
         String FILE_PATH = "progettouni/json/Torneo.json";
         HashMap<String, String[]> partiteMap = new HashMap<>();
@@ -225,32 +143,32 @@ public class TorneoManager {
 
     
     public HashMap scriviDizionario(String nome, int n){
-        String[] nomi = metodo(n, nome);
-        Utente u = new Utente(nome);
+        String[] nomi = creaListaNomi(n, nome);
         String codiceTorneo = generateRandomString(6);
+        Utente u = new Utente(nome);
+        partecipanti.add(u);
         codiceT=codiceTorneo;
         partecipantiTorneo.put(codiceTorneo, nomi);
-        u.setCodiceTorneo(codiceTorneo);
         stampaDizionario(partecipantiTorneo); 
         
         manipolazioneJson(partecipantiTorneo);
         return partecipantiTorneo;
     }
-    public String[] metodo(int n, String nome){
+
+    public String[] creaListaNomi(int n, String nome){
         String[] nomi = new String[n];
         //crea array di nomi 
-
         nomi =nome.split(",");
         return nomi;
     }
 
+
     public void manipolazioneJson(HashMap<String, String[]> partecipantiTorneo){
         HashMap <String, String[]> partecipanti = leggiJson();
-
-       
         scriviJson(partecipantiTorneo);
-        
     }
+
+
     public void stampaDizionario( HashMap partecipantiToreno){
         for (Map.Entry<String, String[]> entry : partecipantiTorneo.entrySet()) {
             String key = entry.getKey();
@@ -264,20 +182,25 @@ public class TorneoManager {
             System.out.println(); // Linea vuota per separare i team
         }
     }
-   /*  public ArrayList<String> creaArray(int n, String nome, ArrayList<String> nomi){
-        
-        //for (int i=0; i<n; i++){
-        nomi.add(nome);
-        //}
-    
-        for( String s : nomi){
-            System.out.println(s);
+
+    public Partita creaPartiteTorneo(){
+        String codice = generateRandomString(6);
+        p = new Partita(codice,partecipanti);
+        return p;
+    }
+
+    public ArrayList<Utente> getPartecipantiTorneo(){
+        return partecipanti;
+    }
+
+    public void vincitoreTorneo(){
+        if(partiteDaGiocare ==0){
+            Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("TORNEO FINITO");
+                alert.setHeaderText(null);
+                alert.setContentText("COMPLIMENTI HAI SPACCATO!");
+                alert.showAndWait(); 
         }
-        return nomi;
-
-    }*/
-
-
-
+    }
 }
 

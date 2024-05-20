@@ -7,8 +7,10 @@ import java.util.ResourceBundle;
 
 import com.DTO.BotSmart;
 import com.DTO.Partita;
+import com.DTO.Torneo;
 import com.DTO.Utente;
 import com.Manager.PartitaManager;
+import com.Manager.TorneoManager;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,16 +50,24 @@ public class ControllerCreaPartita implements Initializable{
     @FXML
     private Button rimuoviPartecipanteBtn;
 
-    Partita p;
+    String codice;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         //roba su scena creazionePartita
         Partita p = new Partita(); 
         campoCodice.setText(p.getCodice());
+        Torneo t = new Torneo();
+        TorneoManager manager = new TorneoManager();
+        ArrayList <String> codiciPartite = new ArrayList<>();
+        
+        
     }
 
-        @FXML
+    public String getCodice(){
+        return this.codice;
+    }
+    @FXML
     void addUtenteAction(ActionEvent event) throws IOException{
         String codice= campoCodice.getText();
         PartitaManager manager = new PartitaManager();
@@ -132,7 +142,7 @@ void rimuoviPartecipanteAction(ActionEvent event) throws IOException {
 }
 
 
-        @FXML
+    @FXML
     void goBack(ActionEvent event) throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("homeScene.fxml"));

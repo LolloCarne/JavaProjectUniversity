@@ -17,39 +17,51 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Torneo {
-    @JsonProperty("codice")
-    public String codice;
-
-    @JsonProperty("Partecipanti")
-    public ArrayList<Utente> partecipantiTorneo;
+    
+    public ArrayList<Utente> partecipantiTorneo= new ArrayList<>();
+    TorneoManager manager = new TorneoManager();
+    Partita partitaTorneo;
+    String codice;
+    int partiteDaGiocare =3;
 
     public Torneo(){
-        TorneoManager manager = new TorneoManager();
+        
+        partitaTorneo = manager.creaPartiteTorneo();
+        this.partiteDaGiocare=partiteDaGiocare;
         this.codice = codice;
-        partecipantiTorneo=new ArrayList<>();
         manager.creaTorneo(this);
     }
 
-    public Torneo(ArrayList<Utente> Nickname, String codice){
+    /*public Torneo(ArrayList<Utente> partecipantiTorneo, String codice){
         TorneoManager manager = new TorneoManager();
+        PartitaManager managerP = new PartitaManager();
         this.codice =codice;
-        partecipantiTorneo=Nickname;
-    }
+        this.partecipantiTorneo=manager.getPartecipantiTorneo();
+        System.out.println("si");
+        Partita p= new Partita(partecipantiTorneo);
+        managerP.creaPartita(p);
+    }*/
 
     
-   /*  public void addPartecipante(Utente u) throws Error{
+    public void addPartecipante(Utente u) throws Error{
         TorneoManager manager = new TorneoManager();
         partecipantiTorneo.add(u);
+    }
 
-        ArrayList<Torneo> tornei= manager.leggiJson();
-        
-       for(Torneo t : tornei){
-        if(t.codice.equals(this.codice)){
-            t.partecipantiTorneo=this.partecipantiTorneo;
-        }
-       }
+    public ArrayList<Utente> getPartecipanti(){
+        return this.partecipantiTorneo;
+    }
 
-       manager.scriviJson(tornei);
-    }*/
+    public int getPartiteDaGiocare(){
+        return this.partiteDaGiocare;
+    }
+
+    public Partita getPartitaTorneo(){
+        return this.partitaTorneo;
+    }
+    public void setPartiteDaGiocare(int n){
+        partiteDaGiocare=n;
+    }
+
 
 }

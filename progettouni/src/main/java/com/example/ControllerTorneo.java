@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -29,6 +30,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.HashMap;
 import java.util.Map;
+import javafx.fxml.FXMLLoader;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -41,6 +43,7 @@ import javafx.scene.Node;
 import com.DTO.Torneo;
 import com.DTO.Partita;
 import com.DTO.Utente;
+import com.Manager.PartitaManager;
 import com.Manager.TorneoManager;
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -85,6 +88,11 @@ public class ControllerTorneo implements Initializable {
     @FXML
     private Button iniziaBtn;
     
+    @FXML
+    private TextField codiceRegole;
+
+    @FXML
+    private Button GiocaBotBtn;
 
     public int flagSmart=0;
     public int flagStupid=0;
@@ -116,14 +124,14 @@ public class ControllerTorneo implements Initializable {
         
     }
 
-    @FXML
+    /*@FXML
     void okayNumAction(ActionEvent event) {
         //nome = nomiTorneo.getText();
         n = Integer.parseInt(numeroPartecipanti.getText());
        // manager.scriviDizionario(nome,n);
         
 
-    }
+    }*/
 
     @FXML
     void okayNumBotAction(ActionEvent event) {
@@ -161,8 +169,14 @@ public class ControllerTorneo implements Initializable {
     }
 
     @FXML
-    void iniziaTorneoAction(ActionEvent event) {
-
+    void iniziaTorneoAction(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Codice Prima Partita");
+        alert.setHeaderText(null);
+        TorneoManager m = new TorneoManager();
+        alert.setContentText(m.creaPartiteTorneo().getCodice() + "\nSalva il codice ed accedi come utente tramite esso.");
+        alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
     }
+
     
 }

@@ -92,6 +92,9 @@ public class Utente {
     public void setCodiceTorneo(String codice){
         this.codiceTorneo = codice;
     }
+    public void setPartiteVinte(int n){
+        this.partiteVinte = n;
+    }
     public String getCodiceTorneo(){
         return this.codiceTorneo;
     }
