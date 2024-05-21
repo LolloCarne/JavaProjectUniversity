@@ -212,6 +212,7 @@ public class ControllerPartita implements Initializable {
                     break;
             }
         }
+        nomeGiocatorePartita.setText(utenteCorrente.getNick());
     if(u.getNick().endsWith("BOT")) {
         BotSmart bot = new BotSmart(u);
         // Impostazione della scena per il bot
@@ -652,7 +653,5 @@ public class ControllerPartita implements Initializable {
                 i.setImage(null);
         }
     }
-    public void setGiocatoreInPartita(Utente utenteCorrente){
-        nomeGiocatorePartita.setText(utenteCorrente.getNick());
-    }
+    
 }
