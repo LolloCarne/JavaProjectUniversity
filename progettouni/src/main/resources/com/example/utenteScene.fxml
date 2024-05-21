@@ -15,7 +15,7 @@
       </ImageView>
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#0000008c" height="367.0" layoutX="330.0" layoutY="204.0" stroke="TRANSPARENT" strokeType="INSIDE" width="640.0" />
       <Button fx:id="uniscitiBtn" layoutX="465.0" layoutY="274.0" mnemonicParsing="false" onAction="#goToUnisciti" prefHeight="62.0" prefWidth="349.0" style="-fx-border-radius: 50px;" text="Unisciti" />
-      <Button fx:id="GiocaBotBtn" layoutX="465.0" layoutY="400.0" mnemonicParsing="false" onAction="#goToGiocaBot" prefHeight="62.0" prefWidth="349.0" text="Gioca con bot" />
+      <Button fx:id="mostraLeaderboard" layoutX="465.0" layoutY="400.0" mnemonicParsing="false" onAction="#leaderboardAction" prefHeight="62.0" prefWidth="349.0" text="Mostra Leaderboard" />
       <Button fx:id="IndietroBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="Home" />
    </children>
 </AnchorPane>

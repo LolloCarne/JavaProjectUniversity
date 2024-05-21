@@ -10,7 +10,8 @@ import java.util.ArrayList;
 
 import java.util.Random;
 
-
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import com.DTO.Torneo;
 import com.DTO.Partita;
@@ -27,6 +28,8 @@ import javafx.scene.control.Alert.AlertType;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Iterator;
+
+
 import java.util.List;
 
 public class TorneoManager {
@@ -77,7 +80,8 @@ public class TorneoManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        
+        stampaDizionario(partiteMap);
         return partiteMap;
     }
 
@@ -124,8 +128,41 @@ public class TorneoManager {
             e.printStackTrace();
         }
     }
+   
 
+    public void scriviJsonConHashMap(HashMap<String, String[]> nuoviDati) {
+        String FILE_PATH = "progettouni/json/Torneo.json";
+        
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode rootNode = objectMapper.createObjectNode();
+        ArrayNode partiteArray = objectMapper.createArrayNode();
+        rootNode.set("partite", partiteArray);
     
+        try {
+            // Popola l'array "partite" con i nuovi dati dalla HashMap
+            for (Map.Entry<String, String[]> entry : nuoviDati.entrySet()) {
+                ObjectNode partitaNode = objectMapper.createObjectNode();
+                partitaNode.put("Codice", entry.getKey());
+    
+                ArrayNode partecipantiArray = objectMapper.createArrayNode();
+                for (String partecipante : entry.getValue()) {
+                    partecipantiArray.add(partecipante);
+                }
+    
+                partitaNode.set("Partecipanti", partecipantiArray);
+                partiteArray.add(partitaNode);
+            }
+    
+            // Scrive l'oggetto JSON sul file
+            File file = new File(FILE_PATH);
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, rootNode);
+                System.out.println("File JSON scritto correttamente: " + FILE_PATH);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private static String generateRandomString(int length) {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Caratteri alfabetici maiuscoli e cifre
@@ -202,5 +239,19 @@ public class TorneoManager {
                 alert.showAndWait(); 
         }
     }
+
+    public void deleteTorneoByCode(String codice){
+        HashMap<String,String[]> tornei = leggiJson();
+        /*for (Map.Entry<String, String[]> entry : partecipantiTorneo.entrySet()) {
+            String key = entry.getKey();
+            String[] value = entry.getValue();*/
+
+        for (String key : tornei.keySet()) {
+            if (tornei.get(key).equals(codice)) {
+            tornei.remove(key) ;
+            }
+        }
+        scriviJsonConHashMap(tornei);
+    } 
 }
 

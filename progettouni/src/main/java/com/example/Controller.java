@@ -28,6 +28,7 @@ import javafx.scene.Node;
 
 import com.Manager.AdminManager;
 import com.Manager.PartitaManager;
+import com.Manager.TorneoManager;
 
 public class Controller {
 
@@ -107,6 +108,9 @@ public class Controller {
     private Button eliminaBtn;
 
     @FXML
+    private Button eliminaTorneoBtn;
+
+    @FXML
     private Label messagioEliminazione;
 
      @FXML
@@ -144,6 +148,13 @@ public class Controller {
 
     @FXML
     private Button eliminaUtenteBtn;
+
+    @FXML
+    private TextField codiceEliminaTorneo;
+
+    @FXML
+    private Button mostraLeaderboard;
+
     
 
     PartitaManager manager = new PartitaManager();
@@ -268,19 +279,6 @@ public class Controller {
     
     }
 
-    @FXML
-    void eliminaPartitaAction(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("eliminaPartita.fxml")); //nome scena successiva
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void eliminaTorneoAction(ActionEvent event) throws IOException{
-        
-    }
 
 
     @FXML
@@ -310,7 +308,7 @@ public class Controller {
         ArrayList <String> partecipanti = manager.getNickNamesList(p);
         for (String u : partecipanti){
             System.out.println(u);
-            listPartecipanti.getItems().clear();
+            
             listPartecipanti.getItems().addAll(u);
         
         }
@@ -328,8 +326,43 @@ public class Controller {
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    void eliminaPartitaAction(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("eliminaPartita.fxml")); //nome scena successiva
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
-
+    @FXML
+    void eliminaTorneoAction(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("eliminaTorneoScene.fxml")); //nome scena successiva
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    
+    }
+    @FXML
+    void eliminaTorneoCodice (ActionEvent event) throws IOException {
+        // Crea una finestra di dialogo di conferma
+            Alert confermaEliminazione = new Alert(AlertType.CONFIRMATION);
+            confermaEliminazione.setTitle("Conferma Eliminazione");
+            confermaEliminazione.setHeaderText(null);
+            confermaEliminazione.setContentText("Sei sicuro di voler eliminare il Torneo?");
+    
+            // Aggiungi pulsanti per confermare o annullare l'eliminazione
+            confermaEliminazione.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+    
+            // Mostra la finestra di dialogo e gestisci la risposta dell'utente
+            confermaEliminazione.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.YES) {
+                    // Se l'utente conferma, esegui l'eliminazione
+                    eliminaTorneo();
+                }
+            });
+            }
     @FXML
     void eliminaPartitaDefi(ActionEvent event) throws IOException {
     // Crea una finestra di dialogo di conferma
@@ -350,14 +383,24 @@ public class Controller {
         });
         }
 
-        private void eliminaPartita() {
-            // Aggiungi qui il codice per eliminare la partita
-            String codice = codiceElimina.getText();
-            System.out.println(codice);
-            manager.deletePartitaByCode(codice);
-            messagioEliminazione.setText("Partita eliminata con successo!");
-            codiceElimina.clear();
-        }
+    private void eliminaPartita() {
+        // Aggiungi qui il codice per eliminare la partita
+        String codice = codiceElimina.getText();
+        System.out.println(codice);
+        manager.deletePartitaByCode(codice);
+        messagioEliminazione.setText("Partita eliminata con successo!");
+        codiceElimina.clear();
+    }
+
+    private void eliminaTorneo() {
+        TorneoManager manager =new TorneoManager();
+        // Aggiungi qui il codice per eliminare la partita
+        String codice = codiceEliminaTorneo.getText();
+        System.out.println(codice);
+        manager.deleteTorneoByCode(codice);
+        messagioEliminazione.setText("Torneo eliminata con successo!");
+        codiceEliminaTorneo.clear();
+    }
 
         @FXML
     void eliminaUtenteDefi(ActionEvent event) throws IOException {
@@ -439,7 +482,20 @@ public class Controller {
             stage.setScene(scene);
             stage.show();
         } 
+
+    @FXML
+    void leaderboardAction(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("leaderBoard.fxml")); //nome scena successiva
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
+
+
+
+
+}
 
 
 

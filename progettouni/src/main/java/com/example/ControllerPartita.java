@@ -105,6 +105,9 @@ public class ControllerPartita implements Initializable {
     @FXML
     private ImageView imgVc2;
 
+    @FXML
+    private TextField nomeGiocatorePartita;
+
     private boolean canPick;
 
     private Map<ImageView, String> mapImageView;
@@ -145,9 +148,10 @@ public class ControllerPartita implements Initializable {
         imgViewList.add(imgVa2);
 
         setScene(utenteCorrente);
+        //setGiocatoreInPartita(u.getNick());
     }
 
-    public void start() {
+    /*public void start() {
         TorneoManager managerT = new TorneoManager();
         p = new Partita(managerT.getPartecipantiTorneo());
         m = new Mazzo();
@@ -173,7 +177,7 @@ public class ControllerPartita implements Initializable {
         imgViewList.add(imgVa2);
 
         setScene(utenteCorrente);
-    }
+    }*/
 
  
 
@@ -208,8 +212,11 @@ public class ControllerPartita implements Initializable {
         aggiornaSpacca();
         
         System.out.println(u.getNick());
+        System.out.println("utente" + utenteCorrente);
+            setGiocatoreInPartita(utenteCorrente);
         if (nomeUtente != null) {
             nomeUtente.setText(u.getNick());
+
         } 
         for (int i = 0; i < u.mano.size(); i++) {
             Carta carta = u.mano.get(i);
@@ -568,5 +575,8 @@ public class ControllerPartita implements Initializable {
             if(i.getImage()!=null)
                 i.setImage(null);
         }
+    }
+    public void setGiocatoreInPartita(Utente utenteCorrente){
+        nomeGiocatorePartita.setText(utenteCorrente.getNick());
     }
 }

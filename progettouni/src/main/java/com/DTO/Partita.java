@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
@@ -84,6 +86,20 @@ public class Partita {
     
     public String getCodice(){
         return this.codice;
+    }
+
+    public HashMap getPartiteVintePartecipanti(){
+        HashMap <String,String > partiteVinte = new HashMap();
+        String str="";
+        for(Utente u : Partecipanti){
+            str = u.getPartiteVinte() +"";
+            partiteVinte.put(str,u.getNick());
+        }
+        for (Map.Entry<String, String> entry : partiteVinte.entrySet()) {
+            System.out.println("Chiave: " + entry.getKey() + ", Valore: " + entry.getValue());
+        }
+        return partiteVinte;
+
     }
 
     

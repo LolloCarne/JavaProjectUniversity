@@ -34,7 +34,7 @@ public class Utente {
         this.id=utenteJson.get("id").asText();
         this.mano=new ArrayList<>();
         this.carteSpacca=new ArrayList<>();
-        //this.codiceTorneo ="no torneo";
+        this.codiceTorneo ="no torneo";
         this.partiteVinte=0;
     }
 

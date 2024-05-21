@@ -117,6 +117,7 @@ public class PartitaManager {
 
     
     public void deletePartitaByCode(String codice){
+        
         ArrayList<Partita> partite = leggiJson();
         for(int i = 0; i<partite.size(); i++){
             System.out.println(partite.get(i).getCodice());
