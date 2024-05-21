@@ -101,12 +101,9 @@ public class ControllerTorneo implements Initializable {
     
     public String nome;
     public int n;
-    public TorneoManager manager = new TorneoManager();
+    public TorneoManager manager;
     
     Torneo t = new Torneo();
-    private static final String filename="progettouni/json/Torneo.json";
-    private static final ObjectMapper objectMapper = new ObjectMapper()
-    .enable(SerializationFeature.INDENT_OUTPUT);
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -118,6 +115,7 @@ public class ControllerTorneo implements Initializable {
     //setta i partecipanti del torneoo 
     @FXML
     void okayNextAction(ActionEvent event) {
+        manager = new TorneoManager();
         nome = nomiTorneo.getText();
         //n = Integer.parseInt(numeroPartecipanti.getText());
         manager.scriviDizionario(nome, n);
@@ -173,8 +171,8 @@ public class ControllerTorneo implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Codice Prima Partita");
         alert.setHeaderText(null);
-        TorneoManager m = new TorneoManager();
-        alert.setContentText(m.creaPartiteTorneo().getCodice() + "\nSalva il codice ed accedi come utente tramite esso.");
+        
+        alert.setContentText(manager.creaPartiteTorneo().getCodice() + "\nSalva il codice ed accedi come utente tramite esso.");
         alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
     }
 

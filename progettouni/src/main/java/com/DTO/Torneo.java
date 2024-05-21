@@ -14,6 +14,10 @@ import java.util.Random;
 import com.Manager.PartitaManager;
 import com.Manager.TorneoManager;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Torneo {
@@ -26,11 +30,14 @@ public class Torneo {
 
     public Torneo(){
         
-        partitaTorneo = manager.creaPartiteTorneo();
-        this.partiteDaGiocare=partiteDaGiocare;
-        this.codice = codice;
         manager.creaTorneo(this);
     }
+
+    public Torneo(int partite){
+        this.partiteDaGiocare = partite;
+        manager.creaTorneo(this);
+    }
+
 
     /*public Torneo(ArrayList<Utente> partecipantiTorneo, String codice){
         TorneoManager manager = new TorneoManager();
@@ -61,6 +68,16 @@ public class Torneo {
     }
     public void setPartiteDaGiocare(int n){
         partiteDaGiocare=n;
+    }
+
+        public void vincitoreTorneo(){
+        if(this.partiteDaGiocare ==0){
+            Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("TORNEO FINITO");
+                alert.setHeaderText(null);
+                alert.setContentText("COMPLIMENTI HAI SPACCATO!");
+                alert.showAndWait(); 
+        }
     }
 
 

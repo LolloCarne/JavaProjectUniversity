@@ -39,6 +39,7 @@ public class Partita {
         manager.creaPartita(this);
     }
  
+
  
     /* costruttore che viene chiamato quando si vuole istanziare una partita esistente
      * pertendo da un codice
@@ -54,6 +55,8 @@ public class Partita {
         this.codice=codice;
         this.Partecipanti=partecipanti;
     }
+
+
 
     
     

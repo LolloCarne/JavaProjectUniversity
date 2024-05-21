@@ -50,7 +50,7 @@ public class TorneoManager {
     }
         
     public HashMap<String, String[]> leggiJson() {
-        String FILE_PATH = "progettouni/json/Torneo.json";
+        String  FILE_PATH = "progettouni/json/Torneo.json";
         HashMap<String, String[]> partiteMap = new HashMap<>();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -182,8 +182,11 @@ public class TorneoManager {
     public HashMap scriviDizionario(String nome, int n){
         String[] nomi = creaListaNomi(n, nome);
         String codiceTorneo = generateRandomString(6);
-        Utente u = new Utente(nome);
-        partecipanti.add(u);
+        for(String x : nomi){
+            partecipanti.add(new Utente(x,codiceTorneo));
+        
+        }
+        
         codiceT=codiceTorneo;
         partecipantiTorneo.put(codiceTorneo, nomi);
         stampaDizionario(partecipantiTorneo); 
@@ -221,8 +224,10 @@ public class TorneoManager {
     }
 
     public Partita creaPartiteTorneo(){
-        String codice = generateRandomString(6);
-        p = new Partita(codice,partecipanti);
+    
+        System.out.println(partecipanti.toString());;
+        p = new Partita(partecipanti);
+
         return p;
     }
 
@@ -230,8 +235,8 @@ public class TorneoManager {
         return partecipanti;
     }
 
-    public void vincitoreTorneo(){
-        if(partiteDaGiocare ==0){
+    public void vincitoreTorneo(int n){
+        if(n ==0){
             Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("TORNEO FINITO");
                 alert.setHeaderText(null);
