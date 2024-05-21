@@ -29,6 +29,14 @@ public class Partita {
         manager.creaPartita(this);
 
     }
+
+    public Partita(ArrayList<Utente> partecipanti){
+        PartitaManager manager = new PartitaManager();
+        this.codice= generateRandomString(6);
+        this.Partecipanti=partecipanti;
+        manager.creaPartita(this);
+    }
+ 
  
     /* costruttore che viene chiamato quando si vuole istanziare una partita esistente
      * pertendo da un codice

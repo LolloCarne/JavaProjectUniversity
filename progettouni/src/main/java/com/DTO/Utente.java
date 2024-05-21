@@ -16,12 +16,17 @@ public class Utente {
     private String id;
     public ArrayList<Carta> mano;
     public ArrayList<CartaSpacca> carteSpacca;
+    public String codiceTorneo;
+    public int partiteVinte;
+
 
     public Utente(String n){
         this.Nickname = n;
         this.id = UUID.randomUUID().toString();
         this.mano=new ArrayList<>();
         this.carteSpacca = new ArrayList<>();
+        //this.codiceTorneo ="no torneo";
+        this.partiteVinte=0;
     }
 
     public Utente(Utente u){
@@ -36,6 +41,8 @@ public class Utente {
         this.id=utenteJson.get("id").asText();
         this.mano=new ArrayList<>();
         this.carteSpacca=new ArrayList<>();
+        //this.codiceTorneo ="no torneo";
+        this.partiteVinte=0;
     }
 
     public String getNick(){
@@ -85,6 +92,18 @@ public class Utente {
         }
 
         return false;
+    }
+    public int getPartiteVinte(){
+        return this.partiteVinte;
+    }
+    public void setCodiceTorneo(String codice){
+        this.codiceTorneo = codice;
+    }
+    public void setPartiteVinte(int n){
+        this.partiteVinte = n;
+    }
+    public String getCodiceTorneo(){
+        return this.codiceTorneo;
     }
 
 }

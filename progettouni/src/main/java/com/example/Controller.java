@@ -132,6 +132,18 @@ public class Controller {
 
     @FXML
     private Label messaggioLoginErrato;
+
+    @FXML
+    private TextField codiceEliminato;
+
+    @FXML
+    private TextField utenteEliminato;
+
+    @FXML
+    private Label messaggioEliminaUtente;
+
+    @FXML
+    private Button eliminaUtenteBtn;
     
 
     PartitaManager manager = new PartitaManager();
@@ -247,8 +259,13 @@ public class Controller {
     }
 
     @FXML
-    void creaTorneoAction(ActionEvent event) {
-
+    void creaTorneoAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("torneoScene.fxml")); //nome scena successiva
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    
     }
 
     @FXML
@@ -303,7 +320,14 @@ public class Controller {
 
 
 
-
+    @FXML
+    void eliminaUtenteAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("eliminaUtenteScene.fxml")); //nome scena successiva
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
     @FXML
@@ -332,17 +356,40 @@ public class Controller {
             System.out.println(codice);
             manager.deletePartitaByCode(codice);
             messagioEliminazione.setText("Partita eliminata con successo!");
+            codiceElimina.clear();
         }
 
         @FXML
-        void eliminaUtenteAction(ActionEvent event) throws IOException {
-            Parent root = FXMLLoader.load(getClass().getResource("eliminaUtenteScene.fxml")); //nome scena successiva
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+    void eliminaUtenteDefi(ActionEvent event) throws IOException {
+        Alert confermaEliminazione = new Alert(AlertType.CONFIRMATION);
+        confermaEliminazione.setTitle("Conferma Eliminazione");
+        confermaEliminazione.setHeaderText(null);
+        confermaEliminazione.setContentText("Sei sicuro di voler eliminare questo giocatore?");
+    
+        // Aggiungi pulsanti per confermare o annullare l'eliminazione
+        confermaEliminazione.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+    
+        // Mostra la finestra di dialogo e gestisci la risposta dell'utente
+        confermaEliminazione.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.YES) {
+                // Se l'utente conferma, esegui l'eliminazione
+                eliminaUtente();
+            }
+        });
+    }
+
+        // Metodo per eliminare l'utente
+        private void eliminaUtente() {
+            Partita p = new Partita();
+            String nick = utenteEliminato.getText(); // Otteniamo il nick dall'interfaccia
+            String codicePartita = codiceEliminato.getText(); // Otteniamo il codice partita dall'interfaccia
+            System.out.println(nick);
+            System.out.println(codicePartita);
+            manager.removeUtenteByNick(p, nick);
+            messaggioEliminaUtente.setText("Giocatore eliminato con successo!");
+            utenteEliminato.clear();
+            codiceEliminato.clear();
         }
-        
 
         @FXML
         void logAdminAction(ActionEvent event) throws IOException{
