@@ -114,9 +114,8 @@ public class ControllerPartita implements Initializable {
 
     ArrayList <ImageView> imgViewList;
 
-    Torneo t = new Torneo();
-    int partiteDaGiocare = t.getPartiteDaGiocare();
-    int partiteVinteGiocatore=0;
+    Torneo t; 
+    int partiteDaGiocare; 
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -124,6 +123,12 @@ public class ControllerPartita implements Initializable {
     }
 
     public void start(String codice) {
+        int partiteGiocate=0;
+        for(Utente x : partecipanti){
+            partiteGiocate+=x.getPartiteVinte();
+        }
+        partiteDaGiocare=3-partiteGiocate;
+        t = new Torneo();
         p = new Partita(codice);
         m = new Mazzo();
         mapImageView= new HashMap<>();
@@ -526,8 +531,9 @@ public class ControllerPartita implements Initializable {
 
     public void scarta(ImageView daScartare) {
 
-        canPick = false;
+        
         if (utenteCorrente.mano.size() > 3) {
+            canPick = false;
             removeCardByImageView(daScartare);
             Image image = new Image(getClass().getResourceAsStream(mapImageView.get(cartaDaGioco4)));
             cartaDaGioco4.setImage(null);
@@ -637,9 +643,10 @@ public class ControllerPartita implements Initializable {
                 alert.setContentText("COMPLIMENTI HAI SPACCATO!");
                 alert.showAndWait(); 
 
-                utenteCorrente.setPartiteVinte(partiteVinteGiocatore+1);
+                utenteCorrente.setPartiteVinte(utenteCorrente.getPartiteVinte()+1);
                 partiteDaGiocare = partiteDaGiocare-1;
                 t.setPartiteDaGiocare(partiteDaGiocare);
+                t.vincitoreTorneo();
                 //settare flag vittoria
             }
         }
