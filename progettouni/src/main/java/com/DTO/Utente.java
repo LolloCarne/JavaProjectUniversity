@@ -29,6 +29,13 @@ public class Utente {
         this.partiteVinte=0;
     }
 
+    public Utente(Utente u){
+        this.Nickname = u.getNick();
+        this.id = u.getId();
+        this.mano= u.mano;
+        this.carteSpacca = u.carteSpacca;
+    }
+
     public Utente (JsonNode utenteJson){
         this.Nickname=utenteJson.get("nick").asText();
         this.id=utenteJson.get("id").asText();

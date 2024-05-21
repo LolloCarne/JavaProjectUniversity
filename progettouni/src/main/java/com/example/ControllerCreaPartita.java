@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.DTO.BotDummy;
 import com.DTO.BotSmart;
 import com.DTO.Partita;
 import com.DTO.Torneo;
@@ -100,6 +101,25 @@ public class ControllerCreaPartita implements Initializable{
         PartitaManager pManager = new PartitaManager();
         try{
             p.addPartecipante(new BotSmart());
+        }catch(Error e){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Errore");
+            alert.setHeaderText(null);
+            alert.setContentText("non puoi aggiungere piu di 4 partecipanti");
+
+            alert.showAndWait();
+        }
+        updateNickNameList(pManager.getNickNamesList(p));
+    
+
+    }
+
+    public void addBotDummyAction(ActionEvent event){
+        String codice= campoCodice.getText();
+        Partita p = new Partita(codice);
+        PartitaManager pManager = new PartitaManager();
+        try{
+            p.addPartecipante(new BotDummy());
         }catch(Error e){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Errore");

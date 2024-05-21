@@ -6,6 +6,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import com.DTO.BotDummy;
+import com.DTO.BotSmart;
 import com.DTO.Partita;
 import com.DTO.Utente;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -90,7 +92,15 @@ public class PartitaManager {
                 
                 ArrayList <Utente> tmpUtenti = new ArrayList<>();
                 for(JsonNode utente : x.get("Partecipanti")){
-                    tmpUtenti.add(new Utente(utente));
+                    if(utente.toString().endsWith("@SMARTBOT")){
+                        tmpUtenti.add(new BotSmart(new Utente(utente)));
+                    }else if(utente.toString().endsWith("@DUMMYBOT")){
+                        tmpUtenti.add(new BotDummy(new Utente(utente)));
+                    }
+                        else{
+                        tmpUtenti.add(new Utente(utente));
+                    }
+                    
                 }
                 //pulisco i campi codice da tutti i caratteri di escape che si possono creare nel mapping
                 String nuovoCodice= x.get("codice").toString().replace("\"", "").replace("\\", ""); 
