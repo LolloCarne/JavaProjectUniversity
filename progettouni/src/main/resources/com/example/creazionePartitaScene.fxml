@@ -35,7 +35,8 @@
             <Image url="@img/scrittaSpacca.png" />
          </image>
       </ImageView>
-      <Button id="addBot" fx:id="aggiungiPartecipanteBtn1" layoutX="548.0" layoutY="232.0" mnemonicParsing="false" onAction="#addBotAction" text="Aggiungi Bot" />
+      <Button id="addBot" fx:id="aggiungiPartecipanteBtn1" layoutX="548.0" layoutY="232.0" mnemonicParsing="false" onAction="#addBotAction" text="Aggiungi Bot(Hard)" />
+      <Button id="addBotDum" fx:id="aggiungiPartecipanteBtn11" layoutX="870.0" layoutY="232.0" mnemonicParsing="false" onAction="#addBotDummyAction" text="Aggiungi Bot(Easy)" />
       
 
    </children>

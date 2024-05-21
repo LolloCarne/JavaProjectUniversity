@@ -149,38 +149,10 @@ public class ControllerPartita implements Initializable {
 
   public void setScene(Utente u) {
         canPick = true;
-    if(u instanceof BotSmart) {
-        
-        // Impostazione della scena per il bot
-        System.out.println(u.mano.toString());
-        System.out.println(mSpacca.mazzo.size());  
-        // qui dentro settiamo la scena dell'utente BOT
-        //wait x
-        pesca();
-        //wait x
-        BotSmart bot = new BotSmart(utenteCorrente);
-
-        switch (bot.gioca()) {
-            case "Stesso Seme":
-                
-                break;
-            
-            case "Scala":
-                
-                break;
-            default:
-                break;
-        }
-
-    } else {
-        // Impostazione della scena per l'utente umano
         pulisciSpacca();
         aggiornaSpacca();
         
         System.out.println(u.getNick());
-        if (nomeUtente != null) {
-            nomeUtente.setText(u.getNick());
-        } 
         for (int i = 0; i < u.mano.size(); i++) {
             Carta carta = u.mano.get(i);
             String imagePath = carta.getPath(); 
@@ -203,13 +175,116 @@ public class ControllerPartita implements Initializable {
                     break;
             }
         }
+    if(u.getNick().endsWith("BOT")) {
+        BotSmart bot = new BotSmart(u);
+        // Impostazione della scena per il bot
+        System.out.println("entrato bot");  
+
+        pesca();
+        System.out.println(u.mano.size());
+        Alert alertPescato = new Alert(AlertType.INFORMATION);
+        alertPescato.setTitle("Il bot ha pescato");
+        alertPescato.setHeaderText(null);
+        alertPescato.setContentText("Carta pescata: "+u.mano.get(u.mano.size()-1));
+        alertPescato.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
+
+
+        //scartare
+        ImageView daScartare=null;
+        if(u.getNick().endsWith("@DUMMYBOT")){
+            int randomNumber = new Random().nextInt(3);
+            switch (randomNumber) {
+                case 0:
+                    daScartare = cartaDaGioco1;
+                    break;
+                case 1:
+                    daScartare = cartaDaGioco2;
+                    break;
+                case 2:
+                    daScartare = cartaDaGioco3;
+                    break;
+                // Continua con le altre ImageView
+                default:
+                daScartare = cartaDaGioco1;
+                    break;
+            }
+        }else{
+            Carta c = bot.qualeScartare();
+            for (Map.Entry<ImageView, String> entry : mapImageView.entrySet()) {
+                if (entry.getValue().equals(c.getPath())) {
+                    daScartare = entry.getKey();
+                }
+            }
+            if(daScartare==null){
+                daScartare = cartaDaGioco1;
+            }
+
+
+        }
+
+
+
+        removeCardByImageView(daScartare);
+        Image image = new Image(getClass().getResourceAsStream(mapImageView.get(cartaDaGioco4)));
+        cartaDaGioco4.setImage(null);
+        mapImageView.remove(cartaDaGioco4);
+        daScartare.setImage(image);
+
+        System.out.println(u.mano.size());
+
+        //wait x
+        Alert alert = new Alert(AlertType.INFORMATION);
+
+        switch (bot.gioca()) {
+            case "Stesso Seme":
+            
+            alert.setTitle("il Bot "+u.getNick() + " Ha un tris di semi");
+            alert.setHeaderText(null);
+            alert.setContentText("Ha vinto una carta spacca, ora scarterà una carta a sua scelta");
+            alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
+
+            CartaSpacca cs = mSpacca.getRightCard(utenteCorrente);
+            utenteCorrente.carteSpacca.add(cs);
+            aggiornaSpacca();
+            //controllo che il giocatore non abbia vinto e se fa parte di un torneo
+                
+                break;
+
+            case "Scala":
+
+            alert.setTitle("il Bot "+u.getNick() + " fatto scala");
+            alert.setHeaderText(null);
+            alert.setContentText("Ha vinto una carta spacca, ora scarterà una carta a sua scelta");
+            alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
+            
+            CartaSpacca cs2 = mSpacca.getRightCard(utenteCorrente);
+            utenteCorrente.carteSpacca.add(cs2);
+            aggiornaSpacca();
+            //controllo che il giocatore non abbia vinto e se fa parte di un torneo
+
+            //aggiorna carte spacca utente in scena
+                break;
+
+            default:
+                break;
+        }
+        passa();
+
+
     }
 }
 
 
     public void pesca() {
         if (utenteCorrente.mano.size() == 3 && canPick) {
-            Carta pescata = this.m.mazzo.pop();
+            
+            Carta pescata;
+            if(utenteCorrente.getNick().endsWith("BOT")){
+                pescata = this.m.getCartaDiGioco();
+            }else{
+                pescata = this.m.mazzo.pop();
+            }
+            
             String imagePath = pescata.getPath();
             System.out.println("path:"+imagePath);
             Image image = new Image(getClass().getResourceAsStream(imagePath));
@@ -221,12 +296,8 @@ public class ControllerPartita implements Initializable {
             if (pescata.getClass().getName().equals("com.DTO.Carta")) {
                 System.out.println("Selaziona una carta da scartare");
             }else{
-            // nel caso di carta malus spiego direttamente il malus e puoi schiacciare solo
-            // ok per prendere malus e andare avanti
                 actionCarta(pescata);
             }
-
-
             
         } else {
             System.out.println("Hai già pescato");
@@ -257,8 +328,8 @@ public class ControllerPartita implements Initializable {
 
             Button inviaButton = new Button("Invia");
             inviaButton.setOnAction(e -> {
-                int numeroScelto = numberCombo.getValue();
-                if (numeroScelto != 0) {
+                int numeroScelto = numberCombo.getValue()-1;
+                if (numeroScelto != -1) {
                     // Qui salvi il valore selezionato
                     // Ad esempio, puoi passarlo a un metodo per fare qualcosa con esso
                     // Esempio: metodoPerGestireSeme(semeScelto);
@@ -409,7 +480,7 @@ public class ControllerPartita implements Initializable {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Errore");
             alert.setHeaderText(null);
-            alert.setContentText("Non puoi passare il turno se hai meno di 3 carte, prima devi pescare.");
+            alert.setContentText("Non puoi passare il turno se non hai 3 carte.");
 
             alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
         }
@@ -438,6 +509,7 @@ public class ControllerPartita implements Initializable {
                 CartaSpacca cs = mSpacca.getRightCard(utenteCorrente);
                 utenteCorrente.carteSpacca.add(cs);
                 aggiornaSpacca();
+                //controllo che il giocatore non abbia vinto e se fa parte di un torneo
 
                 //aggiorna carte spacca utente in scena
             }
@@ -452,6 +524,7 @@ public class ControllerPartita implements Initializable {
                 CartaSpacca cs = mSpacca.getRightCard(utenteCorrente);
                 utenteCorrente.carteSpacca.add(cs);
                 aggiornaSpacca();
+                //controllo che il giocatore non abbia vinto e se fa parte di un torneo
             }
         } else {
             System.out.println("non puoi scartare ");
@@ -483,8 +556,11 @@ public class ControllerPartita implements Initializable {
 
     public void removeCardByImageView(ImageView iv){
         String url = mapImageView.get(iv);
+        System.out.println("ulr da rimuovere: "+url);
         for(Carta c : utenteCorrente.mano){
+            System.out.println(c.getPath());
             if(c.getPath().equals(url)){
+                System.out.println("carta rimossa");
                 utenteCorrente.mano.remove(c);
                 break;
             }

@@ -11,14 +11,16 @@ import com.Enum.Seme;
 public class BotSmart extends Utente{
     private static final String [] randomName = {"Jim","Chris","Erik","Jessie","Queen","Jennifer","Joshua"};
     public BotSmart(){
-        super(randomName[new Random().nextInt(randomName.length)]+"@BOT");
+        super(randomName[new Random().nextInt(randomName.length)]+"@SMARTBOT");
     }
     public BotSmart (Utente u){
-        super(u.getNick());
-        super.mano=u.mano;
+        super(u);
+      
     }
 
     public Carta qualeScartare(){
+        Carta diversaPerSeme = null;
+        
         for (Carta carta : super.mano) {
             Seme seme = carta.getSeme(); // Ottieni il seme della carta corrente
             // Itera attraverso ogni altra carta nel mazzo
@@ -28,16 +30,23 @@ public class BotSmart extends Utente{
 
                     for(Carta diversa : super.mano){
                         if(!diversa.getSeme().equals(seme)){
-                            return diversa;
+                            diversaPerSeme = diversa;
+                            break;
                         }
                     }
                 }
             
             }
+            if(diversaPerSeme != null){
+                return diversaPerSeme;
+            }
+                
 
         }
+
+        return super.mano.get(0);
         
-        return null;
+        
 
 
     }

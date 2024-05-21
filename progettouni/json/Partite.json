@@ -1,5 +1,83 @@
 [ {
-  "partecipanti" : ["bi", "giuli"],
-  "codice" : "ZCS4Z5",
-  "Partecipanti" : [ "bi", "giuli"]
+  "partecipanti" : [ {
+    "id" : "38bf9ba8-74e5-49a2-9d97-f7c84352b0c5",
+    "mano" : [ ],
+    "carteSpacca" : [ ],
+    "nick" : "paolo"
+  }, {
+    "id" : "714083e9-8b3d-4860-86aa-11fb81494dee",
+    "mano" : [ ],
+    "carteSpacca" : [ ],
+    "nick" : "luca"
+  } ],
+  "codice" : "YK2ZL7",
+  "Partecipanti" : [ {
+    "id" : "38bf9ba8-74e5-49a2-9d97-f7c84352b0c5",
+    "mano" : [ ],
+    "carteSpacca" : [ ],
+    "nick" : "paolo"
+  }, {
+    "id" : "714083e9-8b3d-4860-86aa-11fb81494dee",
+    "mano" : [ ],
+    "carteSpacca" : [ ],
+    "nick" : "luca"
+  } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "44168e2c-39eb-43fc-89a7-f421ad5fb392",
+    "mano" : [ ],
+    "carteSpacca" : [ ],
+    "nick" : "anna"
+  }, {
+    "id" : "990ec6ea-5d33-477e-a344-e713c578dd48",
+    "mano" : [ ],
+    "carteSpacca" : [ ],
+    "nick" : "maria"
+  } ],
+  "codice" : "MBWU8Y",
+  "Partecipanti" : [ {
+    "id" : "44168e2c-39eb-43fc-89a7-f421ad5fb392",
+    "mano" : [ ],
+    "carteSpacca" : [ ],
+    "nick" : "anna"
+  }, {
+    "id" : "990ec6ea-5d33-477e-a344-e713c578dd48",
+    "mano" : [ ],
+    "carteSpacca" : [ ],
+    "nick" : "maria"
+  } ]
+}, {
+  "partecipanti" : [ {
+    "id" : "5b2514dc-cbc3-40d9-9fe5-6176929f5404",
+    "mano" : [ ],
+    "carteSpacca" : [ ],
+    "nick" : "paolo"
+  }, {
+    "id" : "0eb5da7f-87a3-4b94-8f99-9e53cf1f5f92",
+    "mano" : [ ],
+    "carteSpacca" : [ ],
+    "nick" : "Jessie@SMARTBOT"
+  }, {
+    "id" : "24cc3507-72db-4a6c-9b3e-15488af779ab",
+    "mano" : [ ],
+    "carteSpacca" : [ ],
+    "nick" : "Jessie@DUMMYBOT"
+  } ],
+  "codice" : "S9VW40",
+  "Partecipanti" : [ {
+    "id" : "5b2514dc-cbc3-40d9-9fe5-6176929f5404",
+    "mano" : [ ],
+    "carteSpacca" : [ ],
+    "nick" : "paolo"
+  }, {
+    "id" : "0eb5da7f-87a3-4b94-8f99-9e53cf1f5f92",
+    "mano" : [ ],
+    "carteSpacca" : [ ],
+    "nick" : "Jessie@SMARTBOT"
+  }, {
+    "id" : "24cc3507-72db-4a6c-9b3e-15488af779ab",
+    "mano" : [ ],
+    "carteSpacca" : [ ],
+    "nick" : "Jessie@DUMMYBOT"
+  } ]
 } ]
