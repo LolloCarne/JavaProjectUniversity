@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -156,33 +157,6 @@ public class ControllerPartita implements Initializable {
         //setGiocatoreInPartita(u.getNick());
     }
 
-    /*public void start() {
-        TorneoManager managerT = new TorneoManager();
-        p = new Partita(managerT.getPartecipantiTorneo());
-        m = new Mazzo();
-        mapImageView= new HashMap<>();
-        partecipanti = managerT.getPartecipantiTorneo();
-        mSpacca = new MazzoSpacca(partecipanti.size());
-
-        System.out.println(p.toString());
-        // diamo le carte a tutti i partecipanti
-        for (Utente u : partecipanti) {
-            for (int i = 0; i < 3; i++) {
-                u.mano.add(m.getCartaDiGioco());
-            }
-        }
-        utenteCorrente = partecipanti.get(0);
-        imgViewList = new ArrayList<>();
-
-        imgViewList.add(imgVs);
-        imgViewList.add(imgVp);
-        imgViewList.add(imgVa1);
-        imgViewList.add(imgVc1);
-        imgViewList.add(imgVc2);
-        imgViewList.add(imgVa2);
-
-        setScene(utenteCorrente);
-    }*/
 
  
 
@@ -268,6 +242,7 @@ public class ControllerPartita implements Initializable {
 
 
         removeCardByImageView(daScartare);
+        System.out.println("Percorso da settare: "+mapImageView.get(cartaDaGioco4));
         Image image = new Image(getClass().getResourceAsStream(mapImageView.get(cartaDaGioco4)));
         cartaDaGioco4.setImage(null);
         mapImageView.remove(cartaDaGioco4);
@@ -318,41 +293,29 @@ public class ControllerPartita implements Initializable {
 }
 
 
-    public void pesca() {
+public void pesca() {
+    try {
         if (utenteCorrente.mano.size() == 3 && canPick) {
-            
-            Carta pescata;
-            if(utenteCorrente.getNick().endsWith("BOT")){
-                pescata = this.m.getCartaDiGioco();
-            }else{
-                pescata = this.m.mazzo.pop();
-            }
-            
+            Carta pescata = utenteCorrente.getNick().endsWith("BOT") ? this.m.getCartaDiGioco() : this.m.mazzo.pop();
             String imagePath = pescata.getPath();
-            System.out.println("path:"+imagePath);
+            System.out.println("path:" + imagePath);
             Image image = new Image(getClass().getResourceAsStream(imagePath));
             cartaDaGioco4.setImage(image);
             utenteCorrente.mano.add(pescata);
-            mapImageView.put( cartaDaGioco4, imagePath);
-            // se carta numero ti chiedo quale carta vuoi scartare se carta effetto esce
-            
+            mapImageView.put(cartaDaGioco4, imagePath); // Associa il nuovo percorso dell'immagine a cartaDaGioco4
+
             if (pescata.getClass().getName().equals("com.DTO.Carta")) {
-                System.out.println("Selaziona una carta da scartare");
-            }else{
+                System.out.println("Seleziona una carta da scartare");
+            } else {
                 actionCarta(pescata);
             }
-            
         } else {
-            System.out.println("Hai già pescato");
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Errore");
-            alert.setHeaderText(null);
-            alert.setContentText("Non puoi passare il turno se hai meno di 3 carte, prima devi pescare.");
-
-            alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
+            mostraErrore("Non puoi passare il turno se hai meno di 3 carte, prima devi pescare.");
         }
-
+    } catch (EmptyStackException e) {
+        System.out.println("Mazzo vuoto");
     }
+}
 
     public void actionCarta(Carta c) {
 
@@ -471,11 +434,28 @@ public class ControllerPartita implements Initializable {
                 
                 inviaRub.setOnAction(event -> {
                 String  u = choiceBox.getValue(); // Salviamo il nickname selezionato nella variabile utenteScelto
-                    if (u != null) {
+                if (u != null) {
                         // Qui puoi eseguire altre azioni in base al nickname selezionato, se necessario
                         System.out.println("Utente selezionato: " + u);
-                        rubSpacca(u);
-                        rubStage.close();
+
+                        for (Utente utente : partecipanti) {
+                            if (utente.getNick().equals(u)) {
+                                if(utente.carteSpacca.size()==0){
+                                    Alert alertWarn = new Alert(AlertType.WARNING);
+                                    alertWarn.setTitle("Warn");
+                                    alertWarn.setHeaderText(null);
+                                    alertWarn.setContentText("Il giocatore selezionato non ha carte spacca");
+        
+                                    alertWarn.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
+                                    rubStage.close();
+                                    break;
+                                }else{
+                                    rubSpacca(utente);
+                                    aggiornaSpacca();
+                                    rubStage.close();
+                                    }
+                            }
+                        }
                     }
                 });
 
@@ -486,7 +466,7 @@ public class ControllerPartita implements Initializable {
         }
     }
 
-    public boolean canGrab(CartaSpacca c) {
+    public boolean canGrab(Utente u) {
         String[] lettere = { "S", "P", "A", "C", "C", "A" };
         ArrayList<CartaSpacca> carteUtente = utenteCorrente.carteSpacca;
 
@@ -494,19 +474,12 @@ public class ControllerPartita implements Initializable {
             return false; // Non posso aggiungere altre carte
         }
 
-        // Itero attraverso i caratteri della parola 'SPACCA'
-        for (int i = 0; i < lettere.length; i++) {
-            // Se ho già una carta corrispondente nella posizione corrente
-            if (carteUtente.size() > i && carteUtente.get(i).equals(lettere[i])) {
-                continue; // Continuo con il prossimo carattere
-            }
-            // Se il carattere corrente non è presente nella lista delle carte utente oppure è
-            // già stato aggiunto
-            if (!carteUtente.contains(lettere[i]) || (carteUtente.contains(lettere[i]) && carteUtente.indexOf(lettere[i]) < i)) {
-                return false; // Non posso aggiungere la carta
-            }
+        if(carteUtente.size()<u.carteSpacca.size()){
+            return true;
         }
-        return true; // Tutti i controlli passati, posso aggiungere la carta
+
+        return false;
+        
     }
 
     public void passa() {
@@ -531,56 +504,64 @@ public class ControllerPartita implements Initializable {
     }
 
     public void scarta(ImageView daScartare) {
-
-        
         if (utenteCorrente.mano.size() > 3) {
             canPick = false;
             removeCardByImageView(daScartare);
-            Image image = new Image(getClass().getResourceAsStream(mapImageView.get(cartaDaGioco4)));
-            cartaDaGioco4.setImage(null);
-            mapImageView.remove(cartaDaGioco4);
-            daScartare.setImage(image);
-
-            System.out.println(daScartare.getImage().toString());
             
-            if(utenteCorrente.controllaScala()){
-                Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Hai fatto scala");
-                alert.setHeaderText(null);
-                alert.setContentText("Hai vinto una carta spacca, al prossimo turno dovrai scartare una delle carte in mano");
-                alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
-                
-                CartaSpacca cs = mSpacca.getRightCard(utenteCorrente);
-                utenteCorrente.carteSpacca.add(cs);
-                aggiornaSpacca();
-                //controllo che il giocatore non abbia vinto e se fa parte di un torneo
-
-                //aggiorna carte spacca utente in scena
-            }
-
-            if(utenteCorrente.controllaTreStessoSeme()){
-                Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Hai un tris di semi");
-                alert.setHeaderText(null);
-                alert.setContentText("Hai vinto una carta spacca, al prossimo turno dovrai scartare una delle carte in mano");
-                alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
-
-                CartaSpacca cs = mSpacca.getRightCard(utenteCorrente);
-                utenteCorrente.carteSpacca.add(cs);
-                aggiornaSpacca();
-                //controllo che il giocatore non abbia vinto e se fa parte di un torneo
+            String imagePath = mapImageView.get(cartaDaGioco4);
+            if (imagePath != null) {
+                Image image = new Image(getClass().getResourceAsStream(imagePath));
+                cartaDaGioco4.setImage(null);
+                mapImageView.remove(cartaDaGioco4); // Rimuove l'associazione precedente
+                daScartare.setImage(image);
+                mapImageView.put(daScartare, imagePath); // Aggiunge la nuova associazione
+    
+                System.out.println(daScartare.getImage().toString());
+    
+                // Controlla scala e tris di semi
+                controllaVittorie();
+            } else {
+                System.out.println("Errore: immagine non trovata in mapImageView per cartaDaGioco4.");
+                // Potresti lanciare un'eccezione o gestire l'errore in altro modo
             }
         } else {
-            System.out.println("non puoi scartare ");
-
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Errore");
-            alert.setHeaderText(null);
-            alert.setContentText("Non puoi scartare");
-
-            alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
+            System.out.println("Non puoi scartare");
+            mostraErrore("Non puoi scartare");
         }
-
+    }
+    
+    private void controllaVittorie() {
+        if (utenteCorrente.controllaScala()) {
+            mostraInformazione("Hai fatto scala", "Hai vinto una carta spacca, al prossimo turno dovrai scartare una delle carte in mano");
+            aggiungiCartaSpacca();
+        }
+    
+        if (utenteCorrente.controllaTreStessoSeme()) {
+            mostraInformazione("Hai un tris di semi", "Hai vinto una carta spacca, al prossimo turno dovrai scartare una delle carte in mano");
+            aggiungiCartaSpacca();
+        }
+    }
+    
+    private void mostraErrore(String messaggio) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Errore");
+        alert.setHeaderText(null);
+        alert.setContentText(messaggio);
+        alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
+    }
+    
+    private void mostraInformazione(String titolo, String messaggio) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(titolo);
+        alert.setHeaderText(null);
+        alert.setContentText(messaggio);
+        alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
+    }
+    
+    private void aggiungiCartaSpacca() {
+        CartaSpacca cs = mSpacca.getRightCard(utenteCorrente);
+        utenteCorrente.carteSpacca.add(cs);
+        aggiornaSpacca();
     }
 
     @FXML
@@ -598,32 +579,33 @@ public class ControllerPartita implements Initializable {
         scarta(cartaToccata);
     }
 
-    public void removeCardByImageView(ImageView iv){
+    public void removeCardByImageView(ImageView iv) {
         String url = mapImageView.get(iv);
-        System.out.println("ulr da rimuovere: "+url);
-        for(Carta c : utenteCorrente.mano){
-            System.out.println(c.getPath());
-            if(c.getPath().equals(url)){
-                System.out.println("carta rimossa");
-                utenteCorrente.mano.remove(c);
-                break;
-            }
+        if (url != null) {
+            System.out.println("url da rimuovere: " + url);
+            utenteCorrente.mano.removeIf(c -> c.getPath().equals(url));
+            mapImageView.remove(iv);
+        } else {
+            System.out.println("Errore: immagine non trovata in mapImageView per ImageView.");
+            // Potresti lanciare un'eccezione o gestire l'errore in altro modo
         }
-        mapImageView.remove(iv);
     }
 
-    public void rubSpacca(String utenteScelto){
-        Optional<Utente> utenteOptional = partecipanti.stream().filter(p -> p.getNick().equals(utenteScelto)).findFirst();
+    public void rubSpacca(Utente u){
 
-        utenteOptional.ifPresent(utente -> {
-            for (CartaSpacca cartaSpacca : utente.carteSpacca) {
-                if (canGrab(cartaSpacca)) {
-                    utenteCorrente.carteSpacca.add(cartaSpacca);
-                    utente.carteSpacca.remove(cartaSpacca);
-                }
-            }
 
-        });
+        if(canGrab(u)){
+            utenteCorrente.carteSpacca.add(u.carteSpacca.get(utenteCorrente.carteSpacca.size()));
+        }
+        else{
+            Alert alertSpacca = new Alert(AlertType.ERROR);
+            alertSpacca.setTitle("Errore");
+            alertSpacca.setHeaderText(null);
+            alertSpacca.setContentText("Non puoi rubare carte spacca a questo giocatore");
+
+            alertSpacca.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
+        }
+
     }
 
     public void aggiornaSpacca(){
