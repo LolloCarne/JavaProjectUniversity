@@ -114,6 +114,15 @@ public class ControllerPartita implements Initializable {
 
     ArrayList <ImageView> imgViewList;
 
+    @FXML
+    private Button IndietroBtn;
+
+    @FXML
+    private TextField vincitoreSpaccaField;
+
+    @FXML
+    private Button spaccaBtn;
+
     Torneo t; 
     int partiteDaGiocare; 
 
@@ -389,7 +398,7 @@ public class ControllerPartita implements Initializable {
                     Alert alert = new Alert(AlertType.WARNING);
                     alert.setTitle("Attenzione");
                     alert.setHeaderText(null);
-                    alert.setContentText("Seleziona un nujero prima di inviare.");
+                    alert.setContentText("Seleziona un numero prima di inviare.");
                     alert.showAndWait();
                 }
             });
@@ -547,7 +556,7 @@ public class ControllerPartita implements Initializable {
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Hai fatto scala");
                 alert.setHeaderText(null);
-                alert.setContentText("Hai vinto una carta spacca, al prossimo turno dovrai scartare una delle carte in mano");
+                alert.setContentText("Hai vinto una carta spacca!");
                 alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
                 
                 CartaSpacca cs = mSpacca.getRightCard(utenteCorrente);
@@ -636,7 +645,8 @@ public class ControllerPartita implements Initializable {
             image = new Image(getClass().getResourceAsStream(imgPath));
             imgViewList.get(utenteCorrente.carteSpacca.indexOf(c)).setImage(image);
 
-            if(utenteCorrente.carteSpacca.indexOf(c)==6){
+            System.out.println("inidice carte spacca" + utenteCorrente.carteSpacca.indexOf(c));
+            if(utenteCorrente.carteSpacca.indexOf(c)==5){
                 
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("HAI VINTO");
@@ -648,9 +658,45 @@ public class ControllerPartita implements Initializable {
                 partiteDaGiocare = partiteDaGiocare-1;
                 t.setPartiteDaGiocare(partiteDaGiocare);
                 t.vincitoreTorneo();
-                //settare flag vittoria
+                try {
+                    System.out.println("codice torneo" + utenteCorrente.getCodiceTorneo());
+                    if(utenteCorrente.getCodiceTorneo() != null){
+                        //salvaPartitaTorneo(); metodo per ora vuoto 
+                        //goBack();
+                        
+                        System.out.println("cincitore"+  utenteCorrente.getNick());
+                        ControllerVincitore v = new ControllerVincitore();
+                        v.getUtente(utenteCorrente);
+
+                        if(partiteDaGiocare != 0){
+                            Partita p = new Partita(partecipanti);
+                            this.start(p.getCodice());
+                            
+                        }
+                    }
+
+                    //settare flag vittoria
+                }
+                    
+                catch (Exception e) {
+                    // TODO: handle exception
+                }
+                
             }
+
         }
+    }
+    @FXML
+    void goBack(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("homeScene.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+    public void salvaPartitaTorneo(){
 
     }
 
@@ -660,5 +706,14 @@ public class ControllerPartita implements Initializable {
                 i.setImage(null);
         }
     }
+    @FXML
+    void goToVincitoreAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("vittoriaScene.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     
 }
