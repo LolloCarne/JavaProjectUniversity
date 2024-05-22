@@ -140,3 +140,9 @@
     -fx-text-fill: red;
     -fx-font-size: 20px;
 }
+
+#messaggioVincitore {
+    -fx-text-fill: #FFF59D;
+    -fx-font-size: 50px;
+}
+

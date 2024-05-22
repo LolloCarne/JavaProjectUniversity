@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -50,6 +51,9 @@ public class ControllerCreaPartita implements Initializable{
 
     @FXML
     private Button rimuoviPartecipanteBtn;
+
+    @FXML
+    private Button creaPartitaDefi;
 
     String codice;
 
@@ -160,6 +164,31 @@ void rimuoviPartecipanteAction(ActionEvent event) throws IOException {
         updateNickNameList(manager.getNickNamesList(p));
     }
 }
+@FXML
+    void creaPartitaDefiAction(ActionEvent event) throws IOException{
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Creazione Partita");
+        alert.setHeaderText(null);
+        alert.setContentText("La creazione della partita è avvenuta con successo!");
+
+        alert.getButtonTypes().setAll(ButtonType.OK);
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                   goBack(event);
+                } catch(IOException e) {
+                    e.printStackTrace();
+
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setTitle("Errore");
+                    errorAlert.setHeaderText(null);
+                    errorAlert.setContentText("Si è verificato un errore durante il ritorno alla schermata home.");
+                    errorAlert.showAndWait();
+                }
+            }
+        });
+    }
 
 
     @FXML

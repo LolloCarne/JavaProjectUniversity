@@ -16,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -126,6 +127,10 @@ public class ControllerPartita implements Initializable {
 
     Torneo t; 
     int partiteDaGiocare; 
+
+    
+    @FXML
+    private Label messaggioVincitore;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -629,13 +634,24 @@ public void pesca() {
 
             System.out.println("inidice carte spacca" + utenteCorrente.carteSpacca.indexOf(c));
             if(utenteCorrente.carteSpacca.indexOf(c)==5){
+
+                cartaDaGioco1.setVisible(false);
+                cartaDaGioco2.setVisible(false);
+                cartaDaGioco3.setVisible(false);
+                cartaDaGioco4.setVisible(false);
+
+                IndietroBtn.setVisible(true);
+                messaggioVincitore.setVisible(true);
+                messaggioVincitore.setText("Il vincitore di SPACCA è ...");
+
                 
-                Alert alert = new Alert(AlertType.INFORMATION);
+              /*Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("HAI VINTO");
                 alert.setHeaderText(null);
                 alert.setContentText("COMPLIMENTI HAI SPACCATO!");
-                alert.showAndWait(); 
+                alert.showAndWait();*/
 
+                
                 utenteCorrente.setPartiteVinte(utenteCorrente.getPartiteVinte()+1);
                 partiteDaGiocare = partiteDaGiocare-1;
                 t.setPartiteDaGiocare(partiteDaGiocare);
@@ -646,7 +662,7 @@ public void pesca() {
                         //salvaPartitaTorneo(); metodo per ora vuoto 
                         //goBack();
                         
-                        System.out.println("cincitore"+  utenteCorrente.getNick());
+                        System.out.println("vincitore"+  utenteCorrente.getNick());
                         ControllerVincitore v = new ControllerVincitore();
                         v.getUtente(utenteCorrente);
 
@@ -664,10 +680,19 @@ public void pesca() {
                     // TODO: handle exception
                 }
                 
+            }else{
+                cartaDaGioco1.setVisible(true);
+                cartaDaGioco2.setVisible(true);
+                cartaDaGioco3.setVisible(true);
+                cartaDaGioco4.setVisible(true);
+
+                IndietroBtn.setVisible(false);
+                messaggioVincitore.setVisible(false);
             }
 
         }
     }
+    
     @FXML
     void goBack(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("homeScene.fxml"));
