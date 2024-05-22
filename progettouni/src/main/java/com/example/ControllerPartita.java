@@ -115,6 +115,15 @@ public class ControllerPartita implements Initializable {
 
     ArrayList <ImageView> imgViewList;
 
+    @FXML
+    private Button IndietroBtn;
+
+    @FXML
+    private TextField vincitoreSpaccaField;
+
+    @FXML
+    private Button spaccaBtn;
+
     Torneo t; 
     int partiteDaGiocare; 
 
@@ -352,7 +361,7 @@ public void pesca() {
                     Alert alert = new Alert(AlertType.WARNING);
                     alert.setTitle("Attenzione");
                     alert.setHeaderText(null);
-                    alert.setContentText("Seleziona un nujero prima di inviare.");
+                    alert.setContentText("Seleziona un numero prima di inviare.");
                     alert.showAndWait();
                 }
             });
@@ -618,7 +627,8 @@ public void pesca() {
             image = new Image(getClass().getResourceAsStream(imgPath));
             imgViewList.get(utenteCorrente.carteSpacca.indexOf(c)).setImage(image);
 
-            if(utenteCorrente.carteSpacca.indexOf(c)==6){
+            System.out.println("inidice carte spacca" + utenteCorrente.carteSpacca.indexOf(c));
+            if(utenteCorrente.carteSpacca.indexOf(c)==5){
                 
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("HAI VINTO");
@@ -630,9 +640,45 @@ public void pesca() {
                 partiteDaGiocare = partiteDaGiocare-1;
                 t.setPartiteDaGiocare(partiteDaGiocare);
                 t.vincitoreTorneo();
-                //settare flag vittoria
+                try {
+                    System.out.println("codice torneo" + utenteCorrente.getCodiceTorneo());
+                    if(utenteCorrente.getCodiceTorneo() != null){
+                        //salvaPartitaTorneo(); metodo per ora vuoto 
+                        //goBack();
+                        
+                        System.out.println("cincitore"+  utenteCorrente.getNick());
+                        ControllerVincitore v = new ControllerVincitore();
+                        v.getUtente(utenteCorrente);
+
+                        if(partiteDaGiocare != 0){
+                            Partita p = new Partita(partecipanti);
+                            this.start(p.getCodice());
+                            
+                        }
+                    }
+
+                    //settare flag vittoria
+                }
+                    
+                catch (Exception e) {
+                    // TODO: handle exception
+                }
+                
             }
+
         }
+    }
+    @FXML
+    void goBack(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("homeScene.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+    public void salvaPartitaTorneo(){
 
     }
 
@@ -642,5 +688,14 @@ public void pesca() {
                 i.setImage(null);
         }
     }
+    @FXML
+    void goToVincitoreAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("vittoriaScene.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     
 }
