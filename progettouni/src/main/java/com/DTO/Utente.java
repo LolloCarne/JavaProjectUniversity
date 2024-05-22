@@ -44,6 +44,7 @@ public class Utente {
         this.mano= u.mano;
         this.carteSpacca = u.carteSpacca;
         this.codiceTorneo =null;
+        this.partiteVinte=0;
     }
 
     public Utente (JsonNode utenteJson){

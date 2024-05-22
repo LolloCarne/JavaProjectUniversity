@@ -124,9 +124,7 @@ public class ControllerPartita implements Initializable {
 
     public void start(String codice) {
         int partiteGiocate=0;
-        for(Utente x : partecipanti){
-            partiteGiocate+=x.getPartiteVinte();
-        }
+
         partiteDaGiocare=3-partiteGiocate;
         t = new Torneo();
         p = new Partita(codice);
@@ -134,7 +132,9 @@ public class ControllerPartita implements Initializable {
         mapImageView= new HashMap<>();
         partecipanti = p.getPartecipanti();
         mSpacca = new MazzoSpacca(partecipanti.size());
-
+        for(Utente x : partecipanti){
+            partiteGiocate+=x.getPartiteVinte();
+        }
         System.out.println(p.toString());
         // diamo le carte a tutti i partecipanti
         for (Utente u : partecipanti) {
