@@ -229,9 +229,9 @@ public class Controller {
             }
             else{
                 System.out.println("no login");
-                /*messaggioLoginErrato.setText("Username o password errati. Riprova.");
+                messaggioLoginErrato.setText("Codice o username errati. Riprova.");
                 tfCodice.clear();
-                tfNickname.clear();*/
+                tfNickname.clear();
                 
             }
         }

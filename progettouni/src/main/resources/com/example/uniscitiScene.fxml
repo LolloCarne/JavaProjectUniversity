@@ -42,5 +42,6 @@
             <Image url="@img/scrittaSpacca.png" />
          </image>
       </ImageView>
+      <Label fx:id="messaggioLoginErrato" layoutX="523.0" layoutY="448.0" prefHeight="30.0" prefWidth="350.0" textFill="RED" />
    </children>
 </AnchorPane>
