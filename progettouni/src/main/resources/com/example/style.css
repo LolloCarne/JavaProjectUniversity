@@ -135,3 +135,8 @@
 #messaggioEliminaUtente {
     -fx-text-fill: red;
 }
+
+#messaggioLoginErrato {
+    -fx-text-fill: red;
+    -fx-font-size: 20px;
+}

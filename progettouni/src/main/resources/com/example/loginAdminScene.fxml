@@ -12,9 +12,9 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller">
    <children>
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#0000008c" height="393.0" layoutX="306.0" layoutY="89.0" stroke="TRANSPARENT" strokeType="INSIDE" width="667.0" />
-      <TextField fx:id="usernameAdmin" layoutX="458.0" layoutY="168.0" prefHeight="62.0" prefWidth="349.0" promptText="Username" />
-      <PasswordField fx:id="pwdAdmin" layoutX="458.0" layoutY="286.0" prefHeight="62.0" prefWidth="349.0" promptText="Password" />
-      <Button fx:id="logAdmin" layoutX="572.0" layoutY="381.0" mnemonicParsing="false" onAction="#logAdminAction" text="Log in" />
+      <TextField fx:id="usernameAdmin" layoutX="457.0" layoutY="142.0" prefHeight="62.0" prefWidth="349.0" promptText="Username" />
+      <PasswordField fx:id="pwdAdmin" layoutX="458.0" layoutY="238.0" prefHeight="62.0" prefWidth="349.0" promptText="Password" />
+      <Button fx:id="logAdmin" layoutX="573.0" layoutY="331.0" mnemonicParsing="false" onAction="#logAdminAction" text="Log in" />
       <Label layoutX="495.0" layoutY="497.0" text="Non hai un account?" />
       <Button fx:id="registroAdmin" layoutX="502.0" layoutY="553.0" mnemonicParsing="false" onAction="#goToRegistrati" prefHeight="63.0" prefWidth="274.0" text="Registrati" />
       <Button fx:id="IndietroBtn" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Home" />
@@ -23,5 +23,6 @@
             <Image url="@img/scrittaSpacca.png" />
          </image>
       </ImageView>
+      <Label fx:id="messaggioLoginErrato" layoutX="458.0" layoutY="406.0" prefHeight="30.0" prefWidth="371.0" textFill="RED" />
    </children>
 </AnchorPane>
