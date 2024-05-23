@@ -150,6 +150,8 @@ public class PartitaManager {
 
     public boolean checkLogin(String username, Partita p, String codice){
         PartitaManager manager = new PartitaManager();
+  
+
         for (Utente u : manager.getPartecipantiByCode(codice)){
            
             if ( u.getNick().equals(username)){
@@ -158,6 +160,19 @@ public class PartitaManager {
         }
         return false;
 
+    }
+
+    public Partita getPartitaByCode(String code){
+
+        ArrayList<Partita> partiteList = leggiJson();
+
+        for(Partita p : partiteList){
+            if(p.getCodice().equals(code)){
+                return p;
+            }
+        }
+
+        return null;
     }
 
     
