@@ -655,16 +655,8 @@ public void pesca() {
 
                 IndietroBtn.setVisible(true);
                 messaggioVincitore.setVisible(true);
-                messaggioVincitore.setText("Il vincitore di SPACCA è ..." + utenteCorrente.getNick());
+                messaggioVincitore.setText("Il vincitore di SPACCA è " + utenteCorrente.getNick() + "!");
 
-                
-              /*Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("HAI VINTO");
-                alert.setHeaderText(null);
-                alert.setContentText("COMPLIMENTI HAI SPACCATO!");
-                alert.showAndWait();*/
-
-                
                 
                 utenteCorrente.setPartiteVinte(utenteCorrente.getPartiteVinte()+1);
                 partiteDaGiocare = partiteDaGiocare-1;
