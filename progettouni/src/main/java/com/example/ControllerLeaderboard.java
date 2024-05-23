@@ -82,7 +82,7 @@ public class ControllerLeaderboard implements Initializable{
         String stringa ="";
 
         for(Partita par : leggijson){
-            vinte =par.getPartiteVintePartecipanti();
+            vinte =par.partiteVintePartecipanti();
             for (Map.Entry<String, String> entry : vinte.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();

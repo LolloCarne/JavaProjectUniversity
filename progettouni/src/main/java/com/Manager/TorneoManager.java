@@ -184,6 +184,7 @@ public class TorneoManager {
         String codiceTorneo = generateRandomString(6);
         for(String x : nomi){
             partecipanti.add(new Utente(x,codiceTorneo));
+
         
         }
         
@@ -225,7 +226,9 @@ public class TorneoManager {
 
     public Partita creaPartiteTorneo(){
     
-        System.out.println(partecipanti.toString());;
+        System.out.println("CodiceT Partecipanti "+partecipanti.get(0).codiceTorneo);
+
+
         p = new Partita(partecipanti);
 
         return p;

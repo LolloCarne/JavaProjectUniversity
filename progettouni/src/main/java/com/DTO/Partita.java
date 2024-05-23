@@ -46,8 +46,16 @@ public class Partita {
      */
     public Partita(String codice){       
         PartitaManager manager = new PartitaManager();
-        this.codice=codice;
-        this.Partecipanti=manager.getPartecipantiByCode(codice);
+
+        Partita p = manager.getPartitaByCode(codice);
+        if(p!= null){
+            this.codice = p.codice;
+            this.Partecipanti=p.getPartecipanti();
+        }else{
+            this.codice=codice;
+            this.Partecipanti=manager.getPartecipantiByCode(codice);
+        }
+
         
     }
 
@@ -91,7 +99,19 @@ public class Partita {
         return this.codice;
     }
 
-    public HashMap getPartiteVintePartecipanti(){
+    public void save(){
+        PartitaManager manager = new PartitaManager();
+        ArrayList<Partita> partite= manager.leggiJson();
+        for(Partita p : partite){
+            if(p.codice.equals(this.codice)){
+                p.Partecipanti=this.Partecipanti;
+                    }
+                    }
+                    manager.scriviJson(partite);
+                    }
+
+
+    public HashMap partiteVintePartecipanti(){
         HashMap <String,String > partiteVinte = new HashMap();
         String str="";
         for(Utente u : Partecipanti){

@@ -50,10 +50,18 @@ public class Utente {
     public Utente (JsonNode utenteJson){
         this.Nickname=utenteJson.get("nick").asText();
         this.id=utenteJson.get("id").asText();
+        this.codiceTorneo=utenteJson.get("codiceTorneo").asText();
         this.mano=new ArrayList<>();
+        for(JsonNode carta : utenteJson.get("mano")){
+            mano.add(new Carta(carta.get("seme").asText(),carta.get("valore").asInt()));
+            System.out.println("Valore carta: "+carta.get("valore").asInt());
+        }
         this.carteSpacca=new ArrayList<>();
-        this.codiceTorneo =null;
-        this.partiteVinte=0;
+        for(JsonNode cartaSpacca : utenteJson.get("carteSpacca")){
+            this.carteSpacca.add(new CartaSpacca(cartaSpacca.get("lettera").asText()));
+        }
+
+        this.partiteVinte=utenteJson.get("partiteVinte").asInt();
     }
 
     public String getNick(){

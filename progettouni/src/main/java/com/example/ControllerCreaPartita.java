@@ -62,9 +62,6 @@ public class ControllerCreaPartita implements Initializable{
         //roba su scena creazionePartita
         Partita p = new Partita(); 
         campoCodice.setText(p.getCodice());
-        Torneo t = new Torneo();
-        TorneoManager manager = new TorneoManager();
-        ArrayList <String> codiciPartite = new ArrayList<>();
         
         
     }

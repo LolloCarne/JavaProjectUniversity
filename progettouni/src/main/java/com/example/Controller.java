@@ -218,6 +218,7 @@ public class Controller {
         String codice = tfCodice.getText();
         String nickname = tfNickname.getText();
         if(!codice.isBlank() || !nickname.isBlank()){
+
             //creando la partita con costruttore vuoto mi scrive sempre una partita nuova nel json
             Partita p = new Partita(codice);
             boolean b = manager.checkLogin(nickname, p, codice );

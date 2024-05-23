@@ -140,23 +140,29 @@ public class ControllerPartita implements Initializable {
     public void start(String codice) {
         int partiteGiocate=0;
 
-        partiteDaGiocare=3-partiteGiocate;
         t = new Torneo();
         p = new Partita(codice);
+        System.out.println("Prova: "+p.getPartecipanti().get(0).codiceTorneo);
         m = new Mazzo();
         mapImageView= new HashMap<>();
         partecipanti = p.getPartecipanti();
         mSpacca = new MazzoSpacca(partecipanti.size());
+
+        System.out.println(p.toString());
+        // diamo le carte a tutti i partecipant
+        
+        for (Utente u : partecipanti) {
+            if(u.mano.isEmpty()){
+                for (int i = 0; i < 3; i++) {
+                    u.mano.add(m.getCartaDiGioco());
+                }
+            }
+
+        }
         for(Utente x : partecipanti){
             partiteGiocate+=x.getPartiteVinte();
         }
-        System.out.println(p.toString());
-        // diamo le carte a tutti i partecipanti
-        for (Utente u : partecipanti) {
-            for (int i = 0; i < 3; i++) {
-                u.mano.add(m.getCartaDiGioco());
-            }
-        }
+        partiteDaGiocare=3-partiteGiocate;
         utenteCorrente = partecipanti.get(0);
         imgViewList = new ArrayList<>();
 
@@ -183,9 +189,15 @@ public class ControllerPartita implements Initializable {
         if (nomeUtente != null) {
             nomeUtente.setText(u.getNick());
         } 
+
+        for(Carta c : u.mano){
+            System.out.println(c.getPath());
+        }
         for (int i = 0; i < u.mano.size(); i++) {
+            
             Carta carta = u.mano.get(i);
             String imagePath = carta.getPath(); 
+            System.out.println("Percorso carta mano: "+ carta.getSeme());
             Image image = new Image(getClass().getResourceAsStream(imagePath));
             switch (i) {
                 case 0:
@@ -633,7 +645,7 @@ public void pesca() {
             imgViewList.get(utenteCorrente.carteSpacca.indexOf(c)).setImage(image);
 
             
-            if(utenteCorrente.carteSpacca.indexOf(c)==5){
+            if(utenteCorrente.carteSpacca.indexOf(c)==0){
                 
                 //comandi che servono per la schermata finale del vincitore di Spacca
                 cartaDaGioco1.setVisible(false);
@@ -653,12 +665,14 @@ public void pesca() {
                 alert.showAndWait();*/
 
                 
-                salva();
+                
                 utenteCorrente.setPartiteVinte(utenteCorrente.getPartiteVinte()+1);
                 partiteDaGiocare = partiteDaGiocare-1;
                 t.setPartiteDaGiocare(partiteDaGiocare);
                 t.vincitoreTorneo();
                 System.out.println("da giocare" + partiteDaGiocare);
+                svuotaUtenti();
+                salva();
                 try {
                     System.out.println("Codice torneo" + utenteCorrente.getCodiceTorneo());
                     if(utenteCorrente.getCodiceTorneo() != null){
@@ -669,8 +683,9 @@ public void pesca() {
                         //v.getUtente(utenteCorrente);
 
                         if(partiteDaGiocare != 0){
+                            
                             Partita p = new Partita(partecipanti);
-                            this.start(p.getCodice());
+                            System.out.println("Codice nuova partita: "+p.getCodice());
                             
                         }
                     }
@@ -708,6 +723,13 @@ public void pesca() {
     public void salva(){
         p.save();
         
+    }
+
+    public void svuotaUtenti(){
+        for(Utente u : partecipanti){
+            u.mano=new ArrayList<>();
+            u.carteSpacca = new ArrayList<>();
+        }
     }
 
     public void pulisciSpacca(){
