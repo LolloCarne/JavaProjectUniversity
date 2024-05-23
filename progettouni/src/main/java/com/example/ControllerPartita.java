@@ -16,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -126,6 +127,10 @@ public class ControllerPartita implements Initializable {
 
     Torneo t; 
     int partiteDaGiocare; 
+
+    
+    @FXML
+    private Label messaggioVincitore;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -541,12 +546,12 @@ public void pesca() {
     
     private void controllaVittorie() {
         if (utenteCorrente.controllaScala()) {
-            mostraInformazione("Hai fatto scala", "Hai vinto una carta spacca, al prossimo turno dovrai scartare una delle carte in mano");
+            mostraInformazione("Hai fatto scala", "Hai vinto una carta spacca!");
             aggiungiCartaSpacca();
         }
     
         if (utenteCorrente.controllaTreStessoSeme()) {
-            mostraInformazione("Hai un tris di semi", "Hai vinto una carta spacca, al prossimo turno dovrai scartare una delle carte in mano");
+            mostraInformazione("Hai un tris di semi", "Hai vinto una carta spacca!");
             aggiungiCartaSpacca();
         }
     }
@@ -627,29 +632,41 @@ public void pesca() {
             image = new Image(getClass().getResourceAsStream(imgPath));
             imgViewList.get(utenteCorrente.carteSpacca.indexOf(c)).setImage(image);
 
-            System.out.println("inidice carte spacca" + utenteCorrente.carteSpacca.indexOf(c));
+            
             if(utenteCorrente.carteSpacca.indexOf(c)==5){
                 
-                Alert alert = new Alert(AlertType.INFORMATION);
+                //comandi che servono per la schermata finale del vincitore di Spacca
+                cartaDaGioco1.setVisible(false);
+                cartaDaGioco2.setVisible(false);
+                cartaDaGioco3.setVisible(false);
+                cartaDaGioco4.setVisible(false);
+
+                IndietroBtn.setVisible(true);
+                messaggioVincitore.setVisible(true);
+                messaggioVincitore.setText("Il vincitore di SPACCA è ..." + utenteCorrente.getNick());
+
+                
+              /*Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("HAI VINTO");
                 alert.setHeaderText(null);
                 alert.setContentText("COMPLIMENTI HAI SPACCATO!");
-                alert.showAndWait(); 
+                alert.showAndWait();*/
 
+                
                 salva();
                 utenteCorrente.setPartiteVinte(utenteCorrente.getPartiteVinte()+1);
                 partiteDaGiocare = partiteDaGiocare-1;
                 t.setPartiteDaGiocare(partiteDaGiocare);
                 t.vincitoreTorneo();
+                System.out.println("da giocare" + partiteDaGiocare);
                 try {
                     System.out.println("Codice torneo" + utenteCorrente.getCodiceTorneo());
                     if(utenteCorrente.getCodiceTorneo() != null){
                         //salvaPartitaTorneo(); metodo per ora vuoto 
-                        //goBack();
                         
                         System.out.println("Vincitore"+  utenteCorrente.getNick());
                         ControllerVincitore v = new ControllerVincitore();
-                        v.getUtente(utenteCorrente);
+                        //v.getUtente(utenteCorrente);
 
                         if(partiteDaGiocare != 0){
                             Partita p = new Partita(partecipanti);
@@ -665,6 +682,14 @@ public void pesca() {
                     // TODO: handle exception
                 }
                 
+            }else{
+                cartaDaGioco1.setVisible(true);
+                cartaDaGioco2.setVisible(true);
+                cartaDaGioco3.setVisible(true);
+                cartaDaGioco4.setVisible(true);
+
+                IndietroBtn.setVisible(false);
+                messaggioVincitore.setVisible(false);
             }
 
         }

@@ -157,6 +157,8 @@ public class Controller {
 
     
 
+    
+
     PartitaManager manager = new PartitaManager();
    
 
@@ -253,6 +255,10 @@ public class Controller {
        // campoCodice.setText(p.getCode());
 
     }
+
+            
+
+    
 
     @FXML
     void addUtenteAction(ActionEvent event) throws IOException{
