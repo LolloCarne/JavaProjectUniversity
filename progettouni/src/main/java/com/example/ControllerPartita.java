@@ -546,12 +546,12 @@ public void pesca() {
     
     private void controllaVittorie() {
         if (utenteCorrente.controllaScala()) {
-            mostraInformazione("Hai fatto scala", "Hai vinto una carta spacca, al prossimo turno dovrai scartare una delle carte in mano");
+            mostraInformazione("Hai fatto scala", "Hai vinto una carta spacca!");
             aggiungiCartaSpacca();
         }
     
         if (utenteCorrente.controllaTreStessoSeme()) {
-            mostraInformazione("Hai un tris di semi", "Hai vinto una carta spacca, al prossimo turno dovrai scartare una delle carte in mano");
+            mostraInformazione("Hai un tris di semi", "Hai vinto una carta spacca!");
             aggiungiCartaSpacca();
         }
     }
@@ -632,9 +632,10 @@ public void pesca() {
             image = new Image(getClass().getResourceAsStream(imgPath));
             imgViewList.get(utenteCorrente.carteSpacca.indexOf(c)).setImage(image);
 
-            System.out.println("inidice carte spacca" + utenteCorrente.carteSpacca.indexOf(c));
+            
             if(utenteCorrente.carteSpacca.indexOf(c)==5){
-
+                
+                //comandi che servono per la schermata finale del vincitore di Spacca
                 cartaDaGioco1.setVisible(false);
                 cartaDaGioco2.setVisible(false);
                 cartaDaGioco3.setVisible(false);
@@ -642,7 +643,7 @@ public void pesca() {
 
                 IndietroBtn.setVisible(true);
                 messaggioVincitore.setVisible(true);
-                messaggioVincitore.setText("Il vincitore di SPACCA è ...");
+                messaggioVincitore.setText("Il vincitore di SPACCA è ..." + utenteCorrente.getNick());
 
                 
               /*Alert alert = new Alert(AlertType.INFORMATION);
@@ -656,15 +657,15 @@ public void pesca() {
                 partiteDaGiocare = partiteDaGiocare-1;
                 t.setPartiteDaGiocare(partiteDaGiocare);
                 t.vincitoreTorneo();
+                System.out.println("da giocare" + partiteDaGiocare);
                 try {
                     System.out.println("codice torneo" + utenteCorrente.getCodiceTorneo());
                     if(utenteCorrente.getCodiceTorneo() != null){
                         //salvaPartitaTorneo(); metodo per ora vuoto 
-                        //goBack();
                         
                         System.out.println("vincitore"+  utenteCorrente.getNick());
                         ControllerVincitore v = new ControllerVincitore();
-                        v.getUtente(utenteCorrente);
+                        //v.getUtente(utenteCorrente);
 
                         if(partiteDaGiocare != 0){
                             Partita p = new Partita(partecipanti);
