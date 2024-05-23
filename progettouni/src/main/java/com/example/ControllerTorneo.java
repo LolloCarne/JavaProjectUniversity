@@ -41,6 +41,7 @@ import javafx.scene.Node;
 
 //import com.DTO.BotSmart;
 import com.DTO.Torneo;
+import com.DTO.BotSmart;
 import com.DTO.Partita;
 import com.DTO.Utente;
 import com.Manager.PartitaManager;
@@ -94,6 +95,8 @@ public class ControllerTorneo implements Initializable {
     @FXML
     private Button GiocaBotBtn;
 
+    private String nomiBot="";
+
     public int flagSmart=0;
     public int flagStupid=0;
     private Stage stage;
@@ -102,6 +105,7 @@ public class ControllerTorneo implements Initializable {
     public String nome;
     public int n;
     public TorneoManager manager;
+    String nomeTotal="";
     
     Torneo t = new Torneo();
     
@@ -117,43 +121,41 @@ public class ControllerTorneo implements Initializable {
     void okayNextAction(ActionEvent event) {
         manager = new TorneoManager();
         nome = nomiTorneo.getText();
+        nomeTotal = nome + "," + nomiBot;
+        System.out.println("stringa del nome" + nomeTotal);
         //n = Integer.parseInt(numeroPartecipanti.getText());
-        manager.scriviDizionario(nome, n);
+        //manager.scriviDizionario(nomeTotal, n);
         
     }
 
-    /*@FXML
-    void okayNumAction(ActionEvent event) {
-        //nome = nomiTorneo.getText();
-        n = Integer.parseInt(numeroPartecipanti.getText());
-       // manager.scriviDizionario(nome,n);
-        
-
-    }*/
-
-    @FXML
-    void okayNumBotAction(ActionEvent event) {
-        String numero = numeroBot.getText();
-        if (flagSmart==1){
-            //creo bot numero bot smart
-            flagSmart=0;
-            //partecipantiToreno.put(//bot);
-        }
-        else if(flagStupid ==1){
-            //creo bot numero bot stupid
-            flagStupid=0;
-             //partecipantiToreno.put(//bot);
-        }
-    }
 
     @FXML
     void smartBotAction(ActionEvent event) {
-        int flagSmart =1;
-    }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Okay Bot Smart aggiunto");
+        alert.setHeaderText(null);
+        alert.setContentText("\nSalva il codice ed accedi come utente tramite esso.");
+        alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
 
+        System.out.println("qui");
+        String nomeBot = manager.creaBotSmart();
+        nomiBot =nomiBot + nomeBot  + "," ;
+        System.out.println("nomi Bot" + nomiBot);
+        
+    }
     @FXML
     void stupidBotAction(ActionEvent event) {
-        int flagStupid =1;
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Okay Bot Stupid aggiunto");
+        alert.setHeaderText(null);
+        alert.setContentText("\nSalva il codice ed accedi come utente tramite esso.");
+        alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
+    
+        String nomeBot = manager.creaBotStupid();
+        nomiBot =nomiBot + nomeBot  + "," ;
+        System.out.println("nomi Bot" + nomiBot);
+
+            
     }
 
     
@@ -168,6 +170,7 @@ public class ControllerTorneo implements Initializable {
 
     @FXML
     void iniziaTorneoAction(ActionEvent event) throws IOException {
+        manager.scriviDizionario(nomeTotal, n);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Codice Prima Partita");
         alert.setHeaderText(null);

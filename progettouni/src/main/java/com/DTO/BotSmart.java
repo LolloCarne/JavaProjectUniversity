@@ -10,6 +10,7 @@ import com.Enum.Seme;
 
 public class BotSmart extends Utente{
     private static final String [] randomName = {"Jim","Chris","Erik","Jessie","Queen","Jennifer","Joshua"};
+    
     public BotSmart(){
         super(randomName[new Random().nextInt(randomName.length)]+"@SMARTBOT");
     }
@@ -61,5 +62,7 @@ public class BotSmart extends Utente{
         }
         return "Scarta";
     }
+
+    
     
 }

@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -21,13 +22,13 @@ public class ControllerVincitore implements Initializable{
     private Stage stage;
     private Scene scene;
 
-    private Utente u;
+    private String s;
 
     @FXML
     private Button IndietroBtn;
 
     @FXML
-    private TextField vincitoreSpaccaField;
+    private Label messaggioVincitore;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -45,11 +46,12 @@ public class ControllerVincitore implements Initializable{
         stage.show();
     }
     public void setTesto(){
-        vincitoreSpaccaField.setText(u.getNick());
+       // vincitoreSpaccaField.setText(u.getNick());
+        System.out.println(s);
+        messaggioVincitore.setText("via");
     }
-
-    public void getUtente(Utente ut){
-        u=ut;
+    public void getUtente(String st){
+        s=st;
     }
 
     }

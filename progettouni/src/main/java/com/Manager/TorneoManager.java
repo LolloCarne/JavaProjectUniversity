@@ -14,6 +14,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.DTO.Torneo;
+import com.DTO.BotDummy;
+import com.DTO.BotSmart;
 import com.DTO.Partita;
 import com.DTO.Utente;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -183,7 +185,9 @@ public class TorneoManager {
         String[] nomi = creaListaNomi(n, nome);
         String codiceTorneo = generateRandomString(6);
         for(String x : nomi){
-            partecipanti.add(new Utente(x,codiceTorneo));
+            Utente u = new Utente(x,codiceTorneo);
+            partecipanti.add(u);
+            u.setCodiceTorneo(codiceTorneo);
         
         }
         
@@ -194,12 +198,50 @@ public class TorneoManager {
         manipolazioneJson(partecipantiTorneo);
         return partecipantiTorneo;
     }
+    
 
+    public String creaBotSmart(){
+        String nome ="";
+        BotSmart bot = new BotSmart();
+        Utente u = new Utente(bot);
+        nome = bot.getNick();
+        System.out.println("bot smart");
+        partecipanti.add(u);
+        return nome;
+    }
+
+    public String creaBotStupid(){
+        String nome ="";
+        BotDummy bot = new BotDummy();
+        Utente u = new Utente(bot);
+        nome = bot.getNick();
+        partecipanti.add(u);
+        System.out.println("bot stupid");
+        return nome;
+    }
     public String[] creaListaNomi(int n, String nome){
-        String[] nomi = new String[n];
         //crea array di nomi 
-        nomi =nome.split(",");
-        return nomi;
+        System.out.println(nome);
+        String [] nomi =nome.split(",");
+        String [] nomiSplit = new String[4];
+        //metodo per gestire l'inserimento di più di 4 giocatori
+        if(nomi.length > 4){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("");
+            alert.setHeaderText(null);
+            alert.setContentText("SONO STATI PRESI I PRIMI 4 GIOCATORI");
+            alert.showAndWait(); 
+            for(int i=0 ; i<4; i++){
+                nomiSplit[i]=nomi[i];
+            }
+            return nomiSplit;
+        }
+        else{
+            return nomi;
+        }
+            
+
+    
     }
 
 
@@ -236,12 +278,13 @@ public class TorneoManager {
     }
 
     public void vincitoreTorneo(int n){
-        if(n ==0){
+        
+        if(n ==0){      
             Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("TORNEO FINITO");
-                alert.setHeaderText(null);
-                alert.setContentText("COMPLIMENTI HAI SPACCATO!");
-                alert.showAndWait(); 
+            alert.setTitle("TORNEO FINITO");
+            alert.setHeaderText(null);
+            alert.setContentText("COMPLIMENTI HAI SPACCATO!");
+            alert.showAndWait(); 
         }
     }
 

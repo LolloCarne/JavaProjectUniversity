@@ -646,13 +646,6 @@ public void pesca() {
                 messaggioVincitore.setText("Il vincitore di SPACCA è ..." + utenteCorrente.getNick());
 
                 
-              /*Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("HAI VINTO");
-                alert.setHeaderText(null);
-                alert.setContentText("COMPLIMENTI HAI SPACCATO!");
-                alert.showAndWait();*/
-
-                
                 utenteCorrente.setPartiteVinte(utenteCorrente.getPartiteVinte()+1);
                 partiteDaGiocare = partiteDaGiocare-1;
                 t.setPartiteDaGiocare(partiteDaGiocare);
@@ -661,12 +654,6 @@ public void pesca() {
                 try {
                     System.out.println("codice torneo" + utenteCorrente.getCodiceTorneo());
                     if(utenteCorrente.getCodiceTorneo() != null){
-                        //salvaPartitaTorneo(); metodo per ora vuoto 
-                        
-                        System.out.println("vincitore"+  utenteCorrente.getNick());
-                        ControllerVincitore v = new ControllerVincitore();
-                        //v.getUtente(utenteCorrente);
-
                         if(partiteDaGiocare != 0){
                             Partita p = new Partita(partecipanti);
                             this.start(p.getCodice());

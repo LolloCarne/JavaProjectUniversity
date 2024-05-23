@@ -65,10 +65,10 @@ public class Utente {
         return this.id;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return this.Nickname;
-    }
+    }*/
 
  public boolean controllaScala() {
     // Ordina le carte in mano in base al valore
@@ -115,6 +115,10 @@ public class Utente {
     }
     public String getCodiceTorneo(){
         return this.codiceTorneo;
+    }
+
+    public String toString(){
+        return "nome: " + Nickname + "\ncodice torneo: " + codiceTorneo + "\npartite vinte" + partiteVinte;
     }
 
 }
