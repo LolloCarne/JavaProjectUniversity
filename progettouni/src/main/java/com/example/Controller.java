@@ -352,7 +352,7 @@ public class Controller {
     
     }
     @FXML
-    void eliminaTorneoCodice (ActionEvent event) throws IOException {
+    void eliminaTorneoDefi (ActionEvent event) throws IOException {
         // Crea una finestra di dialogo di conferma
             Alert confermaEliminazione = new Alert(AlertType.CONFIRMATION);
             confermaEliminazione.setTitle("Conferma Eliminazione");
@@ -405,7 +405,7 @@ public class Controller {
         String codice = codiceEliminaTorneo.getText();
         System.out.println(codice);
         manager.deleteTorneoByCode(codice);
-        messagioEliminazione.setText("Torneo eliminata con successo!");
+        messagioEliminazione.setText("Torneo eliminato con successo!");
         codiceEliminaTorneo.clear();
     }
 
