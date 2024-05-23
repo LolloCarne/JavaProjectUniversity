@@ -52,10 +52,10 @@ public class Utente {
         this.id=utenteJson.get("id").asText();
         this.codiceTorneo=utenteJson.get("codiceTorneo").asText();
         this.mano=new ArrayList<>();
-        for(JsonNode carta : utenteJson.get("mano")){
+        /*for(JsonNode carta : utenteJson.get("mano")){
             mano.add(new Carta(carta.get("seme").asText(),carta.get("valore").asInt()));
             System.out.println("Valore carta: "+carta.get("valore").asInt());
-        }
+        }*/
         this.carteSpacca=new ArrayList<>();
         for(JsonNode cartaSpacca : utenteJson.get("carteSpacca")){
             this.carteSpacca.add(new CartaSpacca(cartaSpacca.get("lettera").asText()));

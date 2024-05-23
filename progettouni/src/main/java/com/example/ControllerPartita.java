@@ -128,6 +128,8 @@ public class ControllerPartita implements Initializable {
     Torneo t; 
     int partiteDaGiocare; 
 
+    @FXML
+    private Button saveAndExitBtn;
     
     @FXML
     private Label messaggioVincitore;
@@ -197,7 +199,6 @@ public class ControllerPartita implements Initializable {
             
             Carta carta = u.mano.get(i);
             String imagePath = carta.getPath(); 
-            System.out.println("Percorso carta mano: "+ carta.getSeme());
             Image image = new Image(getClass().getResourceAsStream(imagePath));
             switch (i) {
                 case 0:
@@ -320,11 +321,11 @@ public class ControllerPartita implements Initializable {
 
 
 public void pesca() {
+    System.out.println("Carte in mano inizio pesca: "+utenteCorrente.mano.size());
     try {
         if (utenteCorrente.mano.size() == 3 && canPick) {
             Carta pescata = utenteCorrente.getNick().endsWith("BOT") ? this.m.getCartaDiGioco() : this.m.mazzo.pop();
             String imagePath = pescata.getPath();
-            System.out.println("path:" + imagePath);
             Image image = new Image(getClass().getResourceAsStream(imagePath));
             cartaDaGioco4.setImage(image);
             utenteCorrente.mano.add(pescata);
@@ -339,8 +340,18 @@ public void pesca() {
             mostraErrore("Non puoi passare il turno se hai meno di 3 carte, prima devi pescare.");
         }
     } catch (EmptyStackException e) {
-        System.out.println("Mazzo vuoto");
+        mostraErrore("Il mazzo è finito, non puoi pescare.");
+        Utente vincitore = partecipanti.get(0);
+
+       for(Utente x : partecipanti){
+        if(x.carteSpacca.size()>=vincitore.carteSpacca.size()){
+            vincitore=x;
+        }
+       }
+       vittoria(vincitore);
     }
+
+    System.out.println("Carte in mano fine pesca: "+utenteCorrente.mano.size());
 }
 
     public void actionCarta(Carta c) {
@@ -509,6 +520,7 @@ public void pesca() {
     }
 
     public void passa() {
+        System.out.println("Carte in mano passa: "+utenteCorrente.mano.size());
         if (utenteCorrente.mano.size() == 3) {
             int currentIndex = partecipanti.indexOf(utenteCorrente);
             if (currentIndex == partecipanti.size() - 1) {
@@ -530,6 +542,8 @@ public void pesca() {
     }
 
     public void scarta(ImageView daScartare) {
+        System.out.println("Carte in mano inzio scarta: "+utenteCorrente.mano.size());
+
         if (utenteCorrente.mano.size() > 3) {
             canPick = false;
             removeCardByImageView(daScartare);
@@ -554,6 +568,8 @@ public void pesca() {
             System.out.println("Non puoi scartare");
             mostraErrore("Non puoi scartare");
         }
+        System.out.println("Carte in mano fine scarta: "+utenteCorrente.mano.size());
+
     }
     
     private void controllaVittorie() {
@@ -645,56 +661,16 @@ public void pesca() {
             imgViewList.get(utenteCorrente.carteSpacca.indexOf(c)).setImage(image);
 
             
-            if(utenteCorrente.carteSpacca.indexOf(c)==0){
+            if(utenteCorrente.carteSpacca.indexOf(c)==1){
                 
-                //comandi che servono per la schermata finale del vincitore di Spacca
-                cartaDaGioco1.setVisible(false);
-                cartaDaGioco2.setVisible(false);
-                cartaDaGioco3.setVisible(false);
-                cartaDaGioco4.setVisible(false);
-
-                IndietroBtn.setVisible(true);
-                messaggioVincitore.setVisible(true);
-                messaggioVincitore.setText("Il vincitore di SPACCA è " + utenteCorrente.getNick() + "!");
-
-                
-                utenteCorrente.setPartiteVinte(utenteCorrente.getPartiteVinte()+1);
-                partiteDaGiocare = partiteDaGiocare-1;
-                t.setPartiteDaGiocare(partiteDaGiocare);
-                t.vincitoreTorneo();
-                System.out.println("da giocare" + partiteDaGiocare);
-                svuotaUtenti();
-                salva();
-                try {
-                    System.out.println("Codice torneo" + utenteCorrente.getCodiceTorneo());
-                    if(utenteCorrente.getCodiceTorneo() != null){
-                        //salvaPartitaTorneo(); metodo per ora vuoto 
-                        
-                        System.out.println("Vincitore"+  utenteCorrente.getNick());
-                        ControllerVincitore v = new ControllerVincitore();
-                        //v.getUtente(utenteCorrente);
-
-                        if(partiteDaGiocare != 0){
-                            
-                            Partita p = new Partita(partecipanti);
-                            System.out.println("Codice nuova partita: "+p.getCodice());
-                            
-                        }
-                    }
-
-                    //settare flag vittoria
-                }
-                    
-                catch (Exception e) {
-                    // TODO: handle exception
-                }
+                vittoria(utenteCorrente);
                 
             }else{
                 cartaDaGioco1.setVisible(true);
                 cartaDaGioco2.setVisible(true);
                 cartaDaGioco3.setVisible(true);
                 cartaDaGioco4.setVisible(true);
-
+                saveAndExitBtn.setVisible(true);
                 IndietroBtn.setVisible(false);
                 messaggioVincitore.setVisible(false);
             }
@@ -711,6 +687,49 @@ public void pesca() {
         stage.show();
     }
 
+    
+    public void vittoria(Utente vincitore){
+                 //comandi che servono per la schermata finale del vincitore di Spacca
+                 cartaDaGioco1.setVisible(false);
+                 cartaDaGioco2.setVisible(false);
+                 cartaDaGioco3.setVisible(false);
+                 cartaDaGioco4.setVisible(false);
+                 saveAndExitBtn.setVisible(false);
+                 IndietroBtn.setVisible(true);
+                 messaggioVincitore.setVisible(true);
+                 messaggioVincitore.setText("Il vincitore di SPACCA è " + vincitore.getNick() + "!");
+
+                 vincitore.setPartiteVinte(vincitore.getPartiteVinte()+1);
+                 partiteDaGiocare = partiteDaGiocare-1;
+                 t.setPartiteDaGiocare(partiteDaGiocare);
+                 t.vincitoreTorneo();
+                 System.out.println("da giocare" + partiteDaGiocare);
+                 svuotaUtenti();
+                 salva();
+                 try {
+                     System.out.println("Codice torneo" + vincitore.getCodiceTorneo());
+                     if(vincitore.getCodiceTorneo() != null){
+                         //salvaPartitaTorneo(); metodo per ora vuoto 
+                         
+                         System.out.println("Vincitore"+  vincitore.getNick());
+                         ControllerVincitore v = new ControllerVincitore();
+                         //v.getUtente(utenteCorrente);
+ 
+                         if(partiteDaGiocare != 0){
+                             
+                             Partita p = new Partita(partecipanti);
+                             System.out.println("Codice nuova partita: "+p.getCodice());
+                             
+                         }
+                     }
+ 
+                     //settare flag vittoria
+                 }
+                     
+                 catch (Exception e) {
+                     // TODO: handle exception
+                 }
+    }
 
     public void salva(){
         p.save();
