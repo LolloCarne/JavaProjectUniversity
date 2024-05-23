@@ -636,17 +636,18 @@ public void pesca() {
                 alert.setContentText("COMPLIMENTI HAI SPACCATO!");
                 alert.showAndWait(); 
 
+                salva();
                 utenteCorrente.setPartiteVinte(utenteCorrente.getPartiteVinte()+1);
                 partiteDaGiocare = partiteDaGiocare-1;
                 t.setPartiteDaGiocare(partiteDaGiocare);
                 t.vincitoreTorneo();
                 try {
-                    System.out.println("codice torneo" + utenteCorrente.getCodiceTorneo());
+                    System.out.println("Codice torneo" + utenteCorrente.getCodiceTorneo());
                     if(utenteCorrente.getCodiceTorneo() != null){
                         //salvaPartitaTorneo(); metodo per ora vuoto 
                         //goBack();
                         
-                        System.out.println("cincitore"+  utenteCorrente.getNick());
+                        System.out.println("Vincitore"+  utenteCorrente.getNick());
                         ControllerVincitore v = new ControllerVincitore();
                         v.getUtente(utenteCorrente);
 
@@ -668,6 +669,7 @@ public void pesca() {
 
         }
     }
+
     @FXML
     void goBack(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("homeScene.fxml"));
@@ -678,8 +680,9 @@ public void pesca() {
     }
 
 
-    public void salvaPartitaTorneo(){
-
+    public void salva(){
+        p.save();
+        
     }
 
     public void pulisciSpacca(){
@@ -695,6 +698,17 @@ public void pesca() {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    void saveAndExitBtnAction(ActionEvent event) {
+        salva();
+    try {
+        goBack(event);
+    } catch (Exception e) {
+        System.out.println("Errore: "+e);
+    }
+        
     }
 
     
