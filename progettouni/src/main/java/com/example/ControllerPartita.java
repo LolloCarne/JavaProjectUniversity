@@ -66,7 +66,7 @@ public class ControllerPartita implements Initializable {
     private Utente utenteCorrente;
     private int statoTurno;
     
-
+    boolean partitaFinita;
     private ImageView selectedImage;
     private ImageView showSelectedCard;
     
@@ -145,7 +145,7 @@ public class ControllerPartita implements Initializable {
 
     public void start(String codice) {
         int partiteGiocate=0;
-
+        partitaFinita=false;
         t = new Torneo();
         p = new Partita(codice);
         System.out.println("Prova: "+p.getPartecipanti().get(0).codiceTorneo);
@@ -597,6 +597,9 @@ public void pesca() {
     }
 
     public void passa() {
+        if(partitaFinita){
+            return;
+        }
         System.out.println("Carte in mano passa: "+utenteCorrente.mano.size());
         if (utenteCorrente.mano.size() == 3) {
             int currentIndex = partecipanti.indexOf(utenteCorrente);
@@ -762,7 +765,7 @@ public void pesca() {
     
     public void vittoria(Utente vincitore){
                  //comandi che servono per la schermata finale del vincitore di Spacca
-                 
+                 partitaFinita=true;
                  cartaDaGioco1.setVisible(false);
                  cartaDaGioco2.setVisible(false);
                  cartaDaGioco3.setVisible(false);
@@ -771,7 +774,7 @@ public void pesca() {
                  IndietroBtn.setVisible(true);
                  messaggioVincitore.setVisible(true);
                  messaggioVincitore.setText("Il vincitore di SPACCA è " + vincitore.getNick() + "!");
-
+                
                  vincitore.setPartiteVinte(vincitore.getPartiteVinte()+1);
                  partiteDaGiocare = partiteDaGiocare-1;
                  
