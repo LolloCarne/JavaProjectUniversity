@@ -388,7 +388,7 @@ public void pesca() {
             canPick = false;
             Carta pescata = utenteCorrente.getNick().endsWith("BOT") ? this.m.getCartaDiGioco() : this.m.mazzo.pop();
             if(pescata==null){
-                mostraErrore("Il mazzo è finito, non puoi pescare.");
+                mostraErrore("Il mazzo è finito, vincerà chi ha piu carte spacca!");
                 Utente vincitore = partecipanti.get(0);
         
                for(Utente x : partecipanti){
@@ -746,16 +746,7 @@ public void pesca() {
                 
                 vittoria(utenteCorrente);
                 
-            }else{
-                cartaDaGioco1.setVisible(true);
-                cartaDaGioco2.setVisible(true);
-                cartaDaGioco3.setVisible(true);
-                cartaDaGioco4.setVisible(true);
-                saveAndExitBtn.setVisible(true);
-                IndietroBtn.setVisible(false);
-                messaggioVincitore.setVisible(false);
             }
-
         }
     }
 

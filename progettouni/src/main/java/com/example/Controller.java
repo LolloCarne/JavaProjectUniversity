@@ -418,11 +418,12 @@ public class Controller {
 
         // Metodo per eliminare l'utente
         private void eliminaUtente() {
-            Partita p = new Partita();
+            
             String nick = utenteEliminato.getText(); // Otteniamo il nick dall'interfaccia
             String codicePartita = codiceEliminato.getText(); // Otteniamo il codice partita dall'interfaccia
             System.out.println(nick);
             System.out.println(codicePartita);
+            Partita p = new Partita(codicePartita);
             manager.removeUtenteByNick(p, nick);
             messaggioEliminaUtente.setText("Giocatore eliminato con successo!");
             utenteEliminato.clear();
