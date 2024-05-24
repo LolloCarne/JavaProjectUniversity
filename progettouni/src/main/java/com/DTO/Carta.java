@@ -13,6 +13,7 @@ public class Carta implements Comparable<Carta>{
 
     public Carta(){}
 
+    //costruttore che crea la carta da gioco
     public Carta(Seme s, int v){
         this.s=s;
         this.valore=v+1;
@@ -20,6 +21,7 @@ public class Carta implements Comparable<Carta>{
         this.path = "/com/example/img/" +str + String.valueOf(valore) + ".png";
     }
 
+    //assegnazione del seme 
     public Carta(String s, int n){
         switch(s){
             case "cucchiaio":
@@ -43,12 +45,15 @@ public class Carta implements Comparable<Carta>{
         }
     }
 
+    //costruttori dati nel primo caso il seme e nel secondo il valore
     public Carta(Seme s){
         this.s=s;
     }
     public Carta(int v){
         this.valore=v;
     }
+
+    //metodi getter e setter
     public int getValore(){
         return valore;
     }
@@ -64,12 +69,12 @@ public class Carta implements Comparable<Carta>{
     public void setSeme(Seme s){
         this.s = s;
     }
+    public String getPath(){
+        return this.path;
+    }
+
     public String toString(){
         return s.toString() + " " + valore;
-    }
-    public String getPath(){
-       
-        return this.path;
     }
     
     @Override

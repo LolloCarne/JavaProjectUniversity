@@ -283,7 +283,9 @@ public class TorneoManager {
 
     
 
-    public void deleteTorneoByCode(String codice){
+    public boolean deleteTorneoByCode(String codice){
+        boolean b = false;
+        boolean flag=false;
         HashMap<String,String[]> tornei = leggiJson();
 
         stampaDizionario(tornei);
@@ -291,10 +293,20 @@ public class TorneoManager {
         for (String key : tornei.keySet()) {
             if (key.equals(codice)) {
                 tornei.remove(key) ;
+                b= true;
+                flag=b;
             }
+            else{
+                b=false;
+                flag=false;
+            }
+            
+            
         }
         stampaDizionario(tornei);
         scriviJsonConHashMap(tornei);
+        return flag;
+        
     } 
 }
 
