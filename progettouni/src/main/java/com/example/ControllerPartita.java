@@ -729,7 +729,7 @@ public void pesca() {
             if(!codice.equals("null")){
                 
             t.setPartiteDaGiocare(partiteDaGiocare);
-            t.vincitoreTorneo(partiteDaGiocare, utenteCorrente.getNick());
+            t.vincitoreTorneo(partiteDaGiocare, partecipanti);
 
             if(partiteDaGiocare != 0 ){ //se ci sono ancora partite da giocare del torneo
                 Partita p = new Partita(partecipanti);

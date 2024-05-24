@@ -58,7 +58,7 @@ public class Torneo {
             Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("TORNEO FINITO");
                 alert.setHeaderText(null);
-                alert.setContentText("COMPLIMENTI " + nome + " HAI SPACCATO");
+                alert.setContentText("COMPLIMENTI " + vincitore + " HAI SPACCATO");
                 alert.showAndWait(); 
         }
     }
