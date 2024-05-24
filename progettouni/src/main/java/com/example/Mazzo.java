@@ -5,10 +5,8 @@ import java.util.Collections;
 import java.util.Stack;
 
 import com.DTO.Carta;
-import com.DTO.CartaBlocco;
 import com.DTO.CartaJollyNumero;
 import com.DTO.CartaJollySeme;
-import com.DTO.CartaPescaDueCarte;
 import com.DTO.CartaRubaSpacca;
 import com.Enum.Seme;
 

@@ -1,17 +1,11 @@
 package com.example;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
-
 import com.DTO.Partita;
-import com.DTO.Utente;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -155,12 +149,7 @@ public class Controller {
     @FXML
     private Button mostraLeaderboard;
 
-    
-
-    
-
     PartitaManager manager = new PartitaManager();
-   
 
     @FXML
     void goBack(ActionEvent event) throws IOException {
@@ -170,7 +159,6 @@ public class Controller {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
 
     @FXML
@@ -479,15 +467,20 @@ public class Controller {
         void registraAdmin(ActionEvent event) throws IOException{
             String username = usernameAdminReg.getText();
             String pwd = pwdAdminReg.getText();
+            boolean b;
 
             AdminManager manager = new AdminManager();
-            manager.registraAdmin(username, pwd);
-            
-            Parent root = FXMLLoader.load(getClass().getResource("menuAdminScene.fxml")); //nome scena successiva
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            if(username != null && pwd!= null){
+                b = manager.registraAdmin(username, pwd);
+                if(b==true){
+                    Parent root = FXMLLoader.load(getClass().getResource("menuAdminScene.fxml")); //nome scena successiva
+                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+
+                }    
+            }
         } 
 
     @FXML

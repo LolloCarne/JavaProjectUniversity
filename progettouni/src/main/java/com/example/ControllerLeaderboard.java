@@ -14,8 +14,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,26 +77,39 @@ public class ControllerLeaderboard implements Initializable{
     @FXML
     void mostraLeaderBoardAction(ActionEvent event) {
         System.out.println("si");
-    
+
         PartitaManager manager = new PartitaManager();
-        HashMap <String,String> vinte = new HashMap<>();
-        ArrayList <Partita> leggijson = manager.leggiJson();
-        String stringa ="";
+        ArrayList<Partita> leggijson = manager.leggiJson();
 
-        for(Partita par : leggijson){
-            vinte =par.partiteVintePartecipanti();
-            //2,io
+        // List to hold all entries for sorting
+        List<Map.Entry<String, String>> allEntries = new ArrayList<>();
 
-            for (Map.Entry<String, String> entry : vinte.entrySet()) {
-                String key = entry.getKey();
-                String value = entry.getValue();
-                stringa =stringa + "\n" + key + ", " +  value;
-                leaderboardArea.appendText(stringa);
-                stringa="";
-            }   
-        
+        for (Partita par : leggijson) {
+            HashMap<String, String> vinte = par.partiteVintePartecipanti();
+            allEntries.addAll(vinte.entrySet());
+        }
+
+        // Comparator for sorting keys in descending order
+        Comparator<Map.Entry<String, String>> keyComparator = new Comparator<Map.Entry<String, String>>() {
+            @Override
+            public int compare(Map.Entry<String, String> e1, Map.Entry<String, String> e2) {
+                return e2.getKey().compareTo(e1.getKey());
+            }
+        };
+
+        // Sort all entries by key in descending order
+        allEntries.sort(keyComparator);
+
+        // Clear leaderboardArea before adding new sorted entries
+        leaderboardArea.clear();
+
+        // Add sorted entries to the leaderboardArea
+        for (Map.Entry<String, String> entry : allEntries) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            String stringa = key + ", " + value + "\n";
+            leaderboardArea.appendText(stringa);
         }
     }
-
 
 }

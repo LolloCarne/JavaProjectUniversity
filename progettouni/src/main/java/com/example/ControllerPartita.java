@@ -737,7 +737,7 @@ public void pesca() {
             imgViewList.get(utenteCorrente.carteSpacca.indexOf(c)).setImage(image);
 
             
-            if(utenteCorrente.carteSpacca.indexOf(c)==0){
+            if(utenteCorrente.carteSpacca.indexOf(c)==5){
                 
                 vittoria(utenteCorrente);
                 
@@ -789,7 +789,7 @@ public void pesca() {
                          //salvaPartitaTorneo(); metodo per ora vuoto 
                          
                          System.out.println("Vincitore"+  vincitore.getNick());
-                         ControllerVincitore v = new ControllerVincitore();
+                         
                          //v.getUtente(utenteCorrente);
  
                          if(partiteDaGiocare != 0){ //se ci sono ancora partite da giocare del torneo

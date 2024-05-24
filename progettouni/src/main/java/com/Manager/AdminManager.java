@@ -9,6 +9,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import javafx.scene.control.Alert;
+
 public class AdminManager {
 
     private static final String filename = "progettouni/json/Admin.json";
@@ -25,11 +27,23 @@ public class AdminManager {
         return false; // Nessun admin trovato
     }
 
-    public void registraAdmin(String username, String password) {
+    public boolean registraAdmin(String username, String password) {
         ArrayList<Admin> admins = leggiJson();
+        boolean b = false;
         if (!adminEsiste(username)) {
             admins.add(new Admin(username, password)); // Creazione di un nuovo admin e aggiunta alla lista
+            System.out.println(admins.toString());
             scriviJson(admins); // Scrittura della lista aggiornata nel file JSON
+            return true;
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Registrazione login");
+            alert.setHeaderText(null);
+        
+            alert.setContentText("\nLo username è già usato. Scegline un altro.");
+            alert.showAndWait();
+            return false;
         }
     }
 
