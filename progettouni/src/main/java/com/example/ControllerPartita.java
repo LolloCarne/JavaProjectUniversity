@@ -802,7 +802,7 @@ public void pesca() {
                             Partita p = new Partita(partecipanti);
                             
                             codiceNuovaPartitaTorneo.setVisible(true);
-                            codiceNuovaPartitaTorneo.setText("Il codice della prossima partita del torneo è:  " + p.getCodice() + "!");
+                            codiceNuovaPartitaTorneo.setText("Il codice della prossima partita del torneo è:  " + p.getCodice());
                             System.out.println("Codice nuova partita: "+p.getCodice());
                              
                         }
