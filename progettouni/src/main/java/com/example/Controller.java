@@ -405,7 +405,7 @@ public class Controller {
         // Aggiungi qui il codice per eliminare la partita
         String codice = codiceEliminaTorneo.getText();
         manager.deleteTorneoByCode(codice);
-        messagioEliminazione.setText("Torneo eliminata con successo!");
+        messagioEliminazione.setText("Torneo eliminato con successo!");
         codiceEliminaTorneo.clear();
     }
 

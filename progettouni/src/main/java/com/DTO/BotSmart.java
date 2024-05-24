@@ -1,5 +1,7 @@
 package com.DTO;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +23,6 @@ public class BotSmart extends Utente{
 
     public Carta qualeScartare(){
         Carta diversaPerSeme = null;
-        
         for (Carta carta : super.mano) {
             Seme seme = carta.getSeme(); // Ottieni il seme della carta corrente
             // Itera attraverso ogni altra carta nel mazzo
@@ -45,7 +46,7 @@ public class BotSmart extends Utente{
 
         }
 
-        return super.mano.get(0);
+        return null;
         
         
 

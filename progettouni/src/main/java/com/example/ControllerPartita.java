@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.image.Image;
 
+import com.DTO.BotDummy;
 import com.DTO.BotSmart;
 //import com.DTO.BotSmart;
 import com.DTO.Carta;
@@ -185,62 +186,20 @@ public class ControllerPartita implements Initializable {
     }
 
 
- 
+ public void giocaBot(Utente u){
 
-  public void setScene(Utente u) {
-        canPick = true;
-        pulisciSpacca();
-        aggiornaSpacca();
-        
-        System.out.println(u.getNick());
-        if (nomeUtente != null) {
-            nomeUtente.setText(u.getNick());
-        } 
+        setScene(u);
+        BotSmart bot= new BotSmart(u);
 
-        for(Carta c : u.mano){
-            System.out.println(c.getPath());
-        }
-        for (int i = 0; i < u.mano.size(); i++) {
-            
-            Carta carta = u.mano.get(i);
-            String imagePath = carta.getPath(); 
-            Image image = new Image(getClass().getResourceAsStream(imagePath));
-            switch (i) {
-                case 0:
-                    cartaDaGioco1.setImage(image);
-                    mapImageView.put(cartaDaGioco1, imagePath);
-                    break;
-                case 1:
-                    cartaDaGioco2.setImage(image);
-                    mapImageView.put(cartaDaGioco2, imagePath);
-                    break;
-                case 2:
-                    cartaDaGioco3.setImage(image);
-                    mapImageView.put(cartaDaGioco3, imagePath);
-                    break;
-                // Continua con le altre ImageView
-                default:
-                    break;
-            }
-        }
-        nomeGiocatorePartita.setText(utenteCorrente.getNick());
-    if(u.getNick().endsWith("BOT")) {
-        BotSmart bot = new BotSmart(u);
+
+
         // Impostazione della scena per il bot
         System.out.println("entrato bot");  
 
-        pesca();
-        System.out.println(u.mano.size());
-        Alert alertPescato = new Alert(AlertType.INFORMATION);
-        alertPescato.setTitle("Il bot ha pescato");
-        alertPescato.setHeaderText(null);
-        alertPescato.setContentText("Carta pescata: "+u.mano.get(u.mano.size()-1));
-        alertPescato.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
-
-
-        //scartare
-        ImageView daScartare=null;
+//decido quale carta scartare
+ImageView daScartare=null;
         if(u.getNick().endsWith("@DUMMYBOT")){
+            //logica scelta carta da scartare bot smart
             int randomNumber = new Random().nextInt(3);
             switch (randomNumber) {
                 case 0:
@@ -258,27 +217,79 @@ public class ControllerPartita implements Initializable {
                     break;
             }
         }else{
+            //logica scelta carta da scartare bot smart
             Carta c = bot.qualeScartare();
-            for (Map.Entry<ImageView, String> entry : mapImageView.entrySet()) {
-                if (entry.getValue().equals(c.getPath())) {
-                    daScartare = entry.getKey();
+            if(c==null){
+                int randomNumber = new Random().nextInt(3);
+                switch (randomNumber) {
+                    case 0:
+                        daScartare = cartaDaGioco1;
+                        break;
+                    case 1:
+                        daScartare = cartaDaGioco2;
+                        break;
+                    case 2:
+                        daScartare = cartaDaGioco3;
+                        break;
+                    // Continua con le altre ImageView
+                    default:
+                    daScartare = cartaDaGioco1;
+                        break;
+                }
+            }else{
+                for (Map.Entry<ImageView, String> entry : mapImageView.entrySet()) {
+                    if (entry.getValue().equals(c.getPath())) {
+                        daScartare = entry.getKey();
+                    }
                 }
             }
-            if(daScartare==null){
-                daScartare = cartaDaGioco1;
-            }
-
 
         }
 
 
+        pesca();
+        System.out.println(u.mano.size());
+        Alert alertPescato = new Alert(AlertType.INFORMATION);
+        alertPescato.setTitle("Il bot ha pescato");
+        alertPescato.setHeaderText(null);
+        alertPescato.setContentText("Carta pescata: "+u.mano.get(u.mano.size()-1));
+        alertPescato.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
+
+
+        //scartare        
+       /*  removeCardByImageView(daScartare);
+        System.out.println("Percorso da settare: "+mapImageView.get(cartaDaGioco4));
+        Image image=null;
+        if(mapImageView.get(cartaDaGioco4)==null){
+            image = new Image(getClass().getResourceAsStream(u.mano.get(u.mano.size()-1).getPath()));
+        }else{
+            image = new Image(getClass().getResourceAsStream(mapImageView.get(cartaDaGioco4)));
+        }
+       
+        
+        cartaDaGioco4.setImage(null);
+        mapImageView.remove(cartaDaGioco4); // Rimuove l'associazione precedente
+        daScartare.setImage(image);
+        mapImageView.put(daScartare, imagePath); // Aggiunge la nuova associazione*/
 
         removeCardByImageView(daScartare);
-        System.out.println("Percorso da settare: "+mapImageView.get(cartaDaGioco4));
-        Image image = new Image(getClass().getResourceAsStream(mapImageView.get(cartaDaGioco4)));
-        cartaDaGioco4.setImage(null);
-        mapImageView.remove(cartaDaGioco4);
-        daScartare.setImage(image);
+            
+        String imagePath = mapImageView.get(cartaDaGioco4);
+        if (imagePath != null) {
+            Image image = new Image(getClass().getResourceAsStream(imagePath));
+            cartaDaGioco4.setImage(null);
+            mapImageView.remove(cartaDaGioco4); // Rimuove l'associazione precedente
+            daScartare.setImage(image);
+            mapImageView.put(daScartare, imagePath); // Aggiunge la nuova associazione
+
+            System.out.println(daScartare.getImage().toString());
+
+        } else {
+            System.out.println("Errore: immagine non trovata in mapImageView per cartaDaGioco4.");
+
+        }
+
+        System.out.println(daScartare.getImage().toString());
 
         System.out.println(u.mano.size());
 
@@ -322,6 +333,46 @@ public class ControllerPartita implements Initializable {
 
 
     }
+ 
+
+  public void setScene(Utente u) {
+        canPick = true;
+        pulisciSpacca();
+        aggiornaSpacca();
+        cartaDaGioco4.setImage(null);
+        
+        System.out.println(u.getNick());
+        if (nomeUtente != null) {
+            nomeUtente.setText(u.getNick());
+        } 
+
+        for(Carta c : u.mano){
+            System.out.println(c.getPath());
+        }
+        for (int i = 0; i < u.mano.size(); i++) {
+            
+            Carta carta = u.mano.get(i);
+            String imagePath = carta.getPath(); 
+            Image image = new Image(getClass().getResourceAsStream(imagePath));
+            switch (i) {
+                case 0:
+                    cartaDaGioco1.setImage(image);
+                    mapImageView.put(cartaDaGioco1, imagePath);
+                    break;
+                case 1:
+                    cartaDaGioco2.setImage(image);
+                    mapImageView.put(cartaDaGioco2, imagePath);
+                    break;
+                case 2:
+                    cartaDaGioco3.setImage(image);
+                    mapImageView.put(cartaDaGioco3, imagePath);
+                    break;
+                // Continua con le altre ImageView
+                default:
+                    break;
+            }
+        }
+        nomeGiocatorePartita.setText(utenteCorrente.getNick());
 }
 
 
@@ -329,18 +380,33 @@ public void pesca() {
     System.out.println("Carte in mano inizio pesca: "+utenteCorrente.mano.size());
     try {
         if (utenteCorrente.mano.size() == 3 && canPick) {
+            canPick = false;
             Carta pescata = utenteCorrente.getNick().endsWith("BOT") ? this.m.getCartaDiGioco() : this.m.mazzo.pop();
-            String imagePath = pescata.getPath();
-            Image image = new Image(getClass().getResourceAsStream(imagePath));
-            cartaDaGioco4.setImage(image);
-            utenteCorrente.mano.add(pescata);
-            mapImageView.put(cartaDaGioco4, imagePath); // Associa il nuovo percorso dell'immagine a cartaDaGioco4
-
-            if (pescata.getClass().getName().equals("com.DTO.Carta")) {
-                System.out.println("Seleziona una carta da scartare");
-            } else {
-                actionCarta(pescata);
+            if(pescata.getPath()==null){
+                mostraErrore("Il mazzo è finito, non puoi pescare.");
+                Utente vincitore = partecipanti.get(0);
+        
+               for(Utente x : partecipanti){
+                if(x.carteSpacca.size()>=vincitore.carteSpacca.size()){
+                    vincitore=x;
+                }
+               }
+               vittoria(vincitore);
+            }else{
+                String imagePath = pescata.getPath();
+    
+                Image image = new Image(getClass().getResourceAsStream(imagePath));
+                cartaDaGioco4.setImage(image);
+                utenteCorrente.mano.add(pescata);
+                mapImageView.put(cartaDaGioco4, imagePath); // Associa il nuovo percorso dell'immagine a cartaDaGioco4
+    
+                if (pescata.getClass().getName().equals("com.DTO.Carta")) {
+                    System.out.println("Seleziona una carta da scartare");
+                } else {
+                    actionCarta(pescata);
+                }
             }
+
         } else {
             mostraErrore("Non puoi passare il turno se hai meno di 3 carte, prima devi pescare.");
         }
@@ -534,8 +600,12 @@ public void pesca() {
             } else {
                 utenteCorrente = partecipanti.get(currentIndex + 1);
             }
-
-            setScene(utenteCorrente);
+            if(utenteCorrente.getNick().endsWith("BOT")){
+                giocaBot(utenteCorrente);
+            }else{
+                setScene(utenteCorrente);
+            }
+            
         } else {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Errore");
@@ -551,7 +621,7 @@ public void pesca() {
         System.out.println("Carte in mano inzio scarta: "+utenteCorrente.mano.size());
 
         if (utenteCorrente.mano.size() > 3) {
-            canPick = false;
+           
             removeCardByImageView(daScartare);
             
             String imagePath = mapImageView.get(cartaDaGioco4);
@@ -568,7 +638,7 @@ public void pesca() {
                 controllaVittorie();
             } else {
                 System.out.println("Errore: immagine non trovata in mapImageView per cartaDaGioco4.");
-                // Potresti lanciare un'eccezione o gestire l'errore in altro modo
+
             }
         } else {
             System.out.println("Non puoi scartare");
