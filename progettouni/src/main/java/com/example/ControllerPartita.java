@@ -472,10 +472,10 @@ public void pesca() {
 
             VBox numeroLayout = new VBox(10);
             numeroLayout.getChildren().addAll(numberCombo, inviaButton);
-            numeroLayout.setPrefSize(200, 100);
+            numeroLayout.setPrefSize(400, 200);
             numeroLayout.setAlignment(Pos.CENTER);
 
-            NumeroStage.setScene(new Scene(numeroLayout));
+            NumeroStage.setScene(new Scene(numeroLayout, 400, 200));
             NumeroStage.showAndWait();
             break;
 
@@ -518,10 +518,10 @@ public void pesca() {
 
                 VBox semeLayout = new VBox(10);
                 semeLayout.getChildren().addAll(semeComboBox, invia);
-                semeLayout.setPrefSize(200, 100);
+                semeLayout.setPrefSize(400, 200);
                 semeLayout.setAlignment(Pos.CENTER);
 
-                semeStage.setScene(new Scene(semeLayout));
+                semeStage.setScene(new Scene(semeLayout, 400, 200));
                 semeStage.showAndWait();
                 break;
 
@@ -540,7 +540,7 @@ public void pesca() {
 
                 // Creiamo una scena e mostriamo il popup
                 Stage rubStage = new Stage();
-                Scene scene = new Scene(root, 300, 200);
+                Scene scene = new Scene(root, 400, 200);
                 rubStage.setScene(scene);
                 rubStage.setTitle("Seleziona utente da rubare");
                 rubStage.show();
