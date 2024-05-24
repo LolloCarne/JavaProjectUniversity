@@ -252,7 +252,12 @@ ImageView daScartare=null;
         Alert alertPescato = new Alert(AlertType.INFORMATION);
         alertPescato.setTitle("Il bot ha pescato");
         alertPescato.setHeaderText(null);
-        alertPescato.setContentText("Carta pescata: "+u.mano.get(u.mano.size()-1));
+        try {
+            alertPescato.setContentText("Carta pescata: "+u.mano.get(u.mano.size()-1));
+        } catch (java.lang.IndexOutOfBoundsException e) {
+            System.out.println("il bot ha pescato");
+        }
+        
         alertPescato.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
 
 
@@ -382,7 +387,7 @@ public void pesca() {
         if (utenteCorrente.mano.size() == 3 && canPick) {
             canPick = false;
             Carta pescata = utenteCorrente.getNick().endsWith("BOT") ? this.m.getCartaDiGioco() : this.m.mazzo.pop();
-            if(pescata.getPath()==null){
+            if(pescata==null){
                 mostraErrore("Il mazzo è finito, non puoi pescare.");
                 Utente vincitore = partecipanti.get(0);
         
