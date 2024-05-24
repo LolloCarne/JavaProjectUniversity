@@ -44,9 +44,17 @@ public class Torneo {
         partiteDaGiocare=n;
     }
 
-    //per determinare il vincitore del torneo
-    public void vincitoreTorneo(int n, String nome){
-        if(n ==0){ //se le partite da giocare nel torneo sono finite
+    public void vincitoreTorneo(int n,ArrayList<Utente> p){
+        
+        String vincitore="";
+        int max=0;
+        for( Utente x : p){
+            if(x.getPartiteVinte()>max){
+                vincitore=x.getNick();
+                max=x.getPartiteVinte();
+            }
+        }
+        if(n ==0){
             Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("TORNEO FINITO");
                 alert.setHeaderText(null);
