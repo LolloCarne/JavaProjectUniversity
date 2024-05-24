@@ -17,8 +17,6 @@ public class BotDummy extends Utente{
         super(u);
       
     }
-
-    
     public String gioca(){
         
         if(controllaTreStessoSeme()){

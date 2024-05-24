@@ -717,9 +717,9 @@ public void pesca() {
         }
         else{
             Alert alertSpacca = new Alert(AlertType.ERROR);
-            alertSpacca.setTitle("Errore");
+            alertSpacca.setTitle("Non puoi rubare carte spacca a questo giocatore");
             alertSpacca.setHeaderText(null);
-            alertSpacca.setContentText("Non puoi rubare carte spacca a questo giocatore");
+            alertSpacca.setContentText("Il giocatore non possiede carte SPACCA oppure ha le tue stesse carte SPACCA");
 
             alertSpacca.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
         }
@@ -778,28 +778,29 @@ public void pesca() {
 
                  vincitore.setPartiteVinte(vincitore.getPartiteVinte()+1);
                  partiteDaGiocare = partiteDaGiocare-1;
-                 t.setPartiteDaGiocare(partiteDaGiocare);
-                 t.vincitoreTorneo(partiteDaGiocare, utenteCorrente.getNick());
+                 
                  System.out.println("da giocare" + partiteDaGiocare);
                  svuotaUtenti();
                  salva();
                  try {
-                     System.out.println("Codice torneo" + vincitore.getCodiceTorneo());
-                     if(vincitore.getCodiceTorneo() != null){
-                         //salvaPartitaTorneo(); metodo per ora vuoto 
+                     System.out.println("Codice torneo " + vincitore.getCodiceTorneo() );
+                     String codice =vincitore.getCodiceTorneo();
+                     if(!codice.equals("null")){
                          
-                         System.out.println("Vincitore"+  vincitore.getNick());
+                        t.setPartiteDaGiocare(partiteDaGiocare);
+                        t.vincitoreTorneo(partiteDaGiocare, utenteCorrente.getNick());
+                        System.out.println("Vincitore"+  vincitore.getNick());
                          
-                         //v.getUtente(utenteCorrente);
+                        //v.getUtente(utenteCorrente);
  
-                         if(partiteDaGiocare != 0){ //se ci sono ancora partite da giocare del torneo
+                        if(partiteDaGiocare != 0 ){ //se ci sono ancora partite da giocare del torneo
                             Partita p = new Partita(partecipanti);
                             
                             codiceNuovaPartitaTorneo.setVisible(true);
                             codiceNuovaPartitaTorneo.setText("Il codice della prossima partita del torneo è:  " + p.getCodice() + "!");
                             System.out.println("Codice nuova partita: "+p.getCodice());
                              
-                         }
+                        }
                      }
  
                      //settare flag vittoria
