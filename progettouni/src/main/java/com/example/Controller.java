@@ -392,9 +392,15 @@ public class Controller {
         TorneoManager manager =new TorneoManager();
         // Aggiungi qui il codice per eliminare la partita
         String codice = codiceEliminaTorneo.getText();
-        manager.deleteTorneoByCode(codice);
-        messagioEliminazione.setText("Torneo eliminato con successo!");
-        codiceEliminaTorneo.clear();
+        boolean b =manager.deleteTorneoByCode(codice);
+        if(b== true){
+            messagioEliminazione.setText("Torneo eliminato con successo!");
+            codiceEliminaTorneo.clear();
+        }
+        else{
+            messagioEliminazione.setText("Codice non riconosciuto!");
+            codiceEliminaTorneo.clear();
+        }
     }
 
         @FXML
