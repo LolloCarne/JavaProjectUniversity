@@ -66,7 +66,7 @@ public class ControllerPartita implements Initializable {
     private Utente utenteCorrente;
     private int statoTurno;
     
-
+    boolean partitaFinita;
     private ImageView selectedImage;
     private ImageView showSelectedCard;
     
@@ -145,7 +145,7 @@ public class ControllerPartita implements Initializable {
 
     public void start(String codice) {
         int partiteGiocate=0;
-
+        partitaFinita=false;
         t = new Torneo();
         p = new Partita(codice);
         System.out.println("Prova: "+p.getPartecipanti().get(0).codiceTorneo);
@@ -472,10 +472,10 @@ public void pesca() {
 
             VBox numeroLayout = new VBox(10);
             numeroLayout.getChildren().addAll(numberCombo, inviaButton);
-            numeroLayout.setPrefSize(200, 100);
+            numeroLayout.setPrefSize(400, 200);
             numeroLayout.setAlignment(Pos.CENTER);
 
-            NumeroStage.setScene(new Scene(numeroLayout));
+            NumeroStage.setScene(new Scene(numeroLayout, 400, 200));
             NumeroStage.showAndWait();
             break;
 
@@ -518,10 +518,10 @@ public void pesca() {
 
                 VBox semeLayout = new VBox(10);
                 semeLayout.getChildren().addAll(semeComboBox, invia);
-                semeLayout.setPrefSize(200, 100);
+                semeLayout.setPrefSize(400, 200);
                 semeLayout.setAlignment(Pos.CENTER);
 
-                semeStage.setScene(new Scene(semeLayout));
+                semeStage.setScene(new Scene(semeLayout, 400, 200));
                 semeStage.showAndWait();
                 break;
 
@@ -540,7 +540,7 @@ public void pesca() {
 
                 // Creiamo una scena e mostriamo il popup
                 Stage rubStage = new Stage();
-                Scene scene = new Scene(root, 300, 200);
+                Scene scene = new Scene(root, 400, 200);
                 rubStage.setScene(scene);
                 rubStage.setTitle("Seleziona utente da rubare");
                 rubStage.show();
@@ -597,6 +597,9 @@ public void pesca() {
     }
 
     public void passa() {
+        if(partitaFinita){
+            return;
+        }
         System.out.println("Carte in mano passa: "+utenteCorrente.mano.size());
         if (utenteCorrente.mano.size() == 3) {
             int currentIndex = partecipanti.indexOf(utenteCorrente);
@@ -762,7 +765,7 @@ public void pesca() {
     
     public void vittoria(Utente vincitore){
                  //comandi che servono per la schermata finale del vincitore di Spacca
-                 
+                 partitaFinita=true;
                  cartaDaGioco1.setVisible(false);
                  cartaDaGioco2.setVisible(false);
                  cartaDaGioco3.setVisible(false);
@@ -771,7 +774,7 @@ public void pesca() {
                  IndietroBtn.setVisible(true);
                  messaggioVincitore.setVisible(true);
                  messaggioVincitore.setText("Il vincitore di SPACCA è " + vincitore.getNick() + "!");
-
+                
                  vincitore.setPartiteVinte(vincitore.getPartiteVinte()+1);
                  partiteDaGiocare = partiteDaGiocare-1;
                  
