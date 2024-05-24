@@ -129,15 +129,15 @@
 }
 
 #messagioEliminazione {
-    -fx-text-fill: red;
+    -fx-text-fill: #FFF59D;
 }
 
 #messaggioEliminaUtente {
-    -fx-text-fill: red;
+    -fx-text-fill: #FFF59D;
 }
 
 #messaggioLoginErrato {
-    -fx-text-fill: red;
+    -fx-text-fill: #FFF59D;
     -fx-font-size: 20px;
 }
 
@@ -146,3 +146,6 @@
     -fx-font-size: 50px;
 }
 
+#codiceNuovaPartitaTorneo {
+    -fx-text-fill: #FFF59D;
+}
