@@ -134,6 +134,9 @@ public class ControllerPartita implements Initializable {
     @FXML
     private Label messaggioVincitore;
 
+    @FXML
+    private Label codiceNuovaPartitaTorneo;
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         
@@ -149,6 +152,8 @@ public class ControllerPartita implements Initializable {
         mapImageView= new HashMap<>();
         partecipanti = p.getPartecipanti();
         mSpacca = new MazzoSpacca(partecipanti.size());
+
+        codiceNuovaPartitaTorneo.setVisible(false);
 
         System.out.println(p.toString());
         // diamo le carte a tutti i partecipant
@@ -451,6 +456,7 @@ public void pesca() {
 
 
             case "com.DTO.CartaRubaSpacca":
+                c.setValore(9);
                 Button inviaRub = new Button("Invia");
                 ChoiceBox<String> choiceBox = new ChoiceBox<>(FXCollections.observableArrayList());
                 for (Utente utente : partecipanti) {
@@ -661,7 +667,7 @@ public void pesca() {
             imgViewList.get(utenteCorrente.carteSpacca.indexOf(c)).setImage(image);
 
             
-            if(utenteCorrente.carteSpacca.indexOf(c)==1){
+            if(utenteCorrente.carteSpacca.indexOf(c)==0){
                 
                 vittoria(utenteCorrente);
                 
@@ -690,6 +696,7 @@ public void pesca() {
     
     public void vittoria(Utente vincitore){
                  //comandi che servono per la schermata finale del vincitore di Spacca
+                 
                  cartaDaGioco1.setVisible(false);
                  cartaDaGioco2.setVisible(false);
                  cartaDaGioco3.setVisible(false);
@@ -702,7 +709,7 @@ public void pesca() {
                  vincitore.setPartiteVinte(vincitore.getPartiteVinte()+1);
                  partiteDaGiocare = partiteDaGiocare-1;
                  t.setPartiteDaGiocare(partiteDaGiocare);
-                 t.vincitoreTorneo();
+                 t.vincitoreTorneo(partiteDaGiocare, utenteCorrente.getNick());
                  System.out.println("da giocare" + partiteDaGiocare);
                  svuotaUtenti();
                  salva();
@@ -715,10 +722,12 @@ public void pesca() {
                          ControllerVincitore v = new ControllerVincitore();
                          //v.getUtente(utenteCorrente);
  
-                         if(partiteDaGiocare != 0){
-                             
-                             Partita p = new Partita(partecipanti);
-                             System.out.println("Codice nuova partita: "+p.getCodice());
+                         if(partiteDaGiocare != 0){ //se ci sono ancora partite da giocare del torneo
+                            Partita p = new Partita(partecipanti);
+                            
+                            codiceNuovaPartitaTorneo.setVisible(true);
+                            codiceNuovaPartitaTorneo.setText("Il codice della prossima partita del torneo è:  " + p.getCodice() + "!");
+                            System.out.println("Codice nuova partita: "+p.getCodice());
                              
                          }
                      }
@@ -749,14 +758,7 @@ public void pesca() {
                 i.setImage(null);
         }
     }
-    @FXML
-    void goToVincitoreAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("vittoriaScene.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+    
 
     @FXML
     void saveAndExitBtnAction(ActionEvent event) {

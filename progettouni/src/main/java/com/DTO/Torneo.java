@@ -70,12 +70,12 @@ public class Torneo {
         partiteDaGiocare=n;
     }
 
-        public void vincitoreTorneo(){
-        if(this.partiteDaGiocare ==0){
+    public void vincitoreTorneo(int n, String nome){
+        if(n ==0){
             Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("TORNEO FINITO");
                 alert.setHeaderText(null);
-                alert.setContentText("COMPLIMENTI HAI SPACCATO!");
+                alert.setContentText("COMPLIMENTI" + nome + " HAI SPACCATO");
                 alert.showAndWait(); 
         }
     }

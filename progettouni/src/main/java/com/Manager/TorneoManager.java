@@ -94,6 +94,7 @@ public class TorneoManager {
         ObjectNode rootNode;
         ArrayNode partiteArray;
 
+        
         try {
             // Legge il contenuto esistente del file JSON
             File file = new File(FILE_PATH);
@@ -119,6 +120,7 @@ public class TorneoManager {
 
                 partitaNode.set("Partecipanti", partecipantiArray);
                 partiteArray.add(partitaNode);
+
             }
 
             // Scrive l'oggetto JSON combinato sul file
@@ -221,6 +223,7 @@ public class TorneoManager {
         //crea array di nomi 
         System.out.println(nome);
         String [] nomi =nome.split(",");
+        
         String [] nomiSplit = new String[4];
         //metodo per gestire l'inserimento di più di 4 giocatori
         if(nomi.length > 4){
@@ -249,7 +252,8 @@ public class TorneoManager {
     }
 
 
-    public void stampaDizionario( HashMap partecipantiToreno){
+    public void stampaDizionario(HashMap dizionario){
+        System.out.println(dizionario.size());
         for (Map.Entry<String, String[]> entry : partecipantiTorneo.entrySet()) {
             String key = entry.getKey();
             String[] value = entry.getValue();
@@ -277,28 +281,19 @@ public class TorneoManager {
         return partecipanti;
     }
 
-    public void vincitoreTorneo(int n){
-        
-        if(n ==0){      
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("TORNEO FINITO");
-            alert.setHeaderText(null);
-            alert.setContentText("COMPLIMENTI HAI SPACCATO!");
-            alert.showAndWait(); 
-        }
-    }
+    
 
     public void deleteTorneoByCode(String codice){
         HashMap<String,String[]> tornei = leggiJson();
-        /*for (Map.Entry<String, String[]> entry : partecipantiTorneo.entrySet()) {
-            String key = entry.getKey();
-            String[] value = entry.getValue();*/
+
+        stampaDizionario(tornei);
 
         for (String key : tornei.keySet()) {
-            if (tornei.get(key).equals(codice)) {
-            tornei.remove(key) ;
+            if (key.equals(codice)) {
+                tornei.remove(key) ;
             }
         }
+        stampaDizionario(tornei);
         scriviJsonConHashMap(tornei);
     } 
 }

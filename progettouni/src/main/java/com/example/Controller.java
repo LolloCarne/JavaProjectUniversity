@@ -352,7 +352,7 @@ public class Controller {
     
     }
     @FXML
-    void eliminaTorneoCodice (ActionEvent event) throws IOException {
+    void eliminaTorneoDefi (ActionEvent event) throws IOException {
         // Crea una finestra di dialogo di conferma
             Alert confermaEliminazione = new Alert(AlertType.CONFIRMATION);
             confermaEliminazione.setTitle("Conferma Eliminazione");
@@ -366,10 +366,11 @@ public class Controller {
             confermaEliminazione.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.YES) {
                     // Se l'utente conferma, esegui l'eliminazione
+                    System.out.println("qui si");
                     eliminaTorneo();
                 }
             });
-            }
+    }
     @FXML
     void eliminaPartitaDefi(ActionEvent event) throws IOException {
     // Crea una finestra di dialogo di conferma
@@ -403,7 +404,6 @@ public class Controller {
         TorneoManager manager =new TorneoManager();
         // Aggiungi qui il codice per eliminare la partita
         String codice = codiceEliminaTorneo.getText();
-        System.out.println(codice);
         manager.deleteTorneoByCode(codice);
         messagioEliminazione.setText("Torneo eliminata con successo!");
         codiceEliminaTorneo.clear();

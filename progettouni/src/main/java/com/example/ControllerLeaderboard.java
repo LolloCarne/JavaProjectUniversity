@@ -83,11 +83,14 @@ public class ControllerLeaderboard implements Initializable{
 
         for(Partita par : leggijson){
             vinte =par.partiteVintePartecipanti();
+            //2,io
+
             for (Map.Entry<String, String> entry : vinte.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
                 stringa =stringa + "\n" + key + ", " +  value;
                 leaderboardArea.appendText(stringa);
+                stringa="";
             }   
         
         }

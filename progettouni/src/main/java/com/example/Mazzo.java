@@ -56,8 +56,8 @@ public class Mazzo {
         this.mazzo.add(new CartaRubaSpacca( "/com/example/img/rubaSpacca.png"));
         this.mazzo.add(new CartaRubaSpacca( "/com/example/img/rubaSpacca.png"));
 
-        this.mazzo.add(new CartaJollyNumero("/com/example/img/jollySeme.png"));
-        this.mazzo.add(new CartaJollyNumero("/com/example/img/jollySeme.png"));
+        this.mazzo.add(new CartaJollyNumero("/com/example/img/jollyNumero.png"));
+        this.mazzo.add(new CartaJollyNumero("/com/example/img/jollyNumero.png"));
 
         this.mazzo.add(new CartaJollySeme("/com/example/img/jollySeme.png"));
         this.mazzo.add(new CartaJollySeme("/com/example/img/jollySeme.png"));

@@ -119,9 +119,8 @@ public class ControllerTorneo implements Initializable {
     //setta i partecipanti del torneoo 
     @FXML
     void okayNextAction(ActionEvent event) {
-        manager = new TorneoManager();
-        nome = nomiTorneo.getText();
-        nomeTotal = nome + "," + nomiBot;
+        
+        
         System.out.println("stringa del nome" + nomeTotal);
         //n = Integer.parseInt(numeroPartecipanti.getText());
         //manager.scriviDizionario(nomeTotal, n);
@@ -131,10 +130,11 @@ public class ControllerTorneo implements Initializable {
 
     @FXML
     void smartBotAction(ActionEvent event) {
+        manager = new TorneoManager();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Okay Bot Smart aggiunto");
         alert.setHeaderText(null);
-        alert.setContentText("\nSalva il codice ed accedi come utente tramite esso.");
+        alert.setContentText("\nAggiuno bot smart.");
         alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
 
         System.out.println("qui");
@@ -145,10 +145,11 @@ public class ControllerTorneo implements Initializable {
     }
     @FXML
     void stupidBotAction(ActionEvent event) {
+        manager = new TorneoManager();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Okay Bot Stupid aggiunto");
         alert.setHeaderText(null);
-        alert.setContentText("\nSalva il codice ed accedi come utente tramite esso.");
+        alert.setContentText("\nAggiuno bot stupid.");
         alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
     
         String nomeBot = manager.creaBotStupid();
@@ -170,6 +171,9 @@ public class ControllerTorneo implements Initializable {
 
     @FXML
     void iniziaTorneoAction(ActionEvent event) throws IOException {
+        TorneoManager manager = new TorneoManager();
+        nome = nomiTorneo.getText();
+        nomeTotal = nome + "," + nomiBot;
         manager.scriviDizionario(nomeTotal, n);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Codice Prima Partita");

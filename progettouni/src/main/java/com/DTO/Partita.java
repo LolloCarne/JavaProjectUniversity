@@ -116,11 +116,12 @@ public class Partita {
         String str="";
         for(Utente u : Partecipanti){
             str = u.getPartiteVinte() +"";
+            System.out.println(u.getPartiteVinte());
             partiteVinte.put(str,u.getNick());
         }
-        /*for (Map.Entry<String, String> entry : partiteVinte.entrySet()) {
+        for (Map.Entry<String, String> entry : partiteVinte.entrySet()) {
             System.out.println("Chiave: " + entry.getKey() + ", Valore: " + entry.getValue());
-        }*/
+        }
         return partiteVinte;
 
     }

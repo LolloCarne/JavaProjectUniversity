@@ -4,6 +4,7 @@ public enum Seme {
     FORCHETTE("forchetta"),
     CUCCHIAI("cucchiaio"),
     COLTELLI("coltello");
+    
 
     private String valore;
 

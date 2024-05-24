@@ -15,7 +15,7 @@
       <TextField fx:id="nomiTorneo" layoutX="123.0" layoutY="367.0" prefHeight="63.0" prefWidth="365.0" promptText="nome partecipanti" />
       <Button fx:id="stupidBotButton" layoutX="792.0" layoutY="338.0" mnemonicParsing="false" onAction="#stupidBotAction" text="Stupid" />
       <Button fx:id="smartBotButton" layoutX="992.0" layoutY="338.0" mnemonicParsing="false" onAction="#smartBotAction" text="Smart" />
-      <Button fx:id="okayNomiTorneoButton" layoutX="916.0" layoutY="416.0" mnemonicParsing="false" onAction="#okayNextAction" text="Ok" />
+      <Button fx:id="okayNomiTorneoButton" layoutX="503.0" layoutY="369.0" mnemonicParsing="false" onAction="#okayNextAction" text="Ok" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="Home" />
       <Label layoutX="492.0" layoutY="72.0" text="CREAZIONE TORNEO" />
       <Text fill="WHITE" layoutX="123.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*inserisci nomi separati da una virgola senza spazi" wrappingWidth="380.407470703125">

@@ -15,8 +15,8 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="codiceElimina" layoutX="480.0" layoutY="285.0" prefHeight="63.0" prefWidth="349.0" promptText="Codice torneo" />
-      <Button fx:id="eliminaBtn" layoutX="586.0" layoutY="461.0" mnemonicParsing="false" onAction="#eliminaPartitaDefi" text="Elimina" />
+      <TextField fx:id="codiceEliminaTorneo" layoutX="480.0" layoutY="285.0" prefHeight="63.0" prefWidth="349.0" promptText="Codice torneo" />
+      <Button fx:id="eliminaBtn" layoutX="586.0" layoutY="461.0" mnemonicParsing="false" onAction="#eliminaTorneoDefi" text="Elimina" />
       <Label fx:id="messagioEliminazione" layoutX="440.0" layoutY="360.0" prefHeight="63.0" prefWidth="465.0" textFill="RED">
          <font>
             <Font size="19.0" />

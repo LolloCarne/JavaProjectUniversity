@@ -13,7 +13,6 @@ public class Carta implements Comparable<Carta>{
 
     public Carta(){}
 
-    
     public Carta(Seme s, int v){
         this.s=s;
         this.valore=v+1;
