@@ -1,7 +1,6 @@
 package com.example;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,12 +16,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -30,29 +26,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
-import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import java.util.HashMap;
 import java.util.Map;
-import javafx.scene.image.Image;
-
 import com.DTO.BotDummy;
 import com.DTO.BotSmart;
-//import com.DTO.BotSmart;
 import com.DTO.Carta;
-import com.DTO.CartaRubaSpacca;
 import com.DTO.CartaSpacca;
 import com.DTO.Partita;
 import com.DTO.Utente;
 import com.Enum.Seme;
-import com.Manager.TorneoManager;
 import com.DTO.Torneo;
-
-import javafx.scene.control.TextField;
 
 public class ControllerPartita implements Initializable {
 
@@ -144,21 +129,19 @@ public class ControllerPartita implements Initializable {
     }
 
     public void start(String codice) {
+
         int partiteGiocate=0;
         partitaFinita=false;
         t = new Torneo();
         p = new Partita(codice);
-        System.out.println("Prova: "+p.getPartecipanti().get(0).codiceTorneo);
         m = new Mazzo();
         mapImageView= new HashMap<>();
         partecipanti = p.getPartecipanti();
         mSpacca = new MazzoSpacca(partecipanti.size());
-
         codiceNuovaPartitaTorneo.setVisible(false);
 
-        System.out.println(p.toString());
-        // diamo le carte a tutti i partecipant
         
+        //distribuzione carte ai partecipanti
         for (Utente u : partecipanti) {
             if(u.mano.isEmpty()){
                 for (int i = 0; i < 3; i++) {
@@ -170,10 +153,12 @@ public class ControllerPartita implements Initializable {
         for(Utente x : partecipanti){
             partiteGiocate+=x.getPartiteVinte();
         }
-        partiteDaGiocare=3-partiteGiocate;
-        utenteCorrente = partecipanti.get(0);
-        imgViewList = new ArrayList<>();
 
+        partiteDaGiocare=3-partiteGiocate;
+
+        utenteCorrente = partecipanti.get(0);
+
+        imgViewList = new ArrayList<>();
         imgViewList.add(imgVs);
         imgViewList.add(imgVp);
         imgViewList.add(imgVa1);
@@ -182,7 +167,6 @@ public class ControllerPartita implements Initializable {
         imgViewList.add(imgVa2);
 
         setScene(utenteCorrente);
-        //setGiocatoreInPartita(u.getNick());
     }
 
 
@@ -191,13 +175,11 @@ public class ControllerPartita implements Initializable {
         setScene(u);
         BotSmart bot= new BotSmart(u);
 
-
-
         // Impostazione della scena per il bot
         System.out.println("entrato bot");  
 
-//decido quale carta scartare
-ImageView daScartare=null;
+        //decido quale carta scartare
+        ImageView daScartare=null;
         if(u.getNick().endsWith("@DUMMYBOT")){
             //logica scelta carta da scartare bot smart
             int randomNumber = new Random().nextInt(3);
@@ -246,9 +228,8 @@ ImageView daScartare=null;
 
         }
 
-
         pesca();
-        System.out.println(u.mano.size());
+        
         Alert alertPescato = new Alert(AlertType.INFORMATION);
         alertPescato.setTitle("Il bot ha pescato");
         alertPescato.setHeaderText(null);
@@ -259,23 +240,6 @@ ImageView daScartare=null;
         }
         
         alertPescato.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
-
-
-        //scartare        
-       /*  removeCardByImageView(daScartare);
-        System.out.println("Percorso da settare: "+mapImageView.get(cartaDaGioco4));
-        Image image=null;
-        if(mapImageView.get(cartaDaGioco4)==null){
-            image = new Image(getClass().getResourceAsStream(u.mano.get(u.mano.size()-1).getPath()));
-        }else{
-            image = new Image(getClass().getResourceAsStream(mapImageView.get(cartaDaGioco4)));
-        }
-       
-        
-        cartaDaGioco4.setImage(null);
-        mapImageView.remove(cartaDaGioco4); // Rimuove l'associazione precedente
-        daScartare.setImage(image);
-        mapImageView.put(daScartare, imagePath); // Aggiunge la nuova associazione*/
 
         removeCardByImageView(daScartare);
             
@@ -294,49 +258,43 @@ ImageView daScartare=null;
 
         }
 
+        //print per capire la logica
         System.out.println(daScartare.getImage().toString());
-
         System.out.println(u.mano.size());
 
         //wait x
         Alert alert = new Alert(AlertType.INFORMATION);
-
         switch (bot.gioca()) {
             case "Stesso Seme":
-            
-            alert.setTitle("il Bot "+u.getNick() + " Ha un tris di semi");
-            alert.setHeaderText(null);
-            alert.setContentText("Ha vinto una carta spacca, ora scarterà una carta a sua scelta");
-            alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
+                alert.setTitle("il Bot "+u.getNick() + " Ha un tris di semi");
+                alert.setHeaderText(null);
+                alert.setContentText("Ha vinto una carta spacca, ora scarterà una carta a sua scelta");
+                alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
 
-            CartaSpacca cs = mSpacca.getRightCard(utenteCorrente);
-            utenteCorrente.carteSpacca.add(cs);
-            aggiornaSpacca();
-            //controllo che il giocatore non abbia vinto e se fa parte di un torneo
-                
+                CartaSpacca cs = mSpacca.getRightCard(utenteCorrente);
+                utenteCorrente.carteSpacca.add(cs);
+                aggiornaSpacca();
+                //controllo che il giocatore non abbia vinto e se fa parte di un torneo
                 break;
-
             case "Scala":
 
-            alert.setTitle("il Bot "+u.getNick() + " fatto scala");
-            alert.setHeaderText(null);
-            alert.setContentText("Ha vinto una carta spacca, ora scarterà una carta a sua scelta");
-            alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
-            
-            CartaSpacca cs2 = mSpacca.getRightCard(utenteCorrente);
-            utenteCorrente.carteSpacca.add(cs2);
-            aggiornaSpacca();
-            //controllo che il giocatore non abbia vinto e se fa parte di un torneo
+                alert.setTitle("il Bot "+u.getNick() + " fatto scala");
+                alert.setHeaderText(null);
+                alert.setContentText("Ha vinto una carta spacca, ora scarterà una carta a sua scelta");
+                alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
+                
+                CartaSpacca cs2 = mSpacca.getRightCard(utenteCorrente);
+                utenteCorrente.carteSpacca.add(cs2);
+                aggiornaSpacca();
+                //controllo che il giocatore non abbia vinto e se fa parte di un torneo
 
-            //aggiorna carte spacca utente in scena
+                //aggiorna carte spacca utente in scena
                 break;
 
             default:
                 break;
         }
         passa();
-
-
     }
  
 
@@ -431,43 +389,40 @@ public void pesca() {
 }
 
     public void actionCarta(Carta c) {
-
         switch (c.getClass().getName()) {
-
             case "com.DTO.CartaJollyNumero":
+                Random rand = new Random();
+                Seme seme = Seme.values()[rand.nextInt(Seme.values().length)];
+                Stage NumeroStage = new Stage();
+                NumeroStage.initModality(Modality.APPLICATION_MODAL);
+                NumeroStage.setTitle("Scegli il Numero");
 
-            Random rand = new Random();
-            Seme seme = Seme.values()[rand.nextInt(Seme.values().length)];
-            Stage NumeroStage = new Stage();
-            NumeroStage.initModality(Modality.APPLICATION_MODAL);
-            NumeroStage.setTitle("Scegli il Numero");
+                ComboBox<Integer> numberCombo = new ComboBox<>();
+                numberCombo.getItems().addAll(1, 2, 3,4,5,6,7);
 
-            ComboBox<Integer> numberCombo = new ComboBox<>();
-            numberCombo.getItems().addAll(1, 2, 3,4,5,6,7);
-
-            Button inviaButton = new Button("Invia");
-            inviaButton.setOnAction(e -> {
-                int numeroScelto = numberCombo.getValue()-1;
-                if (numeroScelto != -1) {
-                    // Qui salvi il valore selezionato
-                    // Ad esempio, puoi passarlo a un metodo per fare qualcosa con esso
-                    // Esempio: metodoPerGestireSeme(semeScelto);
-                    Carta jollyNumero = new Carta(seme,numeroScelto);
-                    String imagePath = jollyNumero.getPath();
-                    Image image = new Image(getClass().getResourceAsStream(imagePath));
-                    cartaDaGioco4.setImage(image);
-                    utenteCorrente.mano.add(jollyNumero);
-                    mapImageView.put( cartaDaGioco4, imagePath);
-                    utenteCorrente.mano.remove(c);
-                    System.out.println("Seme selezionato: " + numeroScelto);
-                    NumeroStage.close();
-                } else {
-                    Alert alert = new Alert(AlertType.WARNING);
-                    alert.setTitle("Attenzione");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Seleziona un numero prima di inviare.");
-                    alert.showAndWait();
-                }
+                Button inviaButton = new Button("Invia");
+                inviaButton.setOnAction(e -> {
+                    int numeroScelto = numberCombo.getValue()-1;
+                    if (numeroScelto != -1) {
+                        // Qui salvi il valore selezionato
+                        // Ad esempio, puoi passarlo a un metodo per fare qualcosa con esso
+                        // Esempio: metodoPerGestireSeme(semeScelto);
+                        Carta jollyNumero = new Carta(seme,numeroScelto);
+                        String imagePath = jollyNumero.getPath();
+                        Image image = new Image(getClass().getResourceAsStream(imagePath));
+                        cartaDaGioco4.setImage(image);
+                        utenteCorrente.mano.add(jollyNumero);
+                        mapImageView.put( cartaDaGioco4, imagePath);
+                        utenteCorrente.mano.remove(c);
+                        System.out.println("Seme selezionato: " + numeroScelto);
+                        NumeroStage.close();
+                    } else {
+                        Alert alert = new Alert(AlertType.WARNING);
+                        alert.setTitle("Attenzione");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Seleziona un numero prima di inviare.");
+                        alert.showAndWait();
+                    }
             });
 
             VBox numeroLayout = new VBox(10);
@@ -574,12 +529,12 @@ public void pesca() {
                 });
 
                 break;
-
             default:
                 break;
         }
     }
 
+    //passandogli l'utente a cui vui rubare la carta ti dice se l'utente corrente puo rubargliela o no
     public boolean canGrab(Utente u) {
         String[] lettere = { "S", "P", "A", "C", "C", "A" };
         ArrayList<CartaSpacca> carteUtente = utenteCorrente.carteSpacca;
@@ -587,11 +542,9 @@ public void pesca() {
         if (carteUtente.size() >= lettere.length) {
             return false; // Non posso aggiungere altre carte
         }
-
         if(carteUtente.size()<u.carteSpacca.size()){
             return true;
         }
-
         return false;
         
     }
@@ -619,7 +572,6 @@ public void pesca() {
             alert.setTitle("Errore");
             alert.setHeaderText(null);
             alert.setContentText("Non puoi passare il turno se non hai 3 carte.");
-
             alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
         }
 
@@ -629,7 +581,6 @@ public void pesca() {
         System.out.println("Carte in mano inzio scarta: "+utenteCorrente.mano.size());
 
         if (utenteCorrente.mano.size() > 3) {
-           
             removeCardByImageView(daScartare);
             
             String imagePath = mapImageView.get(cartaDaGioco4);
@@ -718,8 +669,6 @@ public void pesca() {
     }
 
     public void rubSpacca(Utente u){
-
-
         if(canGrab(u)){
             utenteCorrente.carteSpacca.add(u.carteSpacca.get(utenteCorrente.carteSpacca.size()));
         }
@@ -728,10 +677,8 @@ public void pesca() {
             alertSpacca.setTitle("Non puoi rubare carte spacca a questo giocatore");
             alertSpacca.setHeaderText(null);
             alertSpacca.setContentText("Il giocatore non possiede carte SPACCA oppure ha le tue stesse carte SPACCA");
-
             alertSpacca.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
         }
-
     }
 
     public void aggiornaSpacca(){
@@ -739,16 +686,13 @@ public void pesca() {
         String imgPath;
         Image image;
         for(CartaSpacca c : utenteCorrente.carteSpacca){
-
             imgPath = c.getPath();
             image = new Image(getClass().getResourceAsStream(imgPath));
             imgViewList.get(utenteCorrente.carteSpacca.indexOf(c)).setImage(image);
 
-            
             if(utenteCorrente.carteSpacca.indexOf(c)==5){
-                
+                //se ha tutte e 6 le carte
                 vittoria(utenteCorrente);
-                
             }
         }
     }
@@ -764,50 +708,41 @@ public void pesca() {
 
     
     public void vittoria(Utente vincitore){
-                 //comandi che servono per la schermata finale del vincitore di Spacca
-                 partitaFinita=true;
-                 cartaDaGioco1.setVisible(false);
-                 cartaDaGioco2.setVisible(false);
-                 cartaDaGioco3.setVisible(false);
-                 cartaDaGioco4.setVisible(false);
-                 saveAndExitBtn.setVisible(false);
-                 IndietroBtn.setVisible(true);
-                 messaggioVincitore.setVisible(true);
-                 messaggioVincitore.setText("Il vincitore di SPACCA è " + vincitore.getNick() + "!");
+        partitaFinita=true;
+        //comandi che servono per la schermata finale del vincitore di Spacca
+        cartaDaGioco1.setVisible(false);
+        cartaDaGioco2.setVisible(false);
+        cartaDaGioco3.setVisible(false);
+        cartaDaGioco4.setVisible(false);
+        saveAndExitBtn.setVisible(false);
+        IndietroBtn.setVisible(true);
+        messaggioVincitore.setVisible(true);
+        messaggioVincitore.setText("Il vincitore di SPACCA è " + vincitore.getNick() + "!");
                 
-                 vincitore.setPartiteVinte(vincitore.getPartiteVinte()+1);
-                 partiteDaGiocare = partiteDaGiocare-1;
-                 
-                 System.out.println("da giocare" + partiteDaGiocare);
-                 svuotaUtenti();
-                 salva();
-                 try {
-                     System.out.println("Codice torneo " + vincitore.getCodiceTorneo() );
-                     String codice =vincitore.getCodiceTorneo();
-                     if(!codice.equals("null")){
-                         
-                        t.setPartiteDaGiocare(partiteDaGiocare);
-                        t.vincitoreTorneo(partiteDaGiocare, utenteCorrente.getNick());
-                        System.out.println("Vincitore"+  vincitore.getNick());
-                         
-                        //v.getUtente(utenteCorrente);
- 
-                        if(partiteDaGiocare != 0 ){ //se ci sono ancora partite da giocare del torneo
-                            Partita p = new Partita(partecipanti);
-                            
-                            codiceNuovaPartitaTorneo.setVisible(true);
-                            codiceNuovaPartitaTorneo.setText("Il codice della prossima partita del torneo è:  " + p.getCodice());
-                            System.out.println("Codice nuova partita: "+p.getCodice());
-                             
-                        }
-                     }
- 
-                     //settare flag vittoria
-                 }
+        vincitore.setPartiteVinte(vincitore.getPartiteVinte()+1);
+        partiteDaGiocare = partiteDaGiocare-1;
+        svuotaUtenti();
+
+        salva();
+        try {
+            String codice =vincitore.getCodiceTorneo();
+            if(!codice.equals("null")){
+                
+            t.setPartiteDaGiocare(partiteDaGiocare);
+            t.vincitoreTorneo(partiteDaGiocare, utenteCorrente.getNick());
+
+            if(partiteDaGiocare != 0 ){ //se ci sono ancora partite da giocare del torneo
+                Partita p = new Partita(partecipanti);
+                codiceNuovaPartitaTorneo.setVisible(true);
+                codiceNuovaPartitaTorneo.setText("Il codice della prossima partita del torneo è:  " + p.getCodice());
+                System.out.println("Codice nuova partita: "+p.getCodice());
+            }
+            }
+        }
                      
-                 catch (Exception e) {
-                     // TODO: handle exception
-                 }
+        catch (Exception e) {
+            // TODO: handle exception
+        }
     }
 
     public void salva(){
@@ -833,13 +768,10 @@ public void pesca() {
     @FXML
     void saveAndExitBtnAction(ActionEvent event) {
         salva();
-    try {
-        goBack(event);
-    } catch (Exception e) {
-        System.out.println("Errore: "+e);
+        try {
+            goBack(event);
+        } catch (Exception e) {
+            System.out.println("Errore: "+e);
+        }
     }
-        
-    }
-
-    
 }

@@ -76,12 +76,9 @@ public class ControllerLeaderboard implements Initializable{
 
     @FXML
     void mostraLeaderBoardAction(ActionEvent event) {
-        System.out.println("si");
-
         PartitaManager manager = new PartitaManager();
         ArrayList<Partita> leggijson = manager.leggiJson();
 
-        // List to hold all entries for sorting
         List<Map.Entry<String, String>> allEntries = new ArrayList<>();
 
         for (Partita par : leggijson) {
@@ -89,7 +86,7 @@ public class ControllerLeaderboard implements Initializable{
             allEntries.addAll(vinte.entrySet());
         }
 
-        // Comparator for sorting keys in descending order
+        // comparatore per mette in ordine decrescente le chiavi
         Comparator<Map.Entry<String, String>> keyComparator = new Comparator<Map.Entry<String, String>>() {
             @Override
             public int compare(Map.Entry<String, String> e1, Map.Entry<String, String> e2) {
@@ -97,13 +94,9 @@ public class ControllerLeaderboard implements Initializable{
             }
         };
 
-        // Sort all entries by key in descending order
         allEntries.sort(keyComparator);
-
-        // Clear leaderboardArea before adding new sorted entries
         leaderboardArea.clear();
 
-        // Add sorted entries to the leaderboardArea
         for (Map.Entry<String, String> entry : allEntries) {
             String key = entry.getKey();
             String value = entry.getValue();

@@ -10,13 +10,9 @@ import com.DTO.BotDummy;
 import com.DTO.BotSmart;
 import com.DTO.Partita;
 import com.DTO.Utente;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-
-import javafx.scene.control.ListView;
 
 public class PartitaManager {
 
@@ -84,7 +80,6 @@ public class PartitaManager {
     public ArrayList<Partita> leggiJson(){
         ArrayList <Partita> nuovaLista = new ArrayList<>();
         try {
-
             // Leggi il contenuto del file JSON esistente
             if (Files.exists(Paths.get(filename))) {
                 JsonNode listaParite= objectMapper.readTree(Paths.get(filename).toFile());
@@ -127,12 +122,10 @@ public class PartitaManager {
 
     
     public void deletePartitaByCode(String codice){
-        
         ArrayList<Partita> partite = leggiJson();
         for(int i = 0; i<partite.size(); i++){
             System.out.println(partite.get(i).getCodice());
             if(partite.get(i).getCodice().equals(codice)){
-                
                 partite.remove(i);
             }
         }
@@ -144,16 +137,13 @@ public class PartitaManager {
         for (Utente u : p.getPartecipanti()){
             nicks.add(u.getNick());
         }
-
         return nicks;
     }
 
+    //controlla il login 
     public boolean checkLogin(String username, Partita p, String codice){
         PartitaManager manager = new PartitaManager();
-  
-
         for (Utente u : manager.getPartecipantiByCode(codice)){
-           
             if ( u.getNick().equals(username)){
                 return true;
             }
@@ -163,7 +153,6 @@ public class PartitaManager {
     }
 
     public Partita getPartitaByCode(String code){
-
         ArrayList<Partita> partiteList = leggiJson();
 
         for(Partita p : partiteList){

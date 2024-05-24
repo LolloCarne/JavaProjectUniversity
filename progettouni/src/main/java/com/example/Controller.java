@@ -151,6 +151,7 @@ public class Controller {
 
     PartitaManager manager = new PartitaManager();
 
+    //metodi per le azioni dei diversi bottono
     @FXML
     void goBack(ActionEvent event) throws IOException {
 
@@ -163,7 +164,6 @@ public class Controller {
 
     @FXML
     void onBtnClick1(ActionEvent event) throws IOException{
-        
         Parent root = FXMLLoader.load(getClass().getResource("utenteScene.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -181,7 +181,7 @@ public class Controller {
     }
    
      
-     @FXML
+    @FXML
     void goToGiocaBot(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("schermataUtente.fxml")); //nome scena successiva
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -190,7 +190,7 @@ public class Controller {
         stage.show();
     }
     
-     @FXML
+    @FXML
     void goToUnisciti(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("uniscitiScene.fxml")); //nome scena successiva
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -202,7 +202,6 @@ public class Controller {
 
     @FXML
     void onBtnLogin(ActionEvent event) throws IOException {
-        
         String codice = tfCodice.getText();
         String nickname = tfNickname.getText();
         if(!codice.isBlank() || !nickname.isBlank()){
@@ -210,9 +209,10 @@ public class Controller {
             //creando la partita con costruttore vuoto mi scrive sempre una partita nuova nel json
             Partita p = new Partita(codice);
             boolean b = manager.checkLogin(nickname, p, codice );
+
+            //controllo del login dell'utente
             if (b==true){
                 Parent root = FXMLLoader.load(getClass().getResource("regoleScene.fxml")); //nome scena successiva
-            
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
@@ -229,39 +229,24 @@ public class Controller {
         else{
             System.out.println("Non lasciare i campi vuoti");
         }
-
     }
 
     @FXML
     void creaPartitaAction(ActionEvent event) throws IOException{
-        //Partita p = new Partita(); 
         Parent root = FXMLLoader.load(getClass().getResource("creazionePartitaScene.fxml")); //nome scena successiva
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-       // campoCodice.setText(p.getCode());
-
     }
-
-            
-
-    
 
     @FXML
     void addUtenteAction(ActionEvent event) throws IOException{
-        /*String codice= campoCodice.getText();
-        Partita p = new Partita(codice);
-
-        p.addPartecipante(new Utente(nickNameField.getText()));*/
-
         Parent root = FXMLLoader.load(getClass().getResource("aggiungiUtente.fxml")); //nome scena successiva
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
 
     @FXML
@@ -271,14 +256,12 @@ public class Controller {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    
     }
 
 
 
     @FXML
     void iniziaPartita(ActionEvent event) throws IOException {
-
         String codice = codiceRegole.getText();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("partitaScene.fxml"));
         Parent root = loader.load();
@@ -292,10 +275,9 @@ public class Controller {
     
     }
 
-    /*metodo per far si che possa stampare i partecipanti */
+    //metodo per far si che possa stampare i partecipanti in regoleScene
     @FXML
     void stampaPartecipanti(ActionEvent event) throws IOException {
-        
         String codice = codiceRegole.getText();
         Partita p = new Partita(codice);
         PartitaManager manager = new PartitaManager();
@@ -303,15 +285,9 @@ public class Controller {
         ArrayList <String> partecipanti = manager.getNickNamesList(p);
         for (String u : partecipanti){
             System.out.println(u);
-            
             listPartecipanti.getItems().addAll(u);
-        
         }
-        
     }
-
-
-
 
     @FXML
     void eliminaUtenteAction(ActionEvent event) throws IOException {
@@ -321,6 +297,7 @@ public class Controller {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     void eliminaPartitaAction(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("eliminaPartita.fxml")); //nome scena successiva
@@ -341,46 +318,41 @@ public class Controller {
     }
     @FXML
     void eliminaTorneoDefi (ActionEvent event) throws IOException {
-        // Crea una finestra di dialogo di conferma
-            Alert confermaEliminazione = new Alert(AlertType.CONFIRMATION);
-            confermaEliminazione.setTitle("Conferma Eliminazione");
-            confermaEliminazione.setHeaderText(null);
-            confermaEliminazione.setContentText("Sei sicuro di voler eliminare il Torneo?");
-    
-            // Aggiungi pulsanti per confermare o annullare l'eliminazione
-            confermaEliminazione.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
-    
-            // Mostra la finestra di dialogo e gestisci la risposta dell'utente
-            confermaEliminazione.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.YES) {
-                    // Se l'utente conferma, esegui l'eliminazione
-                    System.out.println("qui si");
-                    eliminaTorneo();
-                }
-            });
-    }
-    @FXML
-    void eliminaPartitaDefi(ActionEvent event) throws IOException {
-    // Crea una finestra di dialogo di conferma
+        
         Alert confermaEliminazione = new Alert(AlertType.CONFIRMATION);
         confermaEliminazione.setTitle("Conferma Eliminazione");
         confermaEliminazione.setHeaderText(null);
-        confermaEliminazione.setContentText("Sei sicuro di voler eliminare la partita?");
+        confermaEliminazione.setContentText("Sei sicuro di voler eliminare il Torneo?");
 
-        // Aggiungi pulsanti per confermare o annullare l'eliminazione
         confermaEliminazione.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
 
         // Mostra la finestra di dialogo e gestisci la risposta dell'utente
         confermaEliminazione.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
                 // Se l'utente conferma, esegui l'eliminazione
+                eliminaTorneo();
+            }
+        });
+    }
+
+    @FXML
+    void eliminaPartitaDefi(ActionEvent event) throws IOException {
+        Alert confermaEliminazione = new Alert(AlertType.CONFIRMATION);
+        confermaEliminazione.setTitle("Conferma Eliminazione");
+        confermaEliminazione.setHeaderText(null);
+        confermaEliminazione.setContentText("Sei sicuro di voler eliminare la partita?");
+
+        confermaEliminazione.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+
+        confermaEliminazione.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.YES) {
+                // Se l'utente conferma, esegui l'eliminazione
                 eliminaPartita();
             }
         });
-        }
+    }
 
     private void eliminaPartita() {
-        // Aggiungi qui il codice per eliminare la partita
         String codice = codiceElimina.getText();
         System.out.println(codice);
         manager.deletePartitaByCode(codice);
@@ -390,7 +362,6 @@ public class Controller {
 
     private void eliminaTorneo() {
         TorneoManager manager =new TorneoManager();
-        // Aggiungi qui il codice per eliminare la partita
         String codice = codiceEliminaTorneo.getText();
         boolean b =manager.deleteTorneoByCode(codice);
         if(b== true){
@@ -403,92 +374,88 @@ public class Controller {
         }
     }
 
-        @FXML
+    @FXML
     void eliminaUtenteDefi(ActionEvent event) throws IOException {
         Alert confermaEliminazione = new Alert(AlertType.CONFIRMATION);
         confermaEliminazione.setTitle("Conferma Eliminazione");
         confermaEliminazione.setHeaderText(null);
         confermaEliminazione.setContentText("Sei sicuro di voler eliminare questo giocatore?");
-    
-        // Aggiungi pulsanti per confermare o annullare l'eliminazione
         confermaEliminazione.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
     
-        // Mostra la finestra di dialogo e gestisci la risposta dell'utente
         confermaEliminazione.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
-                // Se l'utente conferma, esegui l'eliminazione
                 eliminaUtente();
             }
         });
     }
 
-        // Metodo per eliminare l'utente
-        private void eliminaUtente() {
-            
-            String nick = utenteEliminato.getText(); // Otteniamo il nick dall'interfaccia
-            String codicePartita = codiceEliminato.getText(); // Otteniamo il codice partita dall'interfaccia
-            System.out.println(nick);
-            System.out.println(codicePartita);
-            Partita p = new Partita(codicePartita);
-            manager.removeUtenteByNick(p, nick);
-            messaggioEliminaUtente.setText("Giocatore eliminato con successo!");
-            utenteEliminato.clear();
-            codiceEliminato.clear();
-        }
-
-        @FXML
-        void logAdminAction(ActionEvent event) throws IOException{
-            String username = usernameAdmin.getText();
-            String password = pwdAdmin.getText();
-            AdminManager manager = new AdminManager();
-
-            int i = 0;
-            boolean b = manager.login(username, password);
-            if (b==true){
-                Parent root = FXMLLoader.load(getClass().getResource("menuAdminScene.fxml")); //nome scena successiva
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            }
-            else{
-                messaggioLoginErrato.setText("Username o password errati. Riprova.");
-
-                usernameAdmin.clear();
-                pwdAdmin.clear();
-                
-            }
-        }
+    // Metodo per eliminare l'utente
+    private void eliminaUtente() {
         
-    
-        @FXML
-        void goToRegistrati(ActionEvent event) throws IOException {
-            Parent root = FXMLLoader.load(getClass().getResource("registrazioneAdmin.fxml")); //nome scena successiva
+        String nick = utenteEliminato.getText(); // Otteniamo il nick dall'interfaccia
+        String codicePartita = codiceEliminato.getText(); // Otteniamo il codice partita dall'interfaccia
+        System.out.println(nick);
+        System.out.println(codicePartita);
+        Partita p = new Partita(codicePartita);
+        manager.removeUtenteByNick(p, nick);
+        messaggioEliminaUtente.setText("Giocatore eliminato con successo!");
+        utenteEliminato.clear();
+        codiceEliminato.clear();
+    }
+
+    @FXML
+    void logAdminAction(ActionEvent event) throws IOException{
+        String username = usernameAdmin.getText();
+        String password = pwdAdmin.getText();
+        AdminManager manager = new AdminManager();
+
+        int i = 0;
+        boolean b = manager.login(username, password);
+        if (b==true){
+            Parent root = FXMLLoader.load(getClass().getResource("menuAdminScene.fxml")); //nome scena successiva
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         }
+        else{
+            messaggioLoginErrato.setText("Username o password errati. Riprova.");
+
+            usernameAdmin.clear();
+            pwdAdmin.clear();
+            
+        }
+    }
+        
     
-        @FXML
-        void registraAdmin(ActionEvent event) throws IOException{
-            String username = usernameAdminReg.getText();
-            String pwd = pwdAdminReg.getText();
-            boolean b;
+    @FXML
+    void goToRegistrati(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("registrazioneAdmin.fxml")); //nome scena successiva
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    void registraAdmin(ActionEvent event) throws IOException{
+        String username = usernameAdminReg.getText();
+        String pwd = pwdAdminReg.getText();
+        boolean b;
 
-            AdminManager manager = new AdminManager();
-            if(username != null && pwd!= null){
-                b = manager.registraAdmin(username, pwd);
-                if(b==true){
-                    Parent root = FXMLLoader.load(getClass().getResource("menuAdminScene.fxml")); //nome scena successiva
-                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
+        AdminManager manager = new AdminManager();
+        if(username != null && pwd!= null){
+            b = manager.registraAdmin(username, pwd);
+            if(b==true){
+                Parent root = FXMLLoader.load(getClass().getResource("menuAdminScene.fxml")); //nome scena successiva
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
 
-                }    
-            }
-        } 
+            }    
+        }
+    } 
 
     @FXML
     void leaderboardAction(ActionEvent event) throws IOException{

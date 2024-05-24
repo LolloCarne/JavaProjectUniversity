@@ -14,20 +14,17 @@ public class MazzoSpacca{
 
     public MazzoSpacca(int numeroGiocatori){
         this.mazzo= new ArrayList<>();
-
         for(String i : lettere){
             mazzo.add(new CartaSpacca(i));
         }
     }
 
     public CartaSpacca getRandomCard(){
-
         Random r = new Random();
-        //return mazzo.remove(r.nextInt(this.mazzo.size()));
         return mazzo.get(r.nextInt(this.mazzo.size()));
-        
     }
 
+    //ritorna la giusta carta SPACCA da dare all'utente
     public CartaSpacca getRightCard(Utente u){
         return mazzo.get(u.carteSpacca.size());
     }

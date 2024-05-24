@@ -4,14 +4,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import java.util.Random;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import com.DTO.Torneo;
 import com.DTO.BotDummy;
@@ -60,7 +55,6 @@ public class TorneoManager {
             JsonNode rootNode = objectMapper.readTree(new File(FILE_PATH));
             JsonNode partiteNode = rootNode.path("partite");
 
-            // Itera su ogni elemento dell'array "partite"
             for (JsonNode partitaNode : partiteNode) {
                 String codice = partitaNode.path("Codice").asText(null);
 
@@ -93,10 +87,8 @@ public class TorneoManager {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode rootNode;
         ArrayNode partiteArray;
-
-        
+   
         try {
-            // Legge il contenuto esistente del file JSON
             File file = new File(FILE_PATH);
             if (file.exists() && !file.isDirectory()) {
                 rootNode = (ObjectNode) objectMapper.readTree(file);
@@ -107,8 +99,7 @@ public class TorneoManager {
                 partiteArray = objectMapper.createArrayNode();
                 rootNode.set("partite", partiteArray);
             }
-
-            // Popola l'array "partite" con i nuovi dati dalla HashMap
+            // Popola l'array "partite" 
             for (Map.Entry<String, String[]> entry : nuoviDati.entrySet()) {
                 ObjectNode partitaNode = objectMapper.createObjectNode();
                 partitaNode.put("Codice", entry.getKey());
@@ -120,7 +111,6 @@ public class TorneoManager {
 
                 partitaNode.set("Partecipanti", partecipantiArray);
                 partiteArray.add(partitaNode);
-
             }
 
             // Scrive l'oggetto JSON combinato sul file
@@ -181,14 +171,12 @@ public class TorneoManager {
         return randomString.toString();
     }
 
-
-    
+    //scrive la HashMap dei tornei come codiceTorneo:[partecipanti]
     public HashMap scriviDizionario(String nome, int n){
         String[] nomi = creaListaNomi(n, nome);
         String codiceTorneo = generateRandomString(6);
         for(String x : nomi){
             partecipanti.add(new Utente(x,codiceTorneo));
-        
         }
         
         codiceT=codiceTorneo;
@@ -240,9 +228,6 @@ public class TorneoManager {
         else{
             return nomi;
         }
-            
-
-    
     }
 
 
@@ -263,25 +248,20 @@ public class TorneoManager {
             for (String partecipante : value) {
                 System.out.print(partecipante + " ");
             }
-            System.out.println(); // Linea vuota per separare i team
+            System.out.println();
         }
     }
 
     public Partita creaPartiteTorneo(){
-    
+
         System.out.println("CodiceT Partecipanti "+partecipanti.get(0).codiceTorneo);
-
-
         p = new Partita(partecipanti);
-
         return p;
     }
 
     public ArrayList<Utente> getPartecipantiTorneo(){
         return partecipanti;
     }
-
-    
 
     public boolean deleteTorneoByCode(String codice){
         boolean b = false;

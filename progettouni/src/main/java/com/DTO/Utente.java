@@ -5,10 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
 import com.fasterxml.jackson.databind.JsonNode;
 
-import javafx.scene.image.ImageView;
 
 public class Utente {
     
@@ -20,6 +18,7 @@ public class Utente {
     public int partiteVinte;
 
 
+    //costruttore utente passando un nome 
     public Utente(String n){
         this.Nickname = n;
         this.id = UUID.randomUUID().toString();
@@ -29,6 +28,7 @@ public class Utente {
         this.codiceTorneo =null;
     }
 
+    //costruttore utente passando un nome e un codice del torneo
     public Utente(String n, String codiceTorneo){
         this.Nickname = n;
         this.id = UUID.randomUUID().toString();
@@ -38,6 +38,7 @@ public class Utente {
         this.codiceTorneo =codiceTorneo;
     }
 
+    //creazione utente da utente esistente
     public Utente(Utente u){
         this.Nickname = u.getNick();
         this.id = u.getId();
@@ -47,15 +48,12 @@ public class Utente {
         this.partiteVinte=0;
     }
 
+    //metodo per mappare un oggetto utente partendo da un JsonNode
     public Utente (JsonNode utenteJson){
         this.Nickname=utenteJson.get("nick").asText();
         this.id=utenteJson.get("id").asText();
         this.codiceTorneo=utenteJson.get("codiceTorneo").asText();
         this.mano=new ArrayList<>();
-        /*for(JsonNode carta : utenteJson.get("mano")){
-            mano.add(new Carta(carta.get("seme").asText(),carta.get("valore").asInt()));
-            System.out.println("Valore carta: "+carta.get("valore").asInt());
-        }*/
         this.carteSpacca=new ArrayList<>();
         for(JsonNode cartaSpacca : utenteJson.get("carteSpacca")){
             this.carteSpacca.add(new CartaSpacca(cartaSpacca.get("lettera").asText()));
@@ -64,31 +62,38 @@ public class Utente {
         this.partiteVinte=utenteJson.get("partiteVinte").asInt();
     }
 
+    //metodi getter e setter
     public String getNick(){
         return this.Nickname;
     }
-
     public String getId(){
-
         return this.id;
     }
-
-    /*@Override
-    public String toString() {
-        return this.Nickname;
-    }*/
-
- public boolean controllaScala() {
-    // Ordina le carte in mano in base al valore
-    Collections.sort(mano);
-
-    // Controlla se le carte formano una scala
-    for (int i = 0; i < mano.size() - 1; i++) {
-        if (!mano.get(i).valoreSuccessivo(mano.get(i + 1))) {
-            return false; // Se troviamo una coppia di carte non consecutive, non è una scala
-        }
+    public int getPartiteVinte(){
+        return this.partiteVinte;
     }
-    return true; // Se tutte le carte sono consecutive, è una scala
+    public void setCodiceTorneo(String codice){
+        this.codiceTorneo = codice;
+    }
+    public void setPartiteVinte(int n){
+        this.partiteVinte = n;
+    }
+    public String getCodiceTorneo(){
+        return this.codiceTorneo;
+    }
+
+    
+    public boolean controllaScala() {
+        // Ordina le carte in mano in base al valore
+        Collections.sort(mano);
+
+        // Controlla se le carte formano una scala
+        for (int i = 0; i < mano.size() - 1; i++) {
+            if (!mano.get(i).valoreSuccessivo(mano.get(i + 1))) {
+                return false; // Se troviamo una coppia di carte non consecutive, non è una scala
+            }
+        }
+        return true; // Se tutte le carte sono consecutive, è una scala
     }
 
     public boolean controllaTreStessoSeme() {
@@ -112,18 +117,8 @@ public class Utente {
 
         return false;
     }
-    public int getPartiteVinte(){
-        return this.partiteVinte;
-    }
-    public void setCodiceTorneo(String codice){
-        this.codiceTorneo = codice;
-    }
-    public void setPartiteVinte(int n){
-        this.partiteVinte = n;
-    }
-    public String getCodiceTorneo(){
-        return this.codiceTorneo;
-    }
+
+    
 
     public String toString(){
         return "nome: " + Nickname + "\ncodice torneo: " + codiceTorneo + "\npartite vinte" + partiteVinte;

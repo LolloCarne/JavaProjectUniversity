@@ -17,6 +17,8 @@ public class Mazzo {
     String path="";
     
 
+    //Idea generale:
+    //creare un mazzo ordinato e poi tramite shuffle mescolarlo 
     public Mazzo(){
         mazzo= new Stack<>();
         pescate= new ArrayList<>();
@@ -25,7 +27,6 @@ public class Mazzo {
     }
 
     public Carta pesca(){
-
         Carta pescata= this.mazzo.pop();
         pescate.add(pescata);
         return pescata;
@@ -34,8 +35,8 @@ public class Mazzo {
     public void mescola(){
         Collections.shuffle(mazzo); // Utilizziamo il metodo shuffle della classe Collections per mescolare il mazzo
     }
-    private void makeMazzo(){
 
+    private void makeMazzo(){
         for(Seme s : Seme.values()){
             for(int i =0; i<7;i++){
                 this.mazzo.add(new Carta(s,i));
@@ -45,8 +46,6 @@ public class Mazzo {
                     case FORCHETTE : str= "forchette";
                     case COLTELLI : str= "coltelli";
                 }
-                
-                
             }
         }
         
@@ -63,8 +62,8 @@ public class Mazzo {
     }
 
 
+    //ritorna una carta numero
     public Carta getCartaDiGioco(){
-
         for(int i=0; i<this.mazzo.size();i++){
             if(this.mazzo.get(i).getClass()==Carta.class){
                 this.pescate.add(this.mazzo.remove(i));
@@ -74,6 +73,4 @@ public class Mazzo {
         return null;
     }
     
-
-
 }

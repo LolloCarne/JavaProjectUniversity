@@ -8,10 +8,8 @@ import java.util.ResourceBundle;
 import com.DTO.BotDummy;
 import com.DTO.BotSmart;
 import com.DTO.Partita;
-import com.DTO.Torneo;
 import com.DTO.Utente;
 import com.Manager.PartitaManager;
-import com.Manager.TorneoManager;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,16 +57,14 @@ public class ControllerCreaPartita implements Initializable{
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        //roba su scena creazionePartita
         Partita p = new Partita(); 
         campoCodice.setText(p.getCodice());
-        
-        
     }
 
     public String getCodice(){
         return this.codice;
     }
+
     @FXML
     void addUtenteAction(ActionEvent event) throws IOException{
         String codice= campoCodice.getText();
@@ -96,6 +92,7 @@ public class ControllerCreaPartita implements Initializable{
 
     }
 
+    //metodo per aggiumngere i bot in partita
     public void addBotAction(ActionEvent event){
         String codice= campoCodice.getText();
         Partita p = new Partita(codice);
@@ -111,10 +108,9 @@ public class ControllerCreaPartita implements Initializable{
             alert.showAndWait();
         }
         updateNickNameList(pManager.getNickNamesList(p));
-    
-
     }
 
+    //metodo per aggiungere i bot Stupid in partita
     public void addBotDummyAction(ActionEvent event){
         String codice= campoCodice.getText();
         Partita p = new Partita(codice);
@@ -126,12 +122,9 @@ public class ControllerCreaPartita implements Initializable{
             alert.setTitle("Errore");
             alert.setHeaderText(null);
             alert.setContentText("non puoi aggiungere piu di 4 partecipanti");
-
             alert.showAndWait();
         }
         updateNickNameList(pManager.getNickNamesList(p));
-    
-
     }
 
     public void updateNickNameList(ArrayList<String> nicks){
@@ -140,37 +133,35 @@ public class ControllerCreaPartita implements Initializable{
     }
 
     @FXML
-void rimuoviPartecipanteAction(ActionEvent event) throws IOException {
-    // Apri la finestra di pop-up
-    
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("rimuoviPartecipantePopup.fxml"));
-    Parent root = loader.load();
-    Stage stage = new Stage();
-    stage.setScene(new Scene(root));
-    stage.showAndWait();
+    void rimuoviPartecipanteAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("rimuoviPartecipantePopup.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
 
-    String codice= campoCodice.getText();
-    Partita p = new Partita(codice);
-    // Una volta chiusa la finestra di pop-up, gestisci la rimozione del partecipante
-    RimuoviPartecipantePopupController popupController = loader.getController();
-    String nicknameToRemove = popupController.getNickname();
-    System.out.println(nicknameToRemove);
-    if (nicknameToRemove != null) {
-        PartitaManager manager = new PartitaManager();
-        manager.removeUtenteByNick(p, nicknameToRemove);
-        updateNickNameList(manager.getNickNamesList(p));
+        String codice= campoCodice.getText();
+        Partita p = new Partita(codice);
+        // Una volta chiusa la finestra di pop-up, gestisci la rimozione del partecipante
+        RimuoviPartecipantePopupController popupController = loader.getController();
+        String nicknameToRemove = popupController.getNickname();
+        System.out.println(nicknameToRemove);
+        if (nicknameToRemove != null) {
+            PartitaManager manager = new PartitaManager();
+            manager.removeUtenteByNick(p, nicknameToRemove);
+            updateNickNameList(manager.getNickNamesList(p));
     }
 }
+
 @FXML
     void creaPartitaDefiAction(ActionEvent event) throws IOException{
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Creazione Partita");
         alert.setHeaderText(null);
         alert.setContentText("La creazione della partita è avvenuta con successo!");
-
         alert.getButtonTypes().setAll(ButtonType.OK);
-
         alert.showAndWait().ifPresent(response -> {
+            
             if (response == ButtonType.OK) {
                 try {
                    goBack(event);

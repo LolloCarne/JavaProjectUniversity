@@ -4,65 +4,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.HashMap;
-import java.util.Map;
-import javafx.fxml.FXMLLoader;
-
-import java.util.Dictionary;
-import java.util.Hashtable;
-
-import javafx.stage.Stage;
-import javafx.scene.Node;
-
-
-//import com.DTO.BotSmart;
 import com.DTO.Torneo;
-import com.DTO.BotSmart;
-import com.DTO.Partita;
-import com.DTO.Utente;
-import com.Manager.PartitaManager;
 import com.Manager.TorneoManager;
-import com.fasterxml.jackson.databind.JsonNode;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Optional;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class ControllerTorneo implements Initializable {
-
-    
-
     @FXML
     private TextField nomiTorneo;
 
@@ -111,22 +66,8 @@ public class ControllerTorneo implements Initializable {
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        //roba su scena creazionePartita 
-        
+                
     }
-   
-    
-    //setta i partecipanti del torneoo 
-    @FXML
-    void okayNextAction(ActionEvent event) {
-        
-        
-        System.out.println("stringa del nome" + nomeTotal);
-        //n = Integer.parseInt(numeroPartecipanti.getText());
-        //manager.scriviDizionario(nomeTotal, n);
-        
-    }
-
 
     @FXML
     void smartBotAction(ActionEvent event) {
@@ -137,12 +78,12 @@ public class ControllerTorneo implements Initializable {
         alert.setContentText("\nAggiuno bot smart.");
         alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
 
-        System.out.println("qui");
         String nomeBot = manager.creaBotSmart();
-        nomiBot =nomiBot + nomeBot  + "," ;
-        System.out.println("nomi Bot" + nomiBot);
-        
+
+        //stringa con tutti i nomi dei bot, sia Stupid che Smart
+        nomiBot =nomiBot + nomeBot  + "," ;  
     }
+
     @FXML
     void stupidBotAction(ActionEvent event) {
         manager = new TorneoManager();
@@ -151,12 +92,10 @@ public class ControllerTorneo implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("\nAggiuno bot stupid.");
         alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
-    
         String nomeBot = manager.creaBotStupid();
+        //stringa con tutti i nomi dei bot, sia Stupid che Smart
         nomiBot =nomiBot + nomeBot  + "," ;
         System.out.println("nomi Bot" + nomiBot);
-
-            
     }
 
     
@@ -182,6 +121,5 @@ public class ControllerTorneo implements Initializable {
         alert.setContentText(manager.creaPartiteTorneo().getCodice() + "\nSalva il codice ed accedi come utente tramite esso.");
         alert.showAndWait(); // Mostra il pop-up e attendi che venga chiuso
     }
-
-    
+   
 }

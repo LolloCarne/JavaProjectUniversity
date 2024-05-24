@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import com.DTO.Admin;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -17,6 +16,7 @@ public class AdminManager {
     private static final ObjectMapper objectMapper = new ObjectMapper()
     .enable(SerializationFeature.INDENT_OUTPUT);
 
+    //controlla login dell'admin
     public boolean login(String username, String password) {
         ArrayList<Admin> admins = leggiJson();
         for (Admin admin : admins) {
@@ -27,12 +27,12 @@ public class AdminManager {
         return false; // Nessun admin trovato
     }
 
+    //registra nuovo admin
     public boolean registraAdmin(String username, String password) {
         ArrayList<Admin> admins = leggiJson();
         boolean b = false;
         if (!adminEsiste(username)) {
             admins.add(new Admin(username, password)); // Creazione di un nuovo admin e aggiunta alla lista
-            System.out.println(admins.toString());
             scriviJson(admins); // Scrittura della lista aggiornata nel file JSON
             return true;
         }
@@ -47,6 +47,7 @@ public class AdminManager {
         }
     }
 
+    //controlla se admin è esistente
     private boolean adminEsiste(String username) {
         ArrayList<Admin> admins = leggiJson();
         for (Admin admin : admins) {
@@ -85,13 +86,6 @@ public class AdminManager {
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
-
 
 }
 

@@ -77,13 +77,16 @@ public class Carta implements Comparable<Carta>{
         return s.toString() + " " + valore;
     }
     
+    //sovrascrive il metodo compareTo dell'interfaccia Comparable
+    //serve a comparare due oggetti
     @Override
     public int compareTo(Carta altraCarta) {
     return Integer.compare(this.valore, altraCarta.valore);
     }
 
+    //ti ritorna true se l'oggetto che gli passi è successivo all'oggetto in cui si trova
+    //lo usiamo per comparare le carte per controllare quando facciamo scala
     public boolean valoreSuccessivo(Carta altraCarta) {
-        // Se il valore della carta corrente è uno in meno rispetto al valore dell'altra carta, allora il valore è successivo
         return this.valore == altraCarta.valore - 1;
     }
 }
