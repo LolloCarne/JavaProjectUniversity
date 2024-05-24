@@ -70,12 +70,21 @@ public class Torneo {
         partiteDaGiocare=n;
     }
 
-    public void vincitoreTorneo(int n, String nome){
+    public void vincitoreTorneo(int n,ArrayList<Utente> p){
+        
+        String vincitore="";
+        int max=0;
+        for( Utente x : p){
+            if(x.getPartiteVinte()>max){
+                vincitore=x.getNick();
+                max=x.getPartiteVinte();
+            }
+        }
         if(n ==0){
             Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("TORNEO FINITO");
                 alert.setHeaderText(null);
-                alert.setContentText("COMPLIMENTI" + nome + " HAI SPACCATO");
+                alert.setContentText("COMPLIMENTI" + vincitore + " HAI SPACCATO");
                 alert.showAndWait(); 
         }
     }

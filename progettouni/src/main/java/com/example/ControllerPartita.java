@@ -745,7 +745,7 @@ public void pesca() {
             imgViewList.get(utenteCorrente.carteSpacca.indexOf(c)).setImage(image);
 
             
-            if(utenteCorrente.carteSpacca.indexOf(c)==5){
+            if(utenteCorrente.carteSpacca.indexOf(c)==0){
                 
                 vittoria(utenteCorrente);
                 
@@ -787,7 +787,7 @@ public void pesca() {
                      if(!codice.equals("null")){
                          
                         t.setPartiteDaGiocare(partiteDaGiocare);
-                        t.vincitoreTorneo(partiteDaGiocare, utenteCorrente.getNick());
+                        t.vincitoreTorneo(partiteDaGiocare, partecipanti);
                         System.out.println("Vincitore"+  vincitore.getNick());
                          
                         //v.getUtente(utenteCorrente);
